@@ -1,0 +1,112 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: gold;
+  color: maroon;
+  padding: 10px;
+  position: sticky;
+  top: 0;
+}
+
+.navbar-left {
+  flex-grow: 1;
+}
+
+.navbar-middle {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.navbar-input {
+  border: none;
+  padding: 5px;
+  margin-right: 10px;
+  background-color: white;
+  color: black;
+}
+
+.navbar-search-button {
+  background-color: gold;
+  color: maroon;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar-search-button:hover {
+  background-color: white;
+  color: maroon;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-dropdown {
+  position: relative;
+}
+
+.navbar-dropdown-toggle {
+  background-color: gold;
+  color: maroon;
+  border: none;
+  padding: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar-dropdown-toggle:hover {
+  background-color: white;
+  color: maroon;
+}
+
+.navbar-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: gold;
+  min-width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  left: 0;
+}
+
+.navbar-dropdown-content a {
+  color: maroon;
+  padding: 10px;
+  display: block;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar-dropdown-content a:hover {
+  background-color: white;
+  color: maroon;
+}
+
+.navbar-dropdown:hover .navbar-dropdown-content {
+  display: block;
+}
+
+.navbar-icon-button {
+  background-color: gold;
+  color: maroon;
+  border: none;
+  padding: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar-icon-button:hover {
+  background-color: white;
+  color: maroon;
+}
