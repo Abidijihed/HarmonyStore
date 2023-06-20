@@ -101,7 +101,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Navbar = ({ handleChange,shop})=> {
-  const token = localStorage.getItem("token");
   const [mobileOpen, setMobileOpen] = useState(false);
  
    const classes = useStyles();
@@ -132,18 +131,18 @@ const Navbar = ({ handleChange,shop})=> {
           </ListItemIcon>
           <ListItemText primary="About Us" />
         </ListItem>
-       {!token&& <ListItem button component={Link} to="/login">
+     <ListItem button component={Link} to="/login">
           <ListItemIcon>
             <FaSignInAlt />
           </ListItemIcon>
           <ListItemText primary="Login" />
-        </ListItem>}
-      { token&& <ListItem button component={Link} to="/profile">
+        </ListItem>
+      <ListItem button component={Link} to="/profile">
           <ListItemIcon>
             <FaUser />
           </ListItemIcon>
           <ListItemText primary="Profile" />
-        </ListItem>}
+        </ListItem>
         <Divider />
         <ListItem button component={Link} to="/products">
           <ListItemIcon>
@@ -199,10 +198,10 @@ const Navbar = ({ handleChange,shop})=> {
               <IconButton color="inherit" className={classes.navIcon} component={Link} to="/profile" >
                 Profile
               </IconButton>
-            {!token&&  <IconButton color="inherit" className={classes.navIcon} component={Link} to="/login">
+            <IconButton color="inherit" className={classes.navIcon} component={Link} to="/login">
                 {/* <FaSignInAlt /> */}
                 Login
-              </IconButton>}
+              </IconButton>
               <IconButton color="inherit" className={classes.navIcon} component={Link} to="/contact">
                 {/* <FaPhoneAlt /> */}
                 Contact Us
