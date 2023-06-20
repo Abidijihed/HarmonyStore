@@ -56,6 +56,10 @@ function App() {
   return (
     <div>
       <Navbar />
+      <br/>
+      <div style={{display:'flex',alignItems:'center',justifyContent:'center',marginTop:'3%'}}>
+    <h1>Bienvenue à HarmonyStore</h1>
+  </div>
       <div className={classes.comingSoonWrapper}>
         <div className={classes.comingSoonContent}>
           <Typography variant="h2" gutterBottom>

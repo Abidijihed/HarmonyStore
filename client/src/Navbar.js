@@ -159,9 +159,7 @@ const Navbar = ({ handleChange,shop})=> {
     <>
       <AppBar position="sticky" className={classes.appBar} sx={{backgroundColor:'#e8b623'}}>
         <Toolbar className='mynavbar'>
-        <Typography variant="h6" align="center" style={{marginTop:"10px",textDecoration:"underline"}} component={Link} to="/">
-          HarmonyStore
-        </Typography>
+       
           {/* <Hidden mdDown>
             <Typography className={classes.title} variant="h6" noWrap>
               ElectroZayn
