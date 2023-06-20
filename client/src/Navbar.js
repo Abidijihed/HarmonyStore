@@ -29,13 +29,14 @@ import {
   FaBars,
  
 } from 'react-icons/fa';
+
 import { 
    MdOutlineMailOutline,
   MdOutlineAddShoppingCart
  } from 'react-icons/md';
 
 import { Link } from 'react-router-dom';
-
+import "./Navbar.css"
 const useStyles = makeStyles((theme) => ({
   appBar: {
     backgroundColor: '#e8b623',
@@ -216,7 +217,7 @@ const Navbar = ({ handleChange,shop})=> {
               </IconButton>
             </Hidden>
             <IconButton color="inherit">
-              <Badge badgeContent={Number(shop)} color="secondary" component={Link} to="/chekout">
+              <Badge badgeContent={0} color="secondary" component={Link} to="/chekout">
                 <FaShoppingCart fontSize="xlarge" color='white'/>
               </Badge>
             </IconButton>
