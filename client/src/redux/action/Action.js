@@ -32,11 +32,11 @@ export const login = (data, navigate) => async (dispatch) => {
 
     }
 }
-export const get_current = () => async (dispatch) => {
+export const get_current = (user_id) => async (dispatch) => {
     const config = { headers: { token: localStorage.getItem("token") } }
     try {
-        const res = await axios.get('https://www.harmonystore01.com/api/getone_user/', config)
-        console.log(res.data)
+        const res = await axios.get('https://www.harmonystore01.com/api/getone_user/',user_id, config)
+        console.log(res)
         dispatch({ type: GET_CURRENT, payload: res.data })
     } catch (error) {
         console.log(error)

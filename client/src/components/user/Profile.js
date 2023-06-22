@@ -61,8 +61,8 @@ function ProfilePage() {
   const [role, setRole] = useState("");
   const dispatch= useDispatch() 
   useEffect(() => {
-    /*const user_id = localStorage.getItem("id");
-    axios
+    const user_id = localStorage.getItem("id");
+    /*axios
       .get("https://www.harmonystore01.com/api/getone_user/" + user_id)
       .then((res) => {
         setUser(res.data);
@@ -70,7 +70,7 @@ function ProfilePage() {
           setRole(el.role);
         });
       });*/
-      dispatch(get_current())
+      dispatch(get_current(user_id))
   }, []);
   const oneuser=useSelector((state)=>console.log(state))
   const logout = () => {

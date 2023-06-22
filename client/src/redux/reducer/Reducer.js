@@ -10,6 +10,7 @@ const UserReducer = (state = initialState, { type, payload }) => {
       return { ...state, users: payload.utilisateur };
     case LOGIN: 
     localStorage.setItem("token",payload.token)
+    localStorage.setItem("id",payload.id)
     return { ...state,users:payload.utilisateur};
     case GET_CURRENT: 
     return { ...state,users:payload.utilisateur}
