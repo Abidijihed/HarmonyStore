@@ -27,7 +27,7 @@ import {
   FaSignInAlt,
   FaSearch,
   FaBars,
- 
+  FaHome
 } from 'react-icons/fa';
 
 import { 
@@ -160,10 +160,10 @@ const Navbar = ({ handleChange,shop})=> {
       <AppBar position="sticky" className={classes.appBar} sx={{backgroundColor:'#e8b623'}}>
         <Toolbar className='mynavbar'>
        
-          {/* <Hidden mdDown>
-            <Typography className={classes.title} variant="h6" noWrap>
-              ElectroZayn
-            </Typography> */}
+          {/* <Hidden mdDown> */}
+            <Typography className={classes.title} variant="h6" noWrap component={Link} to="/">
+              <FaHome style={{fontSize:"30px" ,color:"white"}}/>
+            </Typography>
           {/* </Hidden> */}
           <Hidden mdUp>
             <IconButton

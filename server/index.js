@@ -4,7 +4,7 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 require("dotenv").config();
 const {ProductRouter}=require("./router/ProductRouter")
-
+const {userRoter}=require("./router/UsersRouter")
 app.use(
   cors({
     origin: "*",
@@ -18,5 +18,5 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 app.use("/",ProductRouter)
-
+app.use("/",userRoter)
 module.exports = app;
