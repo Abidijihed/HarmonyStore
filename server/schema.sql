@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS products (
   availability VARCHAR(255) NOT NULL,
   category VARCHAR(255) NOT NULL,
   check_add_or_not BOOLEAN NOT NULL,
-  PRIMARY KEY (id)
+  PRIMARY KEY (id,check_add_or_not)
 );
 
 CREATE TABLE IF NOT EXISTS product_images (
@@ -45,11 +45,11 @@ INSERT INTO users(FirstName,LastName,Email,Address,PhoneNumber,Password,country,
 
 CREATE TABLE IF NOT EXISTS sessions (
   id INT NOT NULL AUTO_INCREMENT,
-  user_id INT NOT NULL,
+  users_id INT NOT NULL,
   session VARCHAR(250) NOT NULL,
   date VARCHAR(250) NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (user_id) REFERENCES user(id)
+  FOREIGN KEY (users_id) REFERENCES users(id)
 );
 
 CREATE TABLE IF NOT EXISTS newsletter (
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS newsletter (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS userorder (
+CREATE TABLE IF NOT EXISTS usersorder (
   id INT NOT NULL AUTO_INCREMENT,
   validate_add_or_not BOOLEAN NOT NULL,
   FirstName VARCHAR(200) NOT NULL,
@@ -68,11 +68,11 @@ CREATE TABLE IF NOT EXISTS userorder (
   PhoneNumber VARCHAR(255) NOT NULL,
   country VARCHAR(200) NOT NULL,
   Zip VARCHAR(250) NOT NULL,
-  user_id INT NOT NULL,
+  users_id INT NOT NULL,
   total_price DECIMAL(10, 2) NOT NULL,
   product_name VARCHAR(200) NOT NULL,
   product_quantity INT NOT NULL,
   date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-  PRIMARY KEY (id, validate_add_or_not, user_id),
-  FOREIGN KEY (user_id) REFERENCES user(id)
+  PRIMARY KEY (id, validate_add_or_not, users_id),
+  FOREIGN KEY (users_id) REFERENCES users(id)
 );
