@@ -8,7 +8,7 @@ module.exports={
                 expires: new Date(new Date().getTime() + 86400 * 1000),
                 httpOnly: false,
                 Electrozyne: false
-            }).send([session,"secsuss",users_id])
+            }).send({msg:"secsuss",token:session,id:users_id})
         })
         .catch((err)=>{
            res.send(err)

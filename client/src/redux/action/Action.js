@@ -19,6 +19,7 @@ export const register = (data) => async (dispatch) => {
 export const login = (data, navigate) => async (dispatch) => {
     try {
         const res = await axios.post('https://www.harmonystore01.com/api/login', data)
+        console.log(res.data)
         dispatch({ type: LOGIN, payload: res.data })
         navigate("/profile")
     } catch (error) {
