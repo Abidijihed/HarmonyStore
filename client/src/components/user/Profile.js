@@ -11,7 +11,7 @@ import {
   Button,
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { get_current } from "../../redux/action/Action";
 
 const useStyles = makeStyles((theme) => ({
@@ -72,6 +72,7 @@ function ProfilePage() {
       });*/
       dispatch(get_current())
   }, []);
+  const oneuser=useSelector((state)=>console.log(state))
   const logout = () => {
     axios.get("https://www.harmonystore01.com/api/logout").then((res) => {
       if (res.data === "user loged out") {
