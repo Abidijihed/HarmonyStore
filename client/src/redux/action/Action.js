@@ -4,7 +4,7 @@ import { alertError } from './AlertAction'
 
 export const register = (data) => async (dispatch) => {
     try {
-        const res = await axios.post('http://localhost:5700/api/Create_user', data)
+        const res = await axios.post('https://www.harmonystore01.com/api/Create_user', data)
         dispatch({ type: REGISTER, payload: res.data })
 
     } catch (error) {
@@ -18,7 +18,7 @@ export const register = (data) => async (dispatch) => {
 }
 export const login = (data, navigate) => async (dispatch) => {
     try {
-        const res = await axios.post('http://localhost:5700/api/login', data)
+        const res = await axios.post('https://www.harmonystore01.com/api/login', data)
         dispatch({ type: LOGIN, payload: res.data })
         navigate("/profile")
     } catch (error) {
@@ -34,7 +34,7 @@ export const login = (data, navigate) => async (dispatch) => {
 export const get_current = (id) => async (dispatch) => {
     const config = { headers: { token: localStorage.getItem("token") } }
     try {
-        const res = await axios.get('http://localhost:5700/api/getone_user/'+id, config)
+        const res = await axios.get('https://www.harmonystore01.com/api/getone_user/'+id, config)
         dispatch({ type: GET_CURRENT, payload: res.data[0] })
     } catch (error) {
         console.log(error)

@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import Spinner from 'react-bootstrap/Spinner';
+
 import {
   Card,
   CardHeader,
@@ -57,7 +59,6 @@ const useStyles = makeStyles((theme) => ({
 
 function ProfilePage() {
   const classes = useStyles();
-  const [user, setUser] = useState([]);
   const [role, setRole] = useState("");
   const dispatch= useDispatch() 
   useEffect(() => {
@@ -67,12 +68,12 @@ function ProfilePage() {
       .then((res) => {
         setUser(res.data);
         res.data.map((el) => {
-          setRole(el.role);
+          setRole(user.role);
         });
       });*/
       dispatch(get_current(id))
   }, []);
-  const oneuser=useSelector((state)=>console.log(state))
+  const user=useSelector((state)=>state.UserReducer.users)
   const logout = () => {
     axios.get("https://www.harmonystore01.com/api/logout").then((res) => {
       if (res.data === "user loged out") {
@@ -84,8 +85,12 @@ function ProfilePage() {
   return (
     <>
       {/* First section */}
-      {user.map((el) => (
-        <Card className={classes.root} key={el.id}>
+     { !user ?
+     <Spinner animation="border" role="status">
+      <span className="visually-hidden">Loading...</span>
+    </Spinner>
+      
+      :  <Card className={classes.root} >
           <CardHeader
             avatar={
               <Avatar className={classes.avatar}>
@@ -101,7 +106,7 @@ function ProfilePage() {
           <CardContent>
             <img
               src={
-                el.profileImage ||
+                user.profileImage ||
                 "https://img.favpng.com/12/15/21/computer-icons-avatar-user-profile-recommender-system-png-favpng-HaMDUPFH1etkLCdiFjgTKHzAs.jpg"
               }
               alt="Profile"
@@ -112,14 +117,14 @@ function ProfilePage() {
               <Typography variant="h6" gutterBottom>
                 Email:
               </Typography>
-              <Typography variant="body1">{el.Email}</Typography>
+              <Typography variant="body1">{user?.Email}</Typography>
             </div>
             <Divider />
             <div className={classes.section}>
               <Typography variant="h6" gutterBottom>
                 Phone Number:
               </Typography>
-              <Typography variant="body1">{el.phoneNumber}</Typography>
+              <Typography variant="body1">{user?.phoneNumber}</Typography>
             </div>
             <Divider />
             <div className={classes.section}>
@@ -127,7 +132,7 @@ function ProfilePage() {
                 First Name:
               </Typography>
               <Typography variant="body1">
-                {el ? el.FirstName : null}
+                {user ? user.FirstName : null}
               </Typography>
             </div>
             <Divider />
@@ -135,28 +140,28 @@ function ProfilePage() {
               <Typography variant="h6" gutterBottom>
                 Last Name:
               </Typography>
-              <Typography variant="body1">{el ? el.LastName : null}</Typography>
+              <Typography variant="body1">{user ? user.LastName : null}</Typography>
             </div>
             <Divider />
             <div className={classes.section}>
               <Typography variant="h6" gutterBottom>
                 Address:
               </Typography>
-              <Typography variant="body1">{el ? el.Address : null}</Typography>
+              <Typography variant="body1">{user ? user.Address : null}</Typography>
             </div>
             <Divider />
             <div className={classes.section}>
               <Typography variant="h6" gutterBottom>
                 Code Zip:
               </Typography>
-              <Typography variant="body1">{el ? el.Zip : null}</Typography>
+              <Typography variant="body1">{user ? user.Zip : null}</Typography>
             </div>
             <Divider />
             <div className={classes.section}>
               <Typography variant="h6" gutterBottom>
                 Country:
               </Typography>
-              <Typography variant="body1">{el ? el.country : null}</Typography>
+              <Typography variant="body1">{user ? user.country : null}</Typography>
             </div>
             <Divider />
           </CardContent>
@@ -165,7 +170,7 @@ function ProfilePage() {
             LogOut
           </Button>
         </Card>
-      ))}
+   }
 
       {/* Second section */}
     </>

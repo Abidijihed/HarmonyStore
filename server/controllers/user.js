@@ -46,7 +46,6 @@ module.exports={
     })
 }),
 LoginUser :(req,res)=>{
-  console.log(req.body)
   var passwordHashed = crypto.createHash('sha256').update(req.body.Password, 'utf8').digest('hex')
   
   // var repeatepasswordHshed=crypto.createHash('sha256').update(req.body.repeatepassword, 'utf8').digest('hex')
@@ -75,6 +74,7 @@ res.status(200).send('user loged out')
 
 },
 getoneuser:((req,res)=>{
+  console.log(req.params.id)
   const query=`select * from users where id=${req.params.id}`
   connection.query(query,(err,result)=>{
     err ?res.status(500).send(err):res.status(200).send(result)
