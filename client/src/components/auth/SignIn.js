@@ -72,7 +72,7 @@ function LoginPage() {
           navigate("/profile");
           setTimeout(() => {
             window.location.reload()
-          }, 2000);
+          }, 1000);
         }
       });
   };
