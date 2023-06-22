@@ -1,4 +1,4 @@
-import {ALERT_ERROR, CLEAR_ERROR} from '../actionType/AlertType'
+import {ALERT_ERROR, CLEAR_ERROR} from '../actionType/AlerType'
 
 
 export const alertError = (msg)=>async(dispatch)=>{
