@@ -68,8 +68,11 @@ function LoginPage() {
         } else if (res.data[1] === "secsuss") {
           localStorage.setItem("token", res.data[0]);
           localStorage.setItem("id", res.data[2]);
-          window.location.reload()
+          
           navigate("/profile");
+          setTimeout(() => {
+            window.location.reload()
+          }, 2000);
         }
       });
   };
