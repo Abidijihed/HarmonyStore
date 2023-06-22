@@ -103,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = ({ handleChange,shop})=> {
   const [mobileOpen, setMobileOpen] = useState(false);
- 
+ const token=localStorage.getItem("token")
    const classes = useStyles();
 
 
@@ -197,10 +197,10 @@ const Navbar = ({ handleChange,shop})=> {
               <IconButton color="inherit" className={classes.navIcon} component={Link} to="/profile" >
                 Profile
               </IconButton>
-            <IconButton color="inherit" className={classes.navIcon} component={Link} to="/login">
+          {!token&&  <IconButton color="inherit" className={classes.navIcon} component={Link} to="/login">
                 {/* <FaSignInAlt /> */}
                 Login
-              </IconButton>
+              </IconButton>}
               <IconButton color="inherit" className={classes.navIcon} component={Link} to="/contact">
                 {/* <FaPhoneAlt /> */}
                 Contact Us
