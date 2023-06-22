@@ -36,6 +36,7 @@ export const get_current = () => async (dispatch) => {
     const config = { headers: { token: localStorage.getItem("token") } }
     try {
         const res = await axios.get('https://www.harmonystore01.com/api/getone_user/', config)
+        console.log(res.data)
         dispatch({ type: GET_CURRENT, payload: res.data })
     } catch (error) {
         console.log(error)
