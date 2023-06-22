@@ -7,6 +7,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useDispatch } from "react-redux";
+import { register } from "../../redux/action/Action";
 // const token=localStorage.getItem("token")
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,9 +41,9 @@ function SignupPage() {
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [phoneError, setPhoneError] = useState(false);
-
+  const dispatch= useDispatch();
   const navigate = useNavigate();
-  const handleSignup = (e) => {
+  /*const handleSignup = (e) => {
     e.preventDefault();
     if (FirstName === "") {
       setFirstNameError(true);
@@ -93,7 +95,7 @@ function SignupPage() {
           }
         });
     }
-  };
+  };*/
 
   return (
     <div className={classes.root}>
@@ -104,7 +106,7 @@ function SignupPage() {
         className={classes.form}
         noValidate
         autoComplete="off"
-        onSubmit={handleSignup}
+        onSubmit={()=>dispatch(register({FirstName,Email,Password,PhoneNumber}))}
       >
         <TextField
           label="First Name"
@@ -136,7 +138,7 @@ function SignupPage() {
           value={PhoneNumber}
           onChange={(PhoneNumber) => setPhone(PhoneNumber)}
         />
-        <Button variant="contained" color="primary" type="submit">
+        <Button variant="contained" color="primary" type="submit" >
           Sign Up
         </Button>
       </form>

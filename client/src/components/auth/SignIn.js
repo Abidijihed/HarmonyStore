@@ -13,6 +13,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { login } from "../../redux/action/Action";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,7 +53,7 @@ function LoginPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handelLoginUser = () => {
+  /*const handelLoginUser = () => {
     axios
       .post("https://www.harmonystore01.com/api/login", {
         Email: Email,
@@ -75,7 +76,7 @@ function LoginPage() {
           }, 1000);
         }
       });
-  };
+  }; */
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -102,7 +103,7 @@ function LoginPage() {
             className={classes.button}
             variant="contained"
             color="primary"
-            onClick={() => handelLoginUser()}
+            onClick={() => dispatch(login({Email,Password},navigate))}
           >
             Log in
           </Button>

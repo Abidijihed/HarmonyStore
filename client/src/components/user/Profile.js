@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { useDispatch } from "react-redux";
+import { get_current } from "../../redux/action/Action";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,9 +59,9 @@ function ProfilePage() {
   const classes = useStyles();
   const [user, setUser] = useState([]);
   const [role, setRole] = useState("");
-
+  const dispatch= useDispatch() 
   useEffect(() => {
-    const user_id = localStorage.getItem("id");
+    /*const user_id = localStorage.getItem("id");
     axios
       .get("https://www.harmonystore01.com/api/getone_user/" + user_id)
       .then((res) => {
@@ -68,7 +69,8 @@ function ProfilePage() {
         res.data.map((el) => {
           setRole(el.role);
         });
-      });
+      });*/
+      dispatch(get_current())
   }, []);
   const logout = () => {
     axios.get("https://www.harmonystore01.com/api/logout").then((res) => {
