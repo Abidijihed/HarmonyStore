@@ -2,7 +2,7 @@ const {connection}=require("../dataBaseConfig/config")
 const crypto = require('crypto');
 const middleware = require('../midelwar/auth.js');
 const utils=require('../midelwar/utils.js')
-const session=require ('../controllers/session.js')
+const session=require ('./session.js')
 
 module.exports={
     CreateUser:((req,res)=>{

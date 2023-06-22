@@ -1,5 +1,5 @@
 const router =require('express').Router()
-const controllerUser=require('../controllers/Users')
+const controllerUser=require('../controllers/user')
 
 router.post('/api/Create_user',controllerUser.CreateUser)
 router.post('/api/login',controllerUser.LoginUser)
