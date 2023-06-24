@@ -1,39 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import axios from 'axios';
-
+import React, { useState, useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import axios from "axios";
+import { FaDollarSign, FaEuroSign } from "react-icons/fa";
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
-    margin: '25px',
+    margin: "25px",
   },
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: "56.25%", // 16:9
   },
 });
 
 const JewelryCard = ({ product }) => {
   const classes = useStyles();
-  const [priceCurrency, setPriceCurrency] = useState('TND');
+  const [priceCurrency, setPriceCurrency] = useState("TND");
   const [exchangeRate, setExchangeRate] = useState(1);
 
   useEffect(() => {
     const fetchExchangeRate = async () => {
       try {
         const response = await axios.get(
-          'https://api.exchangerate-api.com/v4/latest/TND'
+          "https://api.exchangerate-api.com/v4/latest/TND"
         );
         const rates = response.data.rates;
         const selectedRate = rates[priceCurrency];
         setExchangeRate(selectedRate);
       } catch (error) {
-        console.error('Error fetching exchange rates:', error);
+        console.error("Error fetching exchange rates:", error);
       }
     };
 
@@ -64,23 +64,21 @@ const JewelryCard = ({ product }) => {
           {product.description}
         </Typography>
         <Typography variant="h6" component="div" sx={{ mt: 2 }}>
-          Price: {convertCurrency(product.Origin_price, priceCurrency)}{' '}
+          Price: {convertCurrency(product.Origin_price, priceCurrency)}{" "}
           {priceCurrency}
         </Typography>
-        <Button
-          variant="contained"
+
+        <FaDollarSign
           sx={{ mt: 2 }}
-          onClick={() => handleCurrencyChange('USD')}
-        >
-          Convert to USD
-        </Button>
-        <Button
-          variant="contained"
+          onClick={() => handleCurrencyChange("USD")}
+          fontSize="25px"
+        />
+        <FaEuroSign
           sx={{ mt: 2 }}
-          onClick={() => handleCurrencyChange('EUR')}
-        >
-          Convert to EUR
-        </Button>
+          fontSize="25px"
+          onClick={() => handleCurrencyChange("EUR")}
+        />
+
         <Button variant="contained" sx={{ mt: 2 }}>
           Add to Cart
         </Button>
