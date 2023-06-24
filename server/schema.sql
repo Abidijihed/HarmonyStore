@@ -1,7 +1,7 @@
 -- DROP DATABASE IF EXISTS harmonystore_db;
 -- CREATE DATABASE IF NOT EXISTS harmonystore_db;
 USE harmonystore_db;
-
+DROP products;
 CREATE TABLE IF NOT EXISTS products (
   id INT NOT NULL AUTO_INCREMENT,
   product_name VARCHAR(255) NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS products (
   Origin_price INT NOT NULL,
   quantity INT NOT NULL,
   Promo_price INT NOT NULL,
-  reference VARCHAR(255) NOT NULL,
+  Product_material VARCHAR(255) NOT NULL,
   product_image VARCHAR(255) NOT NULL,
   availability VARCHAR(255) NOT NULL,
   category VARCHAR(255) NOT NULL,

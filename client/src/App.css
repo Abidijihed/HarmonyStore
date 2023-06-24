@@ -2,3 +2,8 @@
     display: flex;
     justify-content: space-between;
 }
+.myproducts{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}

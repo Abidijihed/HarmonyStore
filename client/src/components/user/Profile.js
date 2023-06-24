@@ -14,7 +14,7 @@ import {
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { useDispatch, useSelector } from "react-redux";
-import { get_current } from "../../redux/action/Action";
+import { get_current } from "../../redux/action/UserAction";
 
 const useStyles = makeStyles((theme) => ({
   root: {

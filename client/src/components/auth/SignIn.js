@@ -13,7 +13,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { login } from "../../redux/action/Action";
+import { login } from "../../redux/action/UserAction";
 
 const useStyles = makeStyles((theme) => ({
   root: {

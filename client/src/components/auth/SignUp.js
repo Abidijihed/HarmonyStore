@@ -8,7 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
-import { register } from "../../redux/action/Action";
+import { register } from "../../redux/action/UserAction";
 // const token=localStorage.getItem("token")
 const useStyles = makeStyles((theme) => ({
   root: {

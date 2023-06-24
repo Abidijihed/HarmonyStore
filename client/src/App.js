@@ -8,6 +8,7 @@ import SignInPge from "./components/auth/SignIn";
 import Home from "./components/Home";
 import PrivateRoute from "./components/user/PrivateRoute";
 import ProfilePage from "./components/user/Profile";
+import ListProducts from "./components/products/ListProducts";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route path='/products' element={<ListProducts/>} />
         </Routes>
       </BrowserRouter>
     </>
