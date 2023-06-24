@@ -1,7 +1,7 @@
--- DROP DATABASE IF EXISTS harmonystore_db;
--- CREATE DATABASE IF NOT EXISTS harmonystore_db;
+DROP DATABASE IF EXISTS harmonystore_db;
+CREATE DATABASE IF NOT EXISTS harmonystore_db;
 USE harmonystore_db;
-DROP products;
+
 CREATE TABLE IF NOT EXISTS products (
   id INT NOT NULL AUTO_INCREMENT,
   product_name VARCHAR(255) NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS users (
   role VARCHAR(200),
   PRIMARY KEY (id)
 );
--- INSERT INTO users(FirstName,LastName,Email,Address,PhoneNumber,Password,country,Zip)VALUES("Said","Belghaji","Malek2013malek@hotmail.fr"," Impasse bir sidi tayeb sidi bou said","+216 54 154 220","8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918","Tunisia","2026");
+INSERT INTO users(FirstName,LastName,Email,Address,PhoneNumber,Password,country,Zip)VALUES("Said","Belghaji","Malek2013malek@hotmail.fr"," Impasse bir sidi tayeb sidi bou said","+216 54 154 220","8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918","Tunisia","2026");
 
 CREATE TABLE IF NOT EXISTS sessions (
   id INT NOT NULL AUTO_INCREMENT,
