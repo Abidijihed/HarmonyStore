@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import axios from 'axios';
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
-    margin:"25px"
+    margin: '25px',
   },
   media: {
     height: 0,
@@ -17,26 +18,69 @@ const useStyles = makeStyles({
   },
 });
 
-const JewelryCard = ({product}) => {
+const JewelryCard = ({ product }) => {
   const classes = useStyles();
+  const [priceCurrency, setPriceCurrency] = useState('TND');
+  const [exchangeRate, setExchangeRate] = useState(1);
+
+  useEffect(() => {
+    const fetchExchangeRate = async () => {
+      try {
+        const response = await axios.get(
+          'https://api.exchangerate-api.com/v4/latest/TND'
+        );
+        const rates = response.data.rates;
+        const selectedRate = rates[priceCurrency];
+        setExchangeRate(selectedRate);
+      } catch (error) {
+        console.error('Error fetching exchange rates:', error);
+      }
+    };
+
+    fetchExchangeRate();
+  }, [priceCurrency]);
+
+  const handleCurrencyChange = (currency) => {
+    setPriceCurrency(currency);
+  };
+
+  const convertCurrency = (price, currency) => {
+    const convertedPrice = price * exchangeRate;
+    return convertedPrice.toFixed(2);
+  };
 
   return (
     <Card className={classes.root}>
       <CardMedia
         className={classes.media}
-        image="/path/to/jewelry-image.jpg"
-        title="Bijoux Femme"
+        image={product.product_image}
+        title="Bijoux"
       />
       <CardContent>
         <Typography variant="h5" component="div">
-          Bijoux Femme
+          {product.product_name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Add a description or details about the jewelry here.
+          {product.description}
         </Typography>
         <Typography variant="h6" component="div" sx={{ mt: 2 }}>
-          Price: $99.99
+          Price: {convertCurrency(product.Origin_price, priceCurrency)}{' '}
+          {priceCurrency}
         </Typography>
+        <Button
+          variant="contained"
+          sx={{ mt: 2 }}
+          onClick={() => handleCurrencyChange('USD')}
+        >
+          Convert to USD
+        </Button>
+        <Button
+          variant="contained"
+          sx={{ mt: 2 }}
+          onClick={() => handleCurrencyChange('EUR')}
+        >
+          Convert to EUR
+        </Button>
         <Button variant="contained" sx={{ mt: 2 }}>
           Add to Cart
         </Button>
