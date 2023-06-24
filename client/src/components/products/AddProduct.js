@@ -40,7 +40,7 @@ function AddProductModal({ open, handleClose, handleAddProduct }) {
   const [Product_material, setProduct_material] = useState('');
   const [productImage, setProductImage] = useState([]);
   const [availability, setAvailability] = useState('');
-  const [catigory,setCatigory]=useState("")
+  const [category,setcategory]=useState("")
 
   const handleSubmit = async(event) => {
     // event.preventDefault();
@@ -58,7 +58,7 @@ function AddProductModal({ open, handleClose, handleAddProduct }) {
             Product_material:Product_material,
             product_image:res.data.url,
             availability:availability,
-            catigory:catigory
+            category:category
         }).then((res)=>{
           if(res.data==="poste done"){
             Swal.fire({
@@ -149,9 +149,9 @@ function AddProductModal({ open, handleClose, handleAddProduct }) {
             <TextField
             className={classes.input}
             required
-            label="Catigory"
-            value={catigory}
-            onChange={(e) => setCatigory(e.target.value)}
+            label="category"
+            value={category}
+            onChange={(e) => setcategory(e.target.value)}
           />
           <Button
           onClick={()=>handleSubmit()}
