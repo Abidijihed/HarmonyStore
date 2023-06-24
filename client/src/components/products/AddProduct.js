@@ -57,7 +57,7 @@ function AddProductModal({ open, handleClose, handleAddProduct }) {
             Promo_price:oldPrice,
             Product_material:Product_material,
             product_image:res.data.url,
-            availibility:availability,
+            availability:availability,
             catigory:catigory
         }).then((res)=>{
           if(res.data==="poste done"){
