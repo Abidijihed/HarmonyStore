@@ -4,13 +4,14 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import axios from "axios";
-import { FaDollarSign, FaEuroSign } from "react-icons/fa";
+import { BiCartAdd } from "react-icons/bi";
+import { useDispatch } from "react-redux";
+import { add_to_card } from "../../redux/action/ProductAction";
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
-    margin: "25px",
+    maxWidth: 335,
+    margin: "6px",
   },
   media: {
     height: 0,
@@ -22,7 +23,13 @@ const JewelryCard = ({ product }) => {
   const classes = useStyles();
   const [priceCurrency, setPriceCurrency] = useState("TND");
   const [exchangeRate, setExchangeRate] = useState(1);
-
+  const [check, seTcheck] = useState(product.check_add_or_not);
+  const dispatch = useDispatch();
+  const handeladdtocard = (id) => {
+    const updateCheck = !check;
+    dispatch(add_to_card(id, { updateCheck }));
+    seTcheck(product.check_add_or_not)
+  };
   useEffect(() => {
     const fetchExchangeRate = async () => {
       try {
@@ -48,7 +55,7 @@ const JewelryCard = ({ product }) => {
     const convertedPrice = price * exchangeRate;
     return convertedPrice.toFixed(2);
   };
-
+  const check_add_or_not = product.check_add_or_not;
   return (
     <Card className={classes.root}>
       <CardMedia
@@ -67,22 +74,38 @@ const JewelryCard = ({ product }) => {
           Price: {convertCurrency(product.Origin_price, priceCurrency)}{" "}
           {priceCurrency}
         </Typography>
-
-        <FaDollarSign
-          sx={{ mt: 2 }}
+        <button
+          className="changecurency"
           onClick={() => handleCurrencyChange("USD")}
-          fontSize="25px"
-        />
-        <FaEuroSign
-          sx={{ mt: 2 }}
-          fontSize="25px"
-          onClick={() => handleCurrencyChange("EUR")}
-        />
+        >
+          USD
+        </button>
 
-        <Button variant="contained" sx={{ mt: 2 }}>
-          Add to Cart
-        </Button>
+        <button
+          className="changecurency"
+          onClick={() => handleCurrencyChange("EUR")}
+        >
+          EUR
+        </button>
+
+        <button
+          className="changecurency"
+          onClick={() => handleCurrencyChange("TND")}
+        >
+          TND
+        </button>
       </CardContent>
+      <button
+        onClick={() => handeladdtocard(product.id)}
+        style={{ border: "none", marginLeft: "38%", background: "none" }}
+      >
+        <BiCartAdd
+          variant="contained"
+          sx={{ mt: 2 }}
+          fontSize="35px"
+          style={{ color: check_add_or_not === 1 ? "green" : "black" }}
+        />
+      </button>
     </Card>
   );
 };

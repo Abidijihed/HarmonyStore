@@ -4,6 +4,13 @@
 }
 .myproducts{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
+}
+.changecurency{
+    border: none !important;
+}
+.modal.show{
+  
+    padding-top: 25% !important;
 }

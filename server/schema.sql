@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS products (
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
   Origin_price INT NOT NULL,
   quantity INT NOT NULL,
+  stockquantity INT NOT NULL,
   Promo_price INT NOT NULL,
   Product_material VARCHAR(255) NOT NULL,
   product_image VARCHAR(255) NOT NULL,

@@ -37,6 +37,7 @@ import {
 
 import { Link } from 'react-router-dom';
 import "./Navbar.css"
+import ValidateOrder from './components/order/ValidateOrder';
 const useStyles = makeStyles((theme) => ({
   appBar: {
     backgroundColor: '#e8b623',
@@ -110,7 +111,10 @@ const Navbar = ({ handleChange,shop})=> {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+  const [show, setShow] = useState(false);
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const drawer = (
     <div>
       <div className={classes.toolbar}>
@@ -215,7 +219,7 @@ const Navbar = ({ handleChange,shop})=> {
               </IconButton>
             </Hidden>
             <IconButton color="inherit">
-              <Badge badgeContent={0} color="secondary" component={Link} to="/chekout">
+              <Badge badgeContent={0} color="secondary" onClick={handleShow}>
                 <FaShoppingCart fontSize="xlarge" color='white'/>
               </Badge>
             </IconButton>
@@ -237,6 +241,10 @@ const Navbar = ({ handleChange,shop})=> {
           </Drawer>
         </nav>
       </Hidden>
+      <ValidateOrder 
+      show={show}
+      handleClose={handleClose}
+      />
     </>
   );
 };
