@@ -2,6 +2,23 @@ DROP DATABASE IF EXISTS harmonystore_db;
 CREATE DATABASE IF NOT EXISTS harmonystore_db;
 USE harmonystore_db;
 
+
+CREATE TABLE IF NOT EXISTS users (
+  id INT NOT NULL AUTO_INCREMENT,
+  FirstName VARCHAR(200),
+  LastName VARCHAR(200),
+  Email VARCHAR(200),
+  Address VARCHAR(255),
+  PhoneNumber VARCHAR(255),
+  Password VARCHAR(200),
+  image VARCHAR(255),
+  country VARCHAR(200),
+  Zip VARCHAR(250),
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  role VARCHAR(200),
+  PRIMARY KEY (id)
+);
+
 CREATE TABLE IF NOT EXISTS products (
   id INT NOT NULL AUTO_INCREMENT,
   product_name VARCHAR(100) NOT NULL,
@@ -44,22 +61,6 @@ CREATE TABLE IF NOT EXISTS order_items (
   total_price DECIMAL(10, 2) NOT NULL,
   FOREIGN KEY (order_id) REFERENCES orders (id),
   FOREIGN KEY (product_id) REFERENCES products (id),
-  PRIMARY KEY (id)
-);
-
-CREATE TABLE IF NOT EXISTS users (
-  id INT NOT NULL AUTO_INCREMENT,
-  FirstName VARCHAR(200),
-  LastName VARCHAR(200),
-  Email VARCHAR(200),
-  Address VARCHAR(255),
-  PhoneNumber VARCHAR(255),
-  Password VARCHAR(200),
-  image VARCHAR(255),
-  country VARCHAR(200),
-  Zip VARCHAR(250),
-  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-  role VARCHAR(200),
   PRIMARY KEY (id)
 );
 CREATE TABLE IF NOT EXISTS product_images (
