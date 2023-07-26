@@ -11,74 +11,36 @@ import ProfilePage from "./components/user/Profile";
 import ListProducts from "./components/products/ListProducts";
 import Header from "./components/header/Header"
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { add_to_card } from "./redux/action/ProductAction";
 function App() {
 
   const [products, setProducts] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
-  const [cartCount, setCartCount] = useState(0); // State to keep track of the number of items in the cart
-
+   const dispatch=useDispatch()
   useEffect(() => {
     // Fetch the products from your backend API
     // Replace 'your_backend_api_url/products' with your actual backend API endpoint
     fetch('http://localhost:5700/api/get_All_product')
+
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.error('Error fetching products:', error));
   }, []);
 
-  useEffect(() => {
-    // Fetch the cart items using the user_id from the backend API
-    // Replace 'your_backend_api_url/cart-items' with your actual backend API endpoint
-    fetch('your_backend_api_url/cart-items', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ user_id: 1 }), // Replace '1' with the actual user_id (if applicable)
-    })
-      .then((response) => response.json())
-      .then((data) => setCartItems(data))
-      .catch((error) => console.error('Error fetching cart items:', error));
-  }, []);
+  
 
-  useEffect(() => {
-    // Update the cart count whenever the cart items change
-    setCartCount(cartItems.reduce((total, item) => total + item.quantity, 0));
-  }, [cartItems]);
-
-  const addToCart = (productId, quantity) => {
-    const user_id=localStorage.getItem("id")
-    // Call the backend API to add the product to the cart
-    // Replace 'your_backend_api_url/add-to-cart' with your actual backend API endpoint
-    fetch('your_backend_api_url/add-to-cart', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ user_id, product_id: productId, quantity }), // Replace '1' with the actual user_id (if applicable)
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // Fetch the updated cart items after successful addition
-        fetch('http://localhost:5700/api/cart-items', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ user_id: 1 }), // Replace '1' with the actual user_id (if applicable)
-        })
-          .then((response) => response.json())
-          .then((data) => setCartItems(data))
-          .catch((error) => console.error('Error fetching cart items:', error));
-      })
-      .catch((error) => console.error('Error adding to cart:', error));
+  const addToCart = (productId) => {
+    var user_id=localStorage.getItem('id')
+    dispatch(add_to_card({
+      product_id: productId,
+      user_id:user_id
+    }))    
   };
-
-
   return (
     <>
       <BrowserRouter>
-        <Navbar cartCount={cartCount}/>
+      {console.log(products)}
+        <Navbar />
        
         <br />
         <Routes>

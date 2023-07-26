@@ -36,10 +36,9 @@ CREATE TABLE IF NOT EXISTS carts (
   id INT NOT NULL AUTO_INCREMENT,
   user_id INT NOT NULL,
   product_id INT NOT NULL,
-  quantity INT NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users (id),
   FOREIGN KEY (product_id) REFERENCES products (id),
-  PRIMARY KEY (id)
+  PRIMARY KEY (id,user_id,product_id)
 );
 
 CREATE TABLE IF NOT EXISTS orders (
@@ -49,7 +48,7 @@ CREATE TABLE IF NOT EXISTS orders (
   total_amount DECIMAL(10, 2) NOT NULL,
   status ENUM('pending', 'processing', 'shipped', 'delivered', 'canceled') NOT NULL DEFAULT 'pending',
   FOREIGN KEY (user_id) REFERENCES users (id),
-  PRIMARY KEY (id)
+  PRIMARY KEY (id,user_id)
 );
 
 CREATE TABLE IF NOT EXISTS order_items (
@@ -61,7 +60,7 @@ CREATE TABLE IF NOT EXISTS order_items (
   total_price DECIMAL(10, 2) NOT NULL,
   FOREIGN KEY (order_id) REFERENCES orders (id),
   FOREIGN KEY (product_id) REFERENCES products (id),
-  PRIMARY KEY (id)
+  PRIMARY KEY (id,order_id,product_id)
 );
 CREATE TABLE IF NOT EXISTS product_images (
   id INT NOT NULL AUTO_INCREMENT,

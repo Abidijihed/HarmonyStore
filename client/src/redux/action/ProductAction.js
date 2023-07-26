@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GET_PRODUCT } from '../actionType/ProtactType'
+import { GET_CARD_Product, GET_PRODUCT } from '../actionType/ProtactType'
 import { alertError } from './AlertAction'
 
 export const get_product = () => async (dispatch) => {
@@ -22,18 +22,27 @@ export const add_product = (data) => async (dispatch) => {
         dispatch(get_product())
 
     } catch (error) {
-        if (error.response.data) {
-            (error.response.data.errors.forEach(element => {
-                dispatch(alertError(element.msg))
-            }))
-        }
+     console.log(error)
 
     }
 }
-export const add_to_card = (id,data) => async (dispatch) => {
+export const get_product_card = (user_id) => async (dispatch) => {
     try {
-        const res = await axios.put(`https://www.harmonystore01.com/api/add_to_card/${id}`,data)
-        dispatch(get_product())
+        await axios.get(`http://localhost:5700/api/add-to-cart/${user_id}`).then((res)=>{
+            console.log(res)
+        })
+        // dispatch({type:GET_CARD_Product,payload:res.data})
+
+    } catch (error) {
+       console.log(error)
+
+    }
+}
+
+export const add_to_card = (data) => async (dispatch) => {
+    try {
+        const res = await axios.post(`https://www.harmonystore01.com/api/add-to-cart`,data)
+        dispatch(get_product_card())
 
     } catch (error) {
        console.log(error)

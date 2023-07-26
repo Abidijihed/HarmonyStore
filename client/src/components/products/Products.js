@@ -25,7 +25,7 @@ const JewelryCard = ({ product,addToCart }) => {
   const [priceCurrency, setPriceCurrency] = useState("TND");
   const [exchangeRate, setExchangeRate] = useState(1);
   const handleAddToCart = () => {
-    addToCart(product.id, 1); // Assuming quantity is 1 for this example
+    addToCart(product.id); // Assuming quantity is 1 for this example
   };
   // const [check, seTcheck] = useState(product.check_add_or_not);
   const dispatch = useDispatch();
@@ -75,8 +75,8 @@ const JewelryCard = ({ product,addToCart }) => {
           {product.description}
         </Typography>
         <Typography style={{fontSize:"14px"}} component="div" >
-          {product.Promo_price>0?<span style={{color: "red",textDecoration:"line-through",}}>{product.Origin_price}</span>:null}<br/>
-          prix: {convertCurrency(product.Promo_price>0?product.Promo_price: product.Origin_price, priceCurrency)}{" "}
+          {product.price_promo>0?<span style={{color: "red",textDecoration:"line-through",}}>{product.price}</span>:null}<br/>
+          prix: {convertCurrency(product.price_promo>0?product.price_promo: product.price, priceCurrency)}{" "}
           {priceCurrency}
         </Typography>
         <button

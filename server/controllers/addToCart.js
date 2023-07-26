@@ -1,19 +1,19 @@
 const {connection}=require("../dataBaseConfig/config")
 
 module.exports={
-    AddToCard:(async(req,res)=>{
-        const { user_id, product_id, quantity } = req.body;
-        try {
-          const [result] = await connection.execute(
-            'INSERT INTO carts (user_id, product_id, quantity) VALUES (?, ?, ?)',
-            [user_id, product_id, quantity]
-          );
-          connection.end();
-          res.status(201).json({ message: 'Product added to cart successfully', cart_id: result.insertId });
-        } catch (err) {
-          console.error(err);
-          res.status(500).json({ message: 'Failed to add product to cart' });
-        }
-      
+    AddToCard:((req,res)=>{  
+          const query=`INSERT INTO carts (user_id, product_id) VALUES (${req.body.user_id},${req.body.product_id})`
+          connection.query(query,(err,result)=>{
+            err ? res.status(500).send(err):res.status(201).send('product added')
+         })  
+     }),
+
+    GetAllProduct:((req,res)=>{
+      const query=`select * from carts where user_id=${req.params.user_id}`
+      connection.query(query,(err,result)=>{
+        console.log(result)
+        err ? res.status(500).send(err) : res.status(200).send(result)
+      })
     })
+    
 }

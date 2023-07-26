@@ -39,6 +39,9 @@ import { Link } from 'react-router-dom';
 import "./Navbar.css"
 import ValidateOrder from './components/order/ValidateOrder';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { get_product_card } from './redux/action/ProductAction';
+
 const useStyles = makeStyles((theme) => ({
   appBar: {
     backgroundColor: '#e8b623',
@@ -103,24 +106,30 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Navbar = ({ handleChange,cartCount})=> {
+const Navbar = ({ handleChange})=> {
   const [mobileOpen, setMobileOpen] = useState(false);
  const token=localStorage.getItem("token")
    const classes = useStyles();
    const [products, setProducts] = useState([]); // State to hold the products
+const dispatch=useDispatch()
 
-   const fetchProducts = () => {
-     axios.get("http://localhost:5700/api/get/product/added")
-       .then((res) => {
-         setProducts(res.data);
-       })
-       .catch((error) => {
-         console.error("Error fetching products:", error);
-       });
-   };
-setTimeout(() => {
-  fetchProducts()
-}, 500);
+useEffect(()=>{
+  const user_id=localStorage.getItem('id')
+  dispatch(get_product_card(user_id))
+},[dispatch])
+const productcard=useSelector((state)=>console.log(state))
+//    const fetchProducts = () => {
+//      axios.get("http://localhost:5700/api/get/product/added")
+//        .then((res) => {
+//          setProducts(res.data);
+//        })
+//        .catch((error) => {
+//          console.error("Error fetching products:", error);
+//        });
+//    };
+// setTimeout(() => {
+//   fetchProducts()
+// }, 500);
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -232,7 +241,7 @@ setTimeout(() => {
               </IconButton>
             </Hidden>
             <IconButton color="inherit">
-              <Badge badgeContent={cartCount} color="secondary" onClick={handleShow}>
+              <Badge badgeContent={0} color="secondary" onClick={handleShow}>
                 <FaShoppingCart fontSize="xlarge" color='white'/>
               </Badge>
             </IconButton>
