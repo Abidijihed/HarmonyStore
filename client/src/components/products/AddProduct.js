@@ -52,12 +52,11 @@ function AddProductModal({ open, handleClose, handleAddProduct }) {
         axios.post('https://www.harmonystore01.com/api/Create_product',{
             product_name:productName,
             description:description,
-            Origin_price:price,
-            quantity:quantity,
-            Promo_price:oldPrice,
+            price:price,
+            quantity_in_stock:quantity,
+            price_promo:oldPrice,
             Product_material:Product_material,
-            product_image:res.data.url,
-            availability:availability,
+            image_url:res.data.url,
             category:category
         }).then((res)=>{
           if(res.data==="poste done"){
@@ -139,13 +138,7 @@ function AddProductModal({ open, handleClose, handleAddProduct }) {
             // value={productImage}
             onChange={(e) => setProductImage(e.target.files[0])}
           />
-          <TextField
-            className={classes.input}
-            required
-            label="Availability"
-            value={availability}
-            onChange={(e) => setAvailability(e.target.value)}
-          />
+         
             <TextField
             className={classes.input}
             required
