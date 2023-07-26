@@ -3,25 +3,25 @@ import AddProductModal from "./AddProduct";
 import Products from "./Products"
 import axios from "axios";
 
-export default function ListProducts() {
+export default function ListProducts({data,addToCart}) {
   const [openAddProductModal, setOpenAddProductModal] = useState(false);
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
 // const dispatch=useDispatch()
-  const getProducts = () => {
-    axios.get("https://www.harmonystore01.com/api/get_All_product").then((res) => {
-      setData(res.data);
-    });
-  };
-  setTimeout(() => {
-    getProducts();
-  }, 1000);
+  // const getProducts = () => {
+  //   axios.get("https://www.harmonystore01.com/api/get_All_product").then((res) => {
+  //     setData(res.data);
+  //   });
+  // };
+  // setTimeout(() => {
+  //   getProducts();
+  // }, 1000);
   return (
     <div>
       <div className="myproducts">
         {data.map((element) => {
           return (
             <div key={element.id}>
-              <Products product={element}/>
+              <Products product={element} addToCart={addToCart} />
             </div>
           );
         })}

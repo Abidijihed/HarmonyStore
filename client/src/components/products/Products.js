@@ -10,26 +10,30 @@ import { useDispatch } from "react-redux";
 import { add_to_card } from "../../redux/action/ProductAction";
 const useStyles = makeStyles({
   root: {
-    maxWidth: 335,
+    maxWidth: 180,
+    height:270,
     margin: "6px",
   },
   media: {
     height: 0,
-    paddingTop: "56.25%", // 16:9
+    paddingTop: "45.25%", // 16:9
   },
 });
 
-const JewelryCard = ({ product }) => {
+const JewelryCard = ({ product,addToCart }) => {
   const classes = useStyles();
   const [priceCurrency, setPriceCurrency] = useState("TND");
   const [exchangeRate, setExchangeRate] = useState(1);
-  const [check, seTcheck] = useState(product.check_add_or_not);
-  const dispatch = useDispatch();
-  const handeladdtocard = (id) => {
-    const updateCheck = !check;
-    dispatch(add_to_card(id, { updateCheck }));
-    seTcheck(product.check_add_or_not)
+  const handleAddToCart = () => {
+    addToCart(product.id, 1); // Assuming quantity is 1 for this example
   };
+  // const [check, seTcheck] = useState(product.check_add_or_not);
+  const dispatch = useDispatch();
+  // const handeladdtocard = (id) => {
+  //   const updateCheck = !check;
+  //   dispatch(add_to_card(id, { updateCheck }));
+  //   seTcheck(product.check_add_or_not)
+  // };
   useEffect(() => {
     const fetchExchangeRate = async () => {
       try {
@@ -55,13 +59,13 @@ const JewelryCard = ({ product }) => {
     const convertedPrice = price * exchangeRate;
     return convertedPrice.toFixed(2);
   };
-  const check_add_or_not = product.check_add_or_not;
+  // const check_add_or_not = product.check_add_or_not;
   return (
     <Card className={classes.root}>
       <CardMedia
         className={classes.media}
         image={product.product_image}
-        title="Bijoux"
+       
       />
       <CardContent>
         <Typography variant="h5" component="div">
@@ -70,8 +74,9 @@ const JewelryCard = ({ product }) => {
         <Typography variant="body2" color="text.secondary">
           {product.description}
         </Typography>
-        <Typography variant="h6" component="div" sx={{ mt: 2 }}>
-          Price: {convertCurrency(product.Origin_price, priceCurrency)}{" "}
+        <Typography style={{fontSize:"14px"}} component="div" >
+          {product.Promo_price>0?<span style={{color: "red",textDecoration:"line-through",}}>{product.Origin_price}</span>:null}<br/>
+          prix: {convertCurrency(product.Promo_price>0?product.Promo_price: product.Origin_price, priceCurrency)}{" "}
           {priceCurrency}
         </Typography>
         <button
@@ -96,14 +101,14 @@ const JewelryCard = ({ product }) => {
         </button>
       </CardContent>
       <button
-        onClick={() => handeladdtocard(product.id)}
+        onClick={() => handleAddToCart()}
         style={{ border: "none", marginLeft: "38%", background: "none" }}
       >
         <BiCartAdd
           variant="contained"
-          sx={{ mt: 2 }}
+         
           fontSize="35px"
-          style={{ color: check_add_or_not === 1 ? "green" : "black" }}
+          // style={{ color: check_add_or_not === 1 ? "green" : "black" }}
         />
       </button>
     </Card>

@@ -7,4 +7,6 @@ const ProductController=require("../controllers/products")
  router.put("/api/update/product/:id",ProductController.UpdateProduct)
  router.delete("/api/delete/product/:id",ProductController.DeleteProduct)
 router.get('/api/get/product/added',ProductController.getProductadded)
+router.put('/api/update/Stockquantity/:id',ProductController.UpdateStockquantity)
+
  module.exports={ProductRouter:router}

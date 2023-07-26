@@ -5,6 +5,7 @@ const cors = require("cors");
 require("dotenv").config();
 const {ProductRouter}=require("./router/ProductRouter")
 const {userRoter}=require("./router/UsersRouter")
+const {addToCardRouter}=require("./router/addToCardRouter")
 app.use(
   cors({
     origin: "*",
@@ -19,4 +20,5 @@ app.use(express.json());
 app.use(cookieParser());
 app.use("/",ProductRouter)
 app.use("/",userRoter)
+app.use("/",addToCardRouter)
 module.exports = app;

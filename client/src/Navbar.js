@@ -38,6 +38,7 @@ import {
 import { Link } from 'react-router-dom';
 import "./Navbar.css"
 import ValidateOrder from './components/order/ValidateOrder';
+import axios from 'axios';
 const useStyles = makeStyles((theme) => ({
   appBar: {
     backgroundColor: '#e8b623',
@@ -102,12 +103,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Navbar = ({ handleChange,shop})=> {
+const Navbar = ({ handleChange,cartCount})=> {
   const [mobileOpen, setMobileOpen] = useState(false);
  const token=localStorage.getItem("token")
    const classes = useStyles();
+   const [products, setProducts] = useState([]); // State to hold the products
 
-
+   const fetchProducts = () => {
+     axios.get("http://localhost:5700/api/get/product/added")
+       .then((res) => {
+         setProducts(res.data);
+       })
+       .catch((error) => {
+         console.error("Error fetching products:", error);
+       });
+   };
+setTimeout(() => {
+  fetchProducts()
+}, 500);
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -118,7 +131,7 @@ const Navbar = ({ handleChange,shop})=> {
   const drawer = (
     <div>
       <div className={classes.toolbar}>
-        <Typography variant="h6" align="center" style={{marginTop:"10px",textDecoration:"underline"}} component={Link} to="/">
+        <Typography variant="h6" align="center" style={{marginTop:"10px",marginLeft:"10px",textDecoration:"underline"}} component={Link} to="/">
           HarmonyStore
         </Typography>
       </div>
@@ -219,7 +232,7 @@ const Navbar = ({ handleChange,shop})=> {
               </IconButton>
             </Hidden>
             <IconButton color="inherit">
-              <Badge badgeContent={0} color="secondary" onClick={handleShow}>
+              <Badge badgeContent={cartCount} color="secondary" onClick={handleShow}>
                 <FaShoppingCart fontSize="xlarge" color='white'/>
               </Badge>
             </IconButton>

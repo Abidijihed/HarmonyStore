@@ -49,5 +49,17 @@ module.exports = {
     connection.query(query, (error, results) => {
       error ? res.status(500).send(error):res.status(200).send(results)
     })
+  }),
+  UpdateStockquantity:((req, res) => {
+  console.log(req.body,req.params.id)
+  const query = `UPDATE products SET stockquantity = ${req.body.stockQuantity} WHERE id =${req.params.id}`;
+
+  connection.query(query,(error, results) => {
+    if (error) {
+      console.error('Error updating stock quantity:', error);
+      return res.status(500).json({ error: 'Failed to update stock quantity' });
+    }
+    return res.json({ message: 'Stock quantity updated successfully' });
+  });
   })
 }

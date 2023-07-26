@@ -4,27 +4,47 @@ USE harmonystore_db;
 
 CREATE TABLE IF NOT EXISTS products (
   id INT NOT NULL AUTO_INCREMENT,
-  product_name VARCHAR(255) NOT NULL,
-  description TEXT NOT NULL,
+  product_name VARCHAR(100) NOT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-  Origin_price INT NOT NULL,
-  quantity INT NOT NULL,
-  stockquantity INT NOT NULL,
-  Promo_price INT NOT NULL,
+  description TEXT,
+  price DECIMAL(10, 2) NOT NULL,
+  price_promo DECIMAL(10, 2) NOT NULL,
+  quantity_in_stock INT NOT NULL,
+  category VARCHAR(50),
+  image_url VARCHAR(255),
   Product_material VARCHAR(255) NOT NULL,
-  product_image VARCHAR(255) NOT NULL,
-  availability VARCHAR(255) NOT NULL,
-  category VARCHAR(255) NOT NULL,
-  check_add_or_not BOOLEAN NOT NULL,
-  PRIMARY KEY (id,check_add_or_not)
+  PRIMARY KEY (id)
+);
+CREATE TABLE IF NOT EXISTS carts (
+  id INT NOT NULL AUTO_INCREMENT,
+  user_id INT NOT NULL,
+  product_id INT NOT NULL,
+  quantity INT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users (id),
+  FOREIGN KEY (product_id) REFERENCES products (id),
+  PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS product_images (
+CREATE TABLE IF NOT EXISTS orders (
   id INT NOT NULL AUTO_INCREMENT,
-  product_image VARCHAR(255) NOT NULL,
-  products_id INT NOT NULL,
-  PRIMARY KEY (id, products_id),
-  FOREIGN KEY (products_id) REFERENCES products(id)
+  user_id INT NOT NULL,
+  order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+  total_amount DECIMAL(10, 2) NOT NULL,
+  status ENUM('pending', 'processing', 'shipped', 'delivered', 'canceled') NOT NULL DEFAULT 'pending',
+  FOREIGN KEY (user_id) REFERENCES users (id),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS order_items (
+  id INT NOT NULL AUTO_INCREMENT,
+  order_id INT NOT NULL,
+  product_id INT NOT NULL,
+  quantity INT NOT NULL,
+  price_per_unit DECIMAL(10, 2) NOT NULL,
+  total_price DECIMAL(10, 2) NOT NULL,
+  FOREIGN KEY (order_id) REFERENCES orders (id),
+  FOREIGN KEY (product_id) REFERENCES products (id),
+  PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS users (
@@ -42,6 +62,15 @@ CREATE TABLE IF NOT EXISTS users (
   role VARCHAR(200),
   PRIMARY KEY (id)
 );
+CREATE TABLE IF NOT EXISTS product_images (
+  id INT NOT NULL AUTO_INCREMENT,
+  product_image VARCHAR(255) NOT NULL,
+  products_id INT NOT NULL,
+  PRIMARY KEY (id, products_id),
+  FOREIGN KEY (products_id) REFERENCES products(id)
+);
+
+
 INSERT INTO users(FirstName,LastName,Email,Address,PhoneNumber,Password,country,Zip)VALUES("Said","Belghaji","Malek2013malek@hotmail.fr"," Impasse bir sidi tayeb sidi bou said","+216 54 154 220","8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918","Tunisia","2026");
 
 CREATE TABLE IF NOT EXISTS sessions (
@@ -60,20 +89,3 @@ CREATE TABLE IF NOT EXISTS newsletter (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS usersorder (
-  id INT NOT NULL AUTO_INCREMENT,
-  validate_add_or_not BOOLEAN NOT NULL,
-  FirstName VARCHAR(200) NOT NULL,
-  Email VARCHAR(200) NOT NULL,
-  address VARCHAR(255) NOT NULL,
-  PhoneNumber VARCHAR(255) NOT NULL,
-  country VARCHAR(200) NOT NULL,
-  Zip VARCHAR(250) NOT NULL,
-  users_id INT NOT NULL,
-  total_price DECIMAL(10, 2) NOT NULL,
-  product_name VARCHAR(200) NOT NULL,
-  product_quantity INT NOT NULL,
-  date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-  PRIMARY KEY (id, validate_add_or_not, users_id),
-  FOREIGN KEY (users_id) REFERENCES users(id)
-);
