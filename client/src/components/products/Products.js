@@ -64,7 +64,7 @@ const JewelryCard = ({ product,addToCart }) => {
     <Card className={classes.root}>
       <CardMedia
         className={classes.media}
-        image={product.product_image}
+        image={product.image_url}
        
       />
       <CardContent>

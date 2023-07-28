@@ -114,7 +114,7 @@ const Navbar = ({ handleChange})=> {
 const dispatch=useDispatch()
 
 useEffect(()=>{
-  const user_id=localStorage.getItem('id')
+  var user_id=localStorage.getItem('id')
   dispatch(get_product_card(user_id))
 },[dispatch])
 const productcard=useSelector((state)=>console.log(state))

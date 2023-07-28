@@ -11,16 +11,20 @@ import ProfilePage from "./components/user/Profile";
 import ListProducts from "./components/products/ListProducts";
 import Header from "./components/header/Header"
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { add_to_card } from "./redux/action/ProductAction";
+import { useDispatch, useSelector } from "react-redux";
+import { add_to_card, get_product } from "./redux/action/ProductAction";
 function App() {
 
   const [products, setProducts] = useState([]);
    const dispatch=useDispatch()
+   useEffect(()=>{
+    dispatch(get_product())
+   },[dispatch])
+   const product=useSelector((state)=>console.log(state))
   useEffect(() => {
     // Fetch the products from your backend API
     // Replace 'your_backend_api_url/products' with your actual backend API endpoint
-    fetch('http://localhost:5700/api/get_All_product')
+    fetch('https://www.harmonystore01.com/api/get_All_product')
 
       .then((response) => response.json())
       .then((data) => setProducts(data))
