@@ -25,7 +25,8 @@ const JewelryCard = ({ product,addToCart }) => {
   const [priceCurrency, setPriceCurrency] = useState("TND");
   const [exchangeRate, setExchangeRate] = useState(1);
   const handleAddToCart = () => {
-    addToCart(product.id); // Assuming quantity is 1 for this example
+    var user_id=localStorage.get('id')
+    addToCart(product.id,user_id); // Assuming quantity is 1 for this example
   };
   // const [check, seTcheck] = useState(product.check_add_or_not);
   const dispatch = useDispatch();

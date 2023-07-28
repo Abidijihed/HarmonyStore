@@ -111,6 +111,19 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <div class="card">
+  <div class="image">
+    <img src="https://cdn.pixabay.com/photo/2019/01/12/16/21/breakfast-3928800_960_720.jpg" alt="img" />
+  </div>
+  <div class="subscribe">
+  <h2>Découvrez les Dernières Tendances en Bijoux et Accessoires</h2>
+<p>Restez à la mode avec les tendances en bijoux et accessoires les plus en vogue. Abonnez-vous à notre newsletter Bijoux&Accessoires.</p>
+    
+      <input type="email" name="email" id="email" placeholder="Enter your email address" autocomplete="off" />
+      <button type="button">Subscribe</button>
+    
+  </div>
+</div>
     </div>
   );
 }

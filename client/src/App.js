@@ -15,24 +15,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { add_to_card, get_product } from "./redux/action/ProductAction";
 function App() {
 
-  const [products, setProducts] = useState([]);
    const dispatch=useDispatch()
    useEffect(()=>{
     dispatch(get_product())
    },[dispatch])
-   const product=useSelector((state)=>console.log(state))
-  useEffect(() => {
-    // Fetch the products from your backend API
-    // Replace 'your_backend_api_url/products' with your actual backend API endpoint
-    fetch('https://www.harmonystore01.com/api/get_All_product')
-
-      .then((response) => response.json())
-      .then((data) => setProducts(data))
-      .catch((error) => console.error('Error fetching products:', error));
-  }, []);
-
-  
-
+   const products=useSelector((state)=>state.UserReducer.data)
   const addToCart = (productId) => {
     var user_id=localStorage.getItem('id')
     dispatch(add_to_card({
@@ -43,7 +30,6 @@ function App() {
   return (
     <>
       <BrowserRouter>
-      {console.log(products)}
         <Navbar />
        
         <br />
