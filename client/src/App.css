@@ -30,7 +30,7 @@ body {
   
     padding-top: 25% !important;
 }
-.card {
+.card1 {
   width: 40rem;
   display: flex;
   align-items: center;
@@ -40,38 +40,38 @@ body {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
 }
 
-.image {
+.image1 {
   width: 30%;
   display: flex;
   align-items: center;
 }
 
-.image img {
+.image1 img {
   width: 100%;
   height: 100% !important;
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
 }
 
-.subscribe {
+.subscribe1 {
   flex: 1;
   margin-left: 2rem;
-  color: #fff;
+  color: black;
 }
 
-.subscribe p {
+.subscribe1 p {
   margin: 1rem 0;
   font-weight: 300;
   font-size: 14px;
   letter-spacing: 1px;
 }
 
-.subscribe form {
+.subscribe1 form {
   display: flex;
   align-items: center;
 }
 
-.subscribe form input {
+.subscribe1 input {
   padding: 0.75rem;
   border-radius: 0.25rem;
   outline: none;
@@ -81,7 +81,7 @@ body {
   font-weight: 300;
 }
 
-.subscribe form button {
+.subscribe1 button {
   padding: 0.75rem;
   border-radius: 0.25rem;
   outline: none;
@@ -93,7 +93,7 @@ body {
   transition: 0.3s ease-in-out;
 }
 
-.subscribe form button:hover {
+.subscribe1 button:hover {
   background: transparent;
   color: #93c814;
 }

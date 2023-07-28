@@ -51,6 +51,7 @@ export default function Home() {
   const classes = useStyles();
 
   return (
+    <>
     <div>
       {" "}
       <div
@@ -111,11 +112,14 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div class="card">
-  <div class="image">
+    
+    </div>
+    
+      <div className="card1">
+  <div className="image1">
     <img src="https://cdn.pixabay.com/photo/2019/01/12/16/21/breakfast-3928800_960_720.jpg" alt="img" />
   </div>
-  <div class="subscribe">
+  <div className="subscribe1">
   <h2>Découvrez les Dernières Tendances en Bijoux et Accessoires</h2>
 <p>Restez à la mode avec les tendances en bijoux et accessoires les plus en vogue. Abonnez-vous à notre newsletter Bijoux&Accessoires.</p>
     
@@ -124,6 +128,6 @@ export default function Home() {
     
   </div>
 </div>
-    </div>
+    </>
   );
 }
