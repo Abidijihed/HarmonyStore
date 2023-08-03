@@ -315,7 +315,7 @@ export default function Home() {
           />
         </div>
         <div className="subscribe1">
-          <h2>Découvrez les Dernières Tendances en Bijoux et Accessoires</h2>
+          <h3 id="title3">Découvrez les Dernières Tendances en Bijoux et Accessoires</h3>
           <p>
             Restez à la mode avec les tendances en bijoux et accessoires les
             plus en vogue. Abonnez-vous à notre newsletter Bijoux&Accessoires.
