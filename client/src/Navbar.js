@@ -146,32 +146,32 @@ const productcard=useSelector((state)=>console.log(state))
       </div>
       <Divider />
       <List>
-        <ListItem button component={Link} to="/contact">
+        <ListItem button component={Link} to="/contact" onClick={()=>setMobileOpen(false)}>
           <ListItemIcon>
             <MdOutlineMailOutline />
           </ListItemIcon>
           <ListItemText primary="Contact Us" />
         </ListItem>
-        <ListItem button component={Link} to="/about">
+        <ListItem button component={Link} to="/about" onClick={()=>setMobileOpen(false)}>
           <ListItemIcon>
             <FaInfo />
           </ListItemIcon>
           <ListItemText primary="About Us" />
         </ListItem>
-     <ListItem button component={Link} to="/login">
+     <ListItem button component={Link} to="/login" onClick={()=>setMobileOpen(false)}>
           <ListItemIcon>
             <FaSignInAlt />
           </ListItemIcon>
           <ListItemText primary="Login" />
         </ListItem>
-      <ListItem button component={Link} to="/profile">
+      <ListItem button component={Link} to="/profile" onClick={()=>setMobileOpen(false)}>
           <ListItemIcon>
             <FaUser />
           </ListItemIcon>
           <ListItemText primary="Profile" />
         </ListItem>
         <Divider />
-        <ListItem button component={Link} to="/products">
+        <ListItem button component={Link} to="/products" onClick={()=>setMobileOpen(false)}>
           <ListItemIcon>
             <MdOutlineAddShoppingCart />
           </ListItemIcon>

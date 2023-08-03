@@ -15,6 +15,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import HomeCard from "./card/HomeCard";
 import { ChakraProvider ,extendTheme} from '@chakra-ui/react'
 import chakraTheme from '@chakra-ui/theme'
+import DarkVariantExample from "./carousel/DarkVariantExample";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -74,6 +75,9 @@ export default function Home({products}) {
   
   return (
     <>
+    <div id="carousa">
+            <DarkVariantExample />
+          </div>
       <div>
         {" "}
         <div
@@ -84,6 +88,7 @@ export default function Home({products}) {
             marginTop: "3%",
           }}
         >
+          
           <h1>Bienvenue à HarmonyStore</h1>
         </div>
         <div style={{ marginTop: "30px", backgroundColor: "palegoldenrod" }}>

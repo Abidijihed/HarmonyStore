@@ -37,7 +37,7 @@ body {
   align-items: center;
   justify-content: space-between;
   border-radius: 1rem;
-  background-color: #303037;
+  background-color: palegoldenrod;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
 }
 
@@ -145,4 +145,11 @@ body {
   flex-wrap: wrap;
   justify-content: space-around;
   margin: 20px;
+}
+#carousa{
+  margin: 20px;
+}
+.w-100 {
+
+  height: 400px;
 }
