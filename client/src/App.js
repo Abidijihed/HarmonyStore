@@ -9,8 +9,6 @@ import Home from "./components/Home";
 import PrivateRoute from "./components/user/PrivateRoute";
 import ProfilePage from "./components/user/Profile";
 import ListProducts from "./components/products/ListProducts";
-import Header from "./components/header/Header"
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { add_to_card, get_product } from "./redux/action/ProductAction";
 function App() {
@@ -28,7 +26,7 @@ function App() {
     }))    
   };
   return (
-    <>
+    <div className="App">
       <BrowserRouter>
         <Navbar />
        
@@ -48,7 +46,7 @@ function App() {
           <Route path='/products' element={<ListProducts data={products} addToCart={addToCart} />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 

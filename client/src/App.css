@@ -31,7 +31,8 @@ body {
     padding-top: 25% !important;
 }
 .card1 {
-  width: 40rem;
+  height: 300px;
+  width:100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -40,15 +41,11 @@ body {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
 }
 
-.image1 {
-  width: 30%;
-  display: flex;
-  align-items: center;
-}
+
 
 .image1 img {
   width: 100%;
-  height: 100% !important;
+  height: 300px;
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
 }
@@ -96,4 +93,33 @@ body {
 .subscribe1 button:hover {
   background: transparent;
   color: #93c814;
+}
+
+@media (max-width: 600px) {
+  /* télephone */
+  .image1 {
+    width: 30%;
+}
+#category{
+  margin: 18px 0px 17px 0px;
+}
+}
+
+@media (min-width: 600px) {
+  /* web */
+  #category{
+    margin-top: 10px;
+  }
+  .image1 {
+    width: 450px !important;
+}
+ 
+ 
+}
+.carousel .thumb img {
+  height: 100px !important;
+}
+.carousel .thumbs {
+  justify-content: center;
+  display: flex;
 }

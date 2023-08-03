@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { AiOutlineMail, AiFillHome } from "react-icons/ai";
 import { FaFacebook, FaInstagram, FaTiktok } from "react-icons/fa";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from "react-responsive-carousel";
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -50,84 +58,279 @@ const useStyles = makeStyles((theme) => ({
 export default function Home() {
   const classes = useStyles();
 
+  const [expanded, setExpanded] = useState(false);
+
+  const handleChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
   return (
     <>
-    <div>
-      {" "}
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          marginTop: "3%",
-        }}
-      >
-        <h1>Bienvenue à HarmonyStore</h1>
-      </div>
-      <div className={classes.comingSoonWrapper}>
-        <div className={classes.comingSoonContent}>
-          <Typography variant="h2" gutterBottom>
-            Coming Soon...
-          </Typography>
-          <Typography variant="h5" paragraph>
-            Website under construction
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            <BsFillTelephoneFill /> +216 54 154 220
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            <AiOutlineMail /> Malek2013malek@hotmail.fr
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            <AiFillHome /> Impasse bir sidi tayeb sidi bou said 2026
-          </Typography>
-          <div className="socialmedia">
-            <Typography variant="body1" gutterBottom>
-              <a
-                href="https://www.facebook.com/HarmonyStore01?mibextid=ZbWKwL"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaFacebook fontSize="40px" />
-              </a>
+      <div>
+        {" "}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: "3%",
+          }}
+        >
+          <h1>Bienvenue à HarmonyStore</h1>
+        </div>
+        <div style={{ marginTop: "30px", backgroundColor: "palegoldenrod" }}>
+          <Row>
+            <Col sm={4} id="category">
+              <div>
+                <Accordion
+                  expanded={expanded === "panel1"}
+                  onChange={handleChange("panel1")}
+                >
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1bh-content"
+                    id="panel1bh-header"
+                  >
+                    <Typography sx={{ width: "33%", flexShrink: 0 }}>
+                      General settings
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography>
+                      Nulla facilisi. Phasellus sollicitudin nulla et quam
+                      mattis feugiat. Aliquam eget maximus est, id dignissim
+                      quam.
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+                <Accordion
+                  expanded={expanded === "panel2"}
+                  onChange={handleChange("panel2")}
+                >
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel2bh-content"
+                    id="panel2bh-header"
+                  >
+                    <Typography sx={{ width: "33%", flexShrink: 0 }}>
+                      Users
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography>
+                      Donec placerat, lectus sed mattis semper, neque lectus
+                      feugiat lectus, varius pulvinar diam eros in elit.
+                      Pellentesque convallis laoreet laoreet.
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+                <Accordion
+                  expanded={expanded === "panel3"}
+                  onChange={handleChange("panel3")}
+                >
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel3bh-content"
+                    id="panel3bh-header"
+                  >
+                    <Typography sx={{ width: "33%", flexShrink: 0 }}>
+                      Advanced settings
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography>
+                      Nunc vitae orci ultricies, auctor nunc in, volutpat nisl.
+                      Integer sit amet egestas eros, vitae egestas augue. Duis
+                      vel est augue.
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+                <Accordion
+                  expanded={expanded === "panel4"}
+                  onChange={handleChange("panel4")}
+                >
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel4bh-content"
+                    id="panel4bh-header"
+                  >
+                    <Typography sx={{ width: "33%", flexShrink: 0 }}>
+                      Personal data
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography>
+                      Nunc vitae orci ultricies, auctor nunc in, volutpat nisl.
+                      Integer sit amet egestas eros, vitae egestas augue. Duis
+                      vel est augue.
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+                <Accordion
+                  expanded={expanded === "panel5"}
+                  onChange={handleChange("panel5")}
+                >
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel5bh-content"
+                    id="panel5bh-header"
+                  >
+                    <Typography sx={{ width: "33%", flexShrink: 0 }}>
+                      Personal data
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography>
+                      Nunc vitae orci ultricies, auctor nunc in, volutpat nisl.
+                      Integer sit amet egestas eros, vitae egestas augue. Duis
+                      vel est augue.
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+                <Accordion
+                  expanded={expanded === "panel6"}
+                  onChange={handleChange("panel6")}
+                >
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel6bh-content"
+                    id="panel6bh-header"
+                  >
+                    <Typography sx={{ width: "33%", flexShrink: 0 }}>
+                      Personal data
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography>
+                      Nunc vitae orci ultricies, auctor nunc in, volutpat nisl.
+                      Integer sit amet egestas eros, vitae egestas augue. Duis
+                      vel est augue.
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+                <Accordion
+                  expanded={expanded === "panel7"}
+                  onChange={handleChange("panel7")}
+                >
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel7bh-content"
+                    id="panel7bh-header"
+                  >
+                    <Typography sx={{ width: "33%", flexShrink: 0 }}>
+                      Personal data
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography>
+                      Nunc vitae orci ultricies, auctor nunc in, volutpat nisl.
+                      Integer sit amet egestas eros, vitae egestas augue. Duis
+                      vel est augue.
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+              </div>
+            </Col>
+            <Col sm={5}>
+              <Carousel>
+                <div>
+                  <img
+                    src="https://i.pinimg.com/236x/b0/2a/26/b02a26627db3d8c26c53d4823d1b0b59.jpg"
+                    alt="bijoux"
+                    style={{ height: "345px" }}
+                  />
+                </div>
+                <div>
+                  <img
+                    src="https://i.pinimg.com/236x/b0/2a/26/b02a26627db3d8c26c53d4823d1b0b59.jpg"
+                    alt="bague"
+                    style={{ height: "345px" }}
+                  />
+                </div>
+                <div>
+                  <img
+                    src="https://i.pinimg.com/564x/42/d8/9f/42d89f4064254bea9cb2498df4bc7126.jpg"
+                    alt="couliller"
+                    style={{ height: "345px" }}
+                  />
+                </div>
+              </Carousel>
+            </Col>
+          </Row>
+        </div>
+        <div className={classes.comingSoonWrapper}>
+          <div className={classes.comingSoonContent}>
+            <Typography variant="h2" gutterBottom>
+              Coming Soon...
+            </Typography>
+            <Typography variant="h5" paragraph>
+              Website under construction
             </Typography>
             <Typography variant="body1" gutterBottom>
-              <a
-                href="https://instagram.com/harmony_store01?igshid=MzNlNGNkZWQ4Mg=="
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaInstagram fontSize="40px" />
-              </a>
+              <BsFillTelephoneFill /> +216 54 154 220
             </Typography>
             <Typography variant="body1" gutterBottom>
-              <a
-                href="http://tiktok.com/@harmonystore01"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaTiktok fontSize="40px" />
-              </a>
+              <AiOutlineMail /> Malek2013malek@hotmail.fr
             </Typography>
+            <Typography variant="body1" gutterBottom>
+              <AiFillHome /> Impasse bir sidi tayeb sidi bou said 2026
+            </Typography>
+            <div className="socialmedia">
+              <Typography variant="body1" gutterBottom>
+                <a
+                  href="https://www.facebook.com/HarmonyStore01?mibextid=ZbWKwL"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaFacebook fontSize="40px" />
+                </a>
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                <a
+                  href="https://instagram.com/harmony_store01?igshid=MzNlNGNkZWQ4Mg=="
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaInstagram fontSize="40px" />
+                </a>
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                <a
+                  href="http://tiktok.com/@harmonystore01"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaTiktok fontSize="40px" />
+                </a>
+              </Typography>
+            </div>
           </div>
         </div>
       </div>
-    
-    </div>
-    
+
       <div className="card1">
-  <div className="image1">
-    <img src="https://cdn.pixabay.com/photo/2019/01/12/16/21/breakfast-3928800_960_720.jpg" alt="img" />
-  </div>
-  <div className="subscribe1">
-  <h2>Découvrez les Dernières Tendances en Bijoux et Accessoires</h2>
-<p>Restez à la mode avec les tendances en bijoux et accessoires les plus en vogue. Abonnez-vous à notre newsletter Bijoux&Accessoires.</p>
-    
-      <input type="email" name="email" id="email" placeholder="Enter your email address" autocomplete="off" />
-      <button type="button">Subscribe</button>
-    
-  </div>
-</div>
+        <div className="image1">
+          <img
+            src="https://i.pinimg.com/564x/e7/d9/40/e7d940ef5d3b2ca52e359bc78b038d56.jpg"
+            alt="img"
+          />
+        </div>
+        <div className="subscribe1">
+          <h2>Découvrez les Dernières Tendances en Bijoux et Accessoires</h2>
+          <p>
+            Restez à la mode avec les tendances en bijoux et accessoires les
+            plus en vogue. Abonnez-vous à notre newsletter Bijoux&Accessoires.
+          </p>
+
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Enter your email address"
+            autocomplete="off"
+          />
+          <button type="button">Subscribe</button>
+        </div>
+      </div>
     </>
   );
 }
