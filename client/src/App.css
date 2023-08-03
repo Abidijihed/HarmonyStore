@@ -106,6 +106,13 @@ body {
 #category{
   margin: 18px 0px 17px 0px;
 }
+#oneHomeCard{
+  margin: 16px;
+}
+#thisRow{
+  margin-left: calc(var(--bs-gutter-x)*-.5) none !important;
+    margin-right: calc(var(--bs-gutter-x)*-.5) none !important;
+}
 }
 
 @media (min-width: 600px) {
@@ -125,4 +132,17 @@ body {
 .carousel .thumbs {
   justify-content: center;
   display: flex;
+}
+.promotion{
+  background-color: #e9eef3;
+  margin: 18px 0px 17px 0px;
+}
+#promo{
+  font-weight: bold;
+}
+.mycardshome{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 20px;
 }

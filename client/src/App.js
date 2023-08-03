@@ -34,7 +34,7 @@ function App() {
         <Routes>
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/login" element={<SignInPge />} />
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home products={products} />} />
           <Route
             path="/profile"
             element={

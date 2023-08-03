@@ -12,6 +12,10 @@ import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import HomeCard from "./card/HomeCard";
+import { ChakraProvider ,extendTheme} from '@chakra-ui/react'
+import chakraTheme from '@chakra-ui/theme'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -55,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
   },
 }));
-export default function Home() {
+export default function Home({products}) {
   const classes = useStyles();
 
   const [expanded, setExpanded] = useState(false);
@@ -63,6 +67,11 @@ export default function Home() {
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+  const theme = extendTheme({
+ 
+    // Your custom theme configuration goes here
+  });
+  
   return (
     <>
       <div>
@@ -78,7 +87,7 @@ export default function Home() {
           <h1>Bienvenue à HarmonyStore</h1>
         </div>
         <div style={{ marginTop: "30px", backgroundColor: "palegoldenrod" }}>
-          <Row>
+          <Row id="thisRow">
             <Col sm={4} id="category">
               <div>
                 <Accordion
@@ -256,6 +265,13 @@ export default function Home() {
               </Carousel>
             </Col>
           </Row>
+        </div>
+
+        <div className="promotion">
+          <h1 id="promo">Promotion</h1>
+         <div className="mycardshome">
+         {products.map((el)=>{return(<ChakraProvider theme={theme}><HomeCard key={el.id} product={el}/></ChakraProvider>)})}
+         </div>
         </div>
         <div className={classes.comingSoonWrapper}>
           <div className={classes.comingSoonContent}>
