@@ -14,7 +14,8 @@ module.exports = {
     });
   },
   UpdateProduct: (req, res) => {
-    var {
+    console.log(req.body);
+    const {
       Product_material,
       product_name,
       description,
@@ -24,12 +25,20 @@ module.exports = {
       image_url,
       category,
     } = req.body;
-
-    const query = `UPDATE products SET product_name="${product_name}",Product_material=${Product_material},description="${description}",price="${price}",quantity_in_stock="${quantity_in_stock}",price_promo="${price_promo}",image_url="${image_url}",category="${category}" WHERE id=${req.params.id}`;
+  
+    const query = `UPDATE products SET product_name="${product_name}", Product_material="${Product_material}", description="${description}", price="${price}", quantity_in_stock="${quantity_in_stock}", price_promo="${price_promo}", image_url="${image_url}", category="${category}" WHERE id=${req.params.id}`;
+  
     connection.query(query, (err, result) => {
-      err ? res.status(500).send(err) : res.status(201).send("product updated");
+      if (err) {
+        console.error("Error updating product:", err);
+        res.status(500).send("Error updating product");
+      } else {
+        console.log("Product updated successfully");
+        res.status(201).send("Product updated");
+      }
     });
   },
+  
   DeleteProduct: (req, res) => {
     const query = `DELETE FROM products WHERE id=${req.params.id}`;
     connection.query(query, (err, result) => {
