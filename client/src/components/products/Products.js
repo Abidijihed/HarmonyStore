@@ -20,21 +20,54 @@ const useStyles = makeStyles({
   },
 });
 
-const JewelryCard = ({ product,addToCart }) => {
+const JewelryCard = ({ product }) => {
   const classes = useStyles();
   const [priceCurrency, setPriceCurrency] = useState("TND");
   const [exchangeRate, setExchangeRate] = useState(1);
-  const handleAddToCart = () => {
-    var user_id=localStorage.get('id')
-    addToCart(product.id,user_id); // Assuming quantity is 1 for this example
-  };
+
   // const [check, seTcheck] = useState(product.check_add_or_not);
   const dispatch = useDispatch();
-  // const handeladdtocard = (id) => {
-  //   const updateCheck = !check;
-  //   dispatch(add_to_card(id, { updateCheck }));
-  //   seTcheck(product.check_add_or_not)
-  // };
+  const handleAddToCart = () => {
+    const convertedPrice =
+      priceCurrency === "TND"
+        ? product.price_promo > 0
+          ? product.price_promo
+          : product.price
+        : convertCurrency(
+            product.price_promo > 0 ? product.price_promo : product.price,
+            priceCurrency
+          );
+
+    const cartItem = {
+      id: product.id, // Replace with the actual ID of the product
+      name: product.product_name,
+      price: convertedPrice,
+      currency: priceCurrency, // Store the selected currency
+      quantity: 1, // Default quantity
+    };
+
+    // Get existing cart from local storage
+    const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+    // Check if the product is already in the cart
+    const existingCartItem = existingCart.find((item) => item.id === cartItem.id);
+
+    if (existingCartItem) {
+      // If the product is already in the cart, update its quantity
+      existingCartItem.quantity += 1;
+    } else {
+      // If the product is not in the cart, add it to the cart
+      existingCart.push(cartItem);
+    }
+
+    // Store the updated cart in local storage
+    localStorage.setItem("cart", JSON.stringify(existingCart));
+
+    // Dispatch an action to update the cart in Redux state if needed
+    dispatch(add_to_card(existingCart));
+
+    // You can also provide user feedback that the product was added to the cart
+    // For example, show a notification or change the color of the cart icon
+  };
   useEffect(() => {
     const fetchExchangeRate = async () => {
       try {
@@ -102,14 +135,14 @@ const JewelryCard = ({ product,addToCart }) => {
         </button>
       </CardContent>
       <button
-        onClick={() => handleAddToCart()}
+        onClick={handleAddToCart}
         style={{ border: "none", marginLeft: "38%", background: "none" }}
       >
+        Add Product 
         <BiCartAdd
           variant="contained"
          
           fontSize="35px"
-          // style={{ color: check_add_or_not === 1 ? "green" : "black" }}
         />
       </button>
     </Card>

@@ -15,18 +15,17 @@ module.exports = {
   },
   UpdateProduct: (req, res) => {
     var {
+      Product_material,
       product_name,
       description,
-      Origin_price,
-      quantity,
-      Promo_price,
-      reference,
-      product_image,
-      availibility,
-      catigory,
+      price,
+      quantity_in_stock,
+      price_promo,
+      image_url,
+      category,
     } = req.body;
 
-    const query = `UPDATE products SET product_name="${product_name}",description="${description}",Origin_price="${Origin_price}",quantity="${quantity}",Promo_price="${Promo_price}",reference="${reference}",product_image="${product_image}",availibility="${availibility}",catigory="${catigory}" WHERE id=${req.params.id}`;
+    const query = `UPDATE products SET product_name="${product_name}",Product_material=${Product_material},description="${description}",price="${price}",quantity_in_stock="${quantity_in_stock}",price_promo="${price_promo}",image_url="${image_url}",category="${category}" WHERE id=${req.params.id}`;
     connection.query(query, (err, result) => {
       err ? res.status(500).send(err) : res.status(201).send("product updated");
     });

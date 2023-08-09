@@ -5,16 +5,6 @@ import axios from "axios";
 
 export default function ListProducts({data,addToCart}) {
   const [openAddProductModal, setOpenAddProductModal] = useState(false);
-  // const [data, setData] = useState([]);
-// const dispatch=useDispatch()
-  // const getProducts = () => {
-  //   axios.get("https://www.harmonystore01.com/api/get_All_product").then((res) => {
-  //     setData(res.data);
-  //   });
-  // };
-  // setTimeout(() => {
-  //   getProducts();
-  // }, 1000);
   return (
     <div>
       <div className="myproducts">

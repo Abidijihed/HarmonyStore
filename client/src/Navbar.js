@@ -44,7 +44,7 @@ import { get_product_card } from './redux/action/ProductAction';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    backgroundColor: '#e8b623',
+    backgroundColor: 'palegoldenrod',
     zIndex: theme.zIndex.drawer + 1,
     display: 'flex',
     justifyContent: 'space-between',
@@ -112,24 +112,12 @@ const Navbar = ({ handleChange})=> {
    const classes = useStyles();
    const [products, setProducts] = useState([]); // State to hold the products
 const dispatch=useDispatch()
-
+var productItems=JSON.parse(localStorage.getItem("cart"))
 useEffect(()=>{
   var user_id=localStorage.getItem('id')
   dispatch(get_product_card(user_id))
 },[dispatch])
 const productcard=useSelector((state)=>console.log(state))
-//    const fetchProducts = () => {
-//      axios.get("http://localhost:5700/api/get/product/added")
-//        .then((res) => {
-//          setProducts(res.data);
-//        })
-//        .catch((error) => {
-//          console.error("Error fetching products:", error);
-//        });
-//    };
-// setTimeout(() => {
-//   fetchProducts()
-// }, 500);
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -183,7 +171,7 @@ const productcard=useSelector((state)=>console.log(state))
   
   return (
     <>
-      <AppBar position="sticky" className={classes.appBar} sx={{backgroundColor:'#e8b623'}}>
+      <AppBar position="sticky" className={classes.appBar} sx={{backgroundColor:'palegoldenrod'}}>
         <Toolbar className='mynavbar'>
        
           {/* <Hidden mdDown> */}
@@ -241,7 +229,7 @@ const productcard=useSelector((state)=>console.log(state))
               </IconButton>
             </Hidden>
             <IconButton color="inherit">
-              <Badge badgeContent={0} color="secondary" onClick={handleShow}>
+              <Badge badgeContent={productItems.length} color="secondary" onClick={handleShow}>
                 <FaShoppingCart fontSize="xlarge" color='white'/>
               </Badge>
             </IconButton>

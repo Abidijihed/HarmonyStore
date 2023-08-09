@@ -32,14 +32,7 @@ CREATE TABLE IF NOT EXISTS products (
   Product_material VARCHAR(255) NOT NULL,
   PRIMARY KEY (id)
 );
-CREATE TABLE IF NOT EXISTS carts (
-  id INT NOT NULL AUTO_INCREMENT,
-  user_id INT NOT NULL,
-  product_id INT NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES users (id),
-  FOREIGN KEY (product_id) REFERENCES products (id),
-  PRIMARY KEY (id,user_id,product_id)
-);
+
 
 CREATE TABLE IF NOT EXISTS orders (
   id INT NOT NULL AUTO_INCREMENT,
