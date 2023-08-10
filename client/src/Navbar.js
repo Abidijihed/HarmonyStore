@@ -44,7 +44,7 @@ import { get_product_card } from './redux/action/ProductAction';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    backgroundColor: 'palegoldenrod',
+    backgroundColor: '#fdf7f2',
     zIndex: theme.zIndex.drawer + 1,
     display: 'flex',
     justifyContent: 'space-between',
@@ -106,18 +106,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Navbar = ({ handleChange})=> {
+const Navbar = ({ handleChange,productItemslen})=> {
   const [mobileOpen, setMobileOpen] = useState(false);
  const token=localStorage.getItem("token")
    const classes = useStyles();
-   const [products, setProducts] = useState([]); // State to hold the products
 const dispatch=useDispatch()
-var productItems=JSON.parse(localStorage.getItem("cart"))
 useEffect(()=>{
   var user_id=localStorage.getItem('id')
   dispatch(get_product_card(user_id))
 },[dispatch])
-const productcard=useSelector((state)=>console.log(state))
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -171,12 +168,12 @@ const productcard=useSelector((state)=>console.log(state))
   
   return (
     <>
-      <AppBar position="sticky" className={classes.appBar} sx={{backgroundColor:'palegoldenrod'}}>
+      <AppBar position="sticky" className={classes.appBar} sx={{backgroundColor:'fdf7f2'}}>
         <Toolbar className='mynavbar'>
        
           {/* <Hidden mdDown> */}
             <Typography className={classes.title} variant="h6" noWrap component={Link} to="/">
-              <FaHome style={{fontSize:"30px" ,color:"white"}}/>
+              <FaHome style={{fontSize:"30px" ,color:"rgb(187, 86, 68)"}}/>
             </Typography>
           {/* </Hidden> */}
           <Hidden mdUp>
@@ -229,7 +226,7 @@ const productcard=useSelector((state)=>console.log(state))
               </IconButton>
             </Hidden>
             <IconButton color="inherit">
-              <Badge badgeContent={productItems.length} color="secondary" onClick={handleShow}>
+              <Badge badgeContent={productItemslen.length} color="secondary" onClick={handleShow}>
                 <FaShoppingCart fontSize="xlarge" color='white'/>
               </Badge>
             </IconButton>

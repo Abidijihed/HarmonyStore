@@ -3,7 +3,7 @@ import AddProductModal from "./AddProduct";
 import Products from "./Products"
 import axios from "axios";
 
-export default function ListProducts({data,addToCart}) {
+export default function ListProducts({data,addToCart,getlen}) {
   const [openAddProductModal, setOpenAddProductModal] = useState(false);
   return (
     <div>
@@ -11,7 +11,7 @@ export default function ListProducts({data,addToCart}) {
         {data.map((element) => {
           return (
             <div key={element.id}>
-              <Products product={element} addToCart={addToCart} />
+              <Products product={element} addToCart={addToCart} getlen={getlen}/>
             </div>
           );
         })}

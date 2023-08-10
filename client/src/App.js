@@ -12,7 +12,7 @@ import ListProducts from "./components/products/ListProducts";
 import { useDispatch, useSelector } from "react-redux";
 import { add_to_card, get_product } from "./redux/action/ProductAction";
 function App() {
-
+const [productItemslen,setproductItemslen]=useState([])
    const dispatch=useDispatch()
    useEffect(()=>{
     dispatch(get_product())
@@ -25,10 +25,15 @@ function App() {
       user_id:user_id
     }))    
   };
+  const getlen=()=>{
+    var productItems=JSON.parse(localStorage.getItem("cart"))
+    setproductItemslen(productItems)
+
+  }
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar />
+        <Navbar productItemslen={productItemslen}/>
        
         <br />
         <Routes>
@@ -43,7 +48,7 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route path='/products' element={<ListProducts data={products} addToCart={addToCart} />} />
+          <Route path='/products' element={<ListProducts data={products} addToCart={addToCart} getlen={getlen}/>} />
         </Routes>
       </BrowserRouter>
     </div>

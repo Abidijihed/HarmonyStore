@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   },
 });
 
-const JewelryCard = ({ product }) => {
+const JewelryCard = ({ product ,getlen}) => {
   const classes = useStyles();
   const [priceCurrency, setPriceCurrency] = useState("TND");
   const [exchangeRate, setExchangeRate] = useState(1);
@@ -28,6 +28,7 @@ const JewelryCard = ({ product }) => {
   // const [check, seTcheck] = useState(product.check_add_or_not);
   const dispatch = useDispatch();
   const handleAddToCart = () => {
+
     const convertedPrice =
       priceCurrency === "TND"
         ? product.price_promo > 0
@@ -64,7 +65,7 @@ const JewelryCard = ({ product }) => {
 
     // Dispatch an action to update the cart in Redux state if needed
     dispatch(add_to_card(existingCart));
-
+getlen()
     // You can also provide user feedback that the product was added to the cart
     // For example, show a notification or change the color of the cart icon
   };
