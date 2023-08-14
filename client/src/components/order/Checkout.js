@@ -82,7 +82,7 @@ function PaymentForm() {
     ) {
  
     try {
-      const response = await axios.post('https://www.harmonystore01.com/payments/payment', {
+      await axios.post('https://www.harmonystore01.com/payments/payment', {
         receiverWalletId: receiverWalletId || WALLET_ID,
         token: token,
         amount: amount,
@@ -90,8 +90,11 @@ function PaymentForm() {
         firstname: firstName,
         lastname: lastName,
         email: email,
-      });
-      navigate(`/${response.data.payUrl}`)
+      }).then((response)=>{
+        console.log(response)
+        navigate(`/${response.data.payUrl}`)
+      })
+      
       // Redirect to the Konnect payment gateway using response.data.payment_url
     } catch (error) {
       console.error('Error initiating payment:', error);
