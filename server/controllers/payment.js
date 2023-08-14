@@ -13,7 +13,7 @@ CreatePayment:(async(req,res)=>{
               'x-api-key':API_KEY
             }
        }).then((response)=>{
-
+            console.log(response)
         // const query=`INSERT INTO payment (user_id,email,firstName,lastName,paymentRef,amount) VALUES (${req.body.id},"${req.body.email}","${req.body.firstName}","${lastName}","${response.data.paymentRef}",${req.body.amount})`
         //    connection.query(query,(err,result)=>{
         //     if (err){
