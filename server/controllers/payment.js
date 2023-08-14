@@ -6,22 +6,20 @@ const middleware = require('../midelwar/auth.js');
 const utils=require('../midelwar/utils.js')
 const session=require ('./session.js')
 module.exports={
-CreatePayment:((req,res)=>{
-  console.log(req.body)
-  axios.post(
-          'https://api.konnect.network/api/v2/payments/init-payment',req.body,{
-            headers:{
-              'x-api-key':API_KEY
-            }
-       }).then((response)=>{
-            console.log(response)
-        // const query=`INSERT INTO payment (user_id,email,firstName,lastName,paymentRef,amount) VALUES (${req.body.id},"${req.body.email}","${req.body.firstName}","${lastName}","${response.data.paymentRef}",${req.body.amount})`
-        //    connection.query(query,(err,result)=>{
-        //     if (err){
-        //       res.status(500).send(err)
-        //     }
-            res.status(200).json(response)
-          //  })
-       }).catch((error)=>res.status(500).send(error))    
+CreatePayment:(async (req,res)=>{
+  try {
+    const response=await axios.post(
+      'https://api.konnect.network/api/v2/payments/init-payment',req.body,{
+        headers:{
+          'x-api-key':API_KEY
+        }
+      }
+    )
+    res.json(response.data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while initiating payment.' });
+  }
+
 })
 }
