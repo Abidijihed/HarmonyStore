@@ -7,11 +7,12 @@ import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { BiCartAdd } from "react-icons/bi";
 import { useDispatch } from "react-redux";
-import { add_to_card } from "../../redux/action/ProductAction";
+import { add_to_card,delete_product } from "../../redux/action/ProductAction";
+import UpdateProduct from "./UpdateProduct";
 const useStyles = makeStyles({
   root: {
     maxWidth: 180,
-    height:270,
+    height:285,
     margin: "6px",
   },
   media: {
@@ -22,9 +23,11 @@ const useStyles = makeStyles({
 
 const JewelryCard = ({ product ,getlen}) => {
   const classes = useStyles();
+  const [UpdateProducte, setUpdateProduct] = useState(false);
+
   const [priceCurrency, setPriceCurrency] = useState("TND");
   const [exchangeRate, setExchangeRate] = useState(1);
-
+  const [productToUpdate,setProductToupdate]=useState()
   // const [check, seTcheck] = useState(product.check_add_or_not);
   const dispatch = useDispatch();
   const handleAddToCart = () => {
@@ -38,10 +41,12 @@ const JewelryCard = ({ product ,getlen}) => {
             product.price_promo > 0 ? product.price_promo : product.price,
             priceCurrency
           );
-
+console.log(product)
     const cartItem = {
       id: product.id, // Replace with the actual ID of the product
       name: product.product_name,
+      image_url:product.image_url,
+      Product_material:product.Product_material,
       price: convertedPrice,
       currency: priceCurrency, // Store the selected currency
       quantity: 1, // Default quantity
@@ -64,7 +69,6 @@ const JewelryCard = ({ product ,getlen}) => {
     localStorage.setItem("cart", JSON.stringify(existingCart));
 
     // Dispatch an action to update the cart in Redux state if needed
-    dispatch(add_to_card(existingCart));
 getlen()
     // You can also provide user feedback that the product was added to the cart
     // For example, show a notification or change the color of the cart icon
@@ -94,8 +98,14 @@ getlen()
     const convertedPrice = price * exchangeRate;
     return convertedPrice.toFixed(2);
   };
+  const handleUpdateProduct=(oneproduct)=>{
+    setUpdateProduct(true)
+    setProductToupdate(oneproduct)
+    
+  }
   // const check_add_or_not = product.check_add_or_not;
   return (
+  <>
     <Card className={classes.root}>
       <CardMedia
         className={classes.media}
@@ -137,9 +147,11 @@ getlen()
       </CardContent>
       <button
         onClick={handleAddToCart}
-        style={{ border: "none", marginLeft: "38%", background: "none" }}
+        style={{ border: "none", marginLeft:"4%", background: "#f8c714",
+        padding: "2px",
+        borderRadius: "5%" }}
       >
-        Add Product 
+        Ajouter au Panier
         <BiCartAdd
           variant="contained"
          
@@ -147,6 +159,13 @@ getlen()
         />
       </button>
     </Card>
+    <div style={{display:"flex",justifyContent:"space-around"}}>
+    <button style={{background:"red"}} onClick={()=>dispatch(delete_product(product.id))} >Delete</button>
+    <button style={{background:"orange"}} onClick={() => handleUpdateProduct(product)} >Edite</button>
+    </div>
+    <UpdateProduct productToUpdate={productToUpdate} open={UpdateProducte}
+        handleClose={() => setUpdateProduct(false)}/>
+    </>
   );
 };
 

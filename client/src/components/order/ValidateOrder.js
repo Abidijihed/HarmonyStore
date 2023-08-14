@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-
+import React, { useEffect, useState } from "react";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import Card from 'react-bootstrap/Card';
+import { useNavigate } from "react-router-dom";
 function ValidateOrder({ show, handleClose }) {
+  const navigate=useNavigate()
   const [totalPrice, setTotalPrice] = useState(0);
   const [products, setProducts] = useState([]);
 
@@ -32,9 +34,7 @@ function ValidateOrder({ show, handleClose }) {
 
   const calculateTotalPrice = (products) => {
     const totalPrice = products.reduce(
-      (total, product) =>
-        total +
-        product.quantity * product.price,
+      (total, product) => total + product.quantity * product.price,
       0
     );
     setTotalPrice(totalPrice);
@@ -42,6 +42,7 @@ function ValidateOrder({ show, handleClose }) {
 
   const handleCheckout = () => {
     // Update stock quantities if needed
+    navigate("/checkout")
     handleClose();
   };
 
@@ -50,30 +51,47 @@ function ValidateOrder({ show, handleClose }) {
       <Modal show={show} onHide={handleClose}>
         {/* Modal content */}
         {products.map((product) => (
-          <div key={product.id}>
-            {console.log(typeof(product.Promo_price),typeof(product.quantity),typeof(product.Promo_price))}
-            <h4>{product.product_name}</h4>
-            <p>Price: {product.price}</p>
-            
-            <p>Subtotal: {product.quantity * product.price}</p>
-            <Button
-              variant="outline-secondary"
-              onClick={() =>
-                handleQuantityChange(product.id, product.quantity > 1 ? product.quantity - 1 : product.quantity)
-              }
-            >
-              -
-            </Button>
-            <p>Quantity: {product.quantity}</p>
-            <Button
-              variant="outline-secondary"
-              onClick={() => handleQuantityChange(product.id, product.quantity + 1)}
-            >
-              +
-            </Button>
+          <div key={product.id} style={{justifyContent:"center",display:"flex",flexWrap:"wrap"}}>
+            <Card style={{ width: "16rem" , height: "320px"}}>
+              <Card.Img variant="top" src={product.image_url} style={{height: "150px",width: "255px"}} />
+                  <Card.Body>
+                <Card.Title>{product.product_name}</Card.Title>
+                <Card.Text>
+                  <p>Price: {product.price}</p>
+                </Card.Text>
+                <span>Quantity</span>
+               <div style={{display:"flex"}}>
+               <Button
+                  variant="outline-secondary"
+                  onClick={() =>
+                    handleQuantityChange(
+                      product.id,
+                      product.quantity > 1
+                        ? product.quantity - 1
+                        : product.quantity
+                    )
+                  }
+                >
+                  -
+                </Button>
+                <p>{product.quantity}</p>
+                <Button
+                  variant="outline-secondary"
+                  onClick={() =>
+                    handleQuantityChange(product.id, product.quantity + 1)
+                  }
+                >
+                  +
+                </Button>
+               </div>
+               <div>
+               Subtotal: {product.quantity * product.price}
+               </div>
+              </Card.Body>
+            </Card>
           </div>
         ))}
-         <Modal.Footer>
+        <Modal.Footer>
           <p>Total Price: {totalPrice}</p>
           <Button variant="secondary" onClick={handleClose}>
             Close

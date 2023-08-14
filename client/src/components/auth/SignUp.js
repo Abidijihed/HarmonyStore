@@ -43,8 +43,8 @@ function SignupPage() {
   const [phoneError, setPhoneError] = useState(false);
   const dispatch= useDispatch();
   const navigate = useNavigate();
-  /*const handleSignup = (e) => {
-    e.preventDefault();
+  const handleSignup = (e) => {
+    // e.preventDefault();
     if (FirstName === "") {
       setFirstNameError(true);
     } else {
@@ -71,42 +71,27 @@ function SignupPage() {
       Password.length >= 8 &&
       PhoneNumber
     ) {
-      // handle signup logic
-      axios
-        .post("https://www.harmonystore01.com/api/Create_user", {
+ 
+      dispatch(register({
           FirstName: FirstName,
           Email: Email,
           PhoneNumber: PhoneNumber,
           Password: Password,
-        })
-        .then((res) => {
-          if (res.data[1] === "secsuss") {
-            localStorage.setItem("token", res.data[0]);
-            localStorage.setItem("id", res.data[2]);
-            setTimeout(() => {
-              navigate("/profile");
-            }, 2000);
-          } else if (res.data === "user exist") {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "Something went wrong! USER Exists",
-            });
-          }
-        });
+        }),navigate("/profile"))
+       
     }
-  };*/
+  };
 
   return (
     <div className={classes.root}>
       <Typography variant="h3" align="center">
         Sign Up
       </Typography>
-      <form
+      <div
         className={classes.form}
         noValidate
         autoComplete="off"
-        onSubmit={()=>dispatch(register({FirstName,Email,Password,PhoneNumber}))}
+        // onSubmit={()=>dispatch(register({FirstName,Email,Password,PhoneNumber}))}
       >
         <TextField
           label="First Name"
@@ -138,10 +123,10 @@ function SignupPage() {
           value={PhoneNumber}
           onChange={(PhoneNumber) => setPhone(PhoneNumber)}
         />
-        <Button variant="contained" color="primary" type="submit" >
+        <Button variant="contained" color="primary" onClick={handleSignup} >
           Sign Up
         </Button>
-      </form>
+      </div>
       <p style={{ textAlign: "center", marginTop: "10px" }}>
         Already have an account? <Link to="/login">Log in</Link>
       </p>

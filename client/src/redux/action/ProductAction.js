@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { GET_CARD_Product, GET_PRODUCT } from '../actionType/ProtactType'
 import { alertError } from './AlertAction'
+import Swal from 'sweetalert2'
 
 export const get_product = () => async (dispatch) => {
     try {
@@ -21,7 +22,20 @@ export const get_product = () => async (dispatch) => {
 export const add_product = (data) => async (dispatch) => {
     try {
         await axios.post('https://www.harmonystore01.com/api/Create_product',data)
-        dispatch(get_product())
+        .then((res)=>{
+            if(res.data==="poste done"){
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Your work has been saved',
+                showConfirmButton: false,
+                timer: 1500
+              })
+              dispatch(get_product())
+              
+            }
+          })
+        
 
     } catch (error) {
      console.log(error)

@@ -30,14 +30,6 @@ module.exports={
         })
         
       }
-      // let query=`INSERT INTO adminnotfication(user_id,message,date,new) VALUES("${results.insertId}",${true})`
-      // connection.query(query,(err,result)=>{
-      //      if(err){
-      //       console.log(500)
-      //      }else{
-      //       console.log(201)
-      //      }
-      // })
     
     })
     

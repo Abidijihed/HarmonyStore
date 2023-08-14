@@ -13,10 +13,18 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import HomeCard from "./card/HomeCard";
-import { ChakraProvider ,extendTheme} from '@chakra-ui/react'
-import chakraTheme from '@chakra-ui/theme'
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import chakraTheme from "@chakra-ui/theme";
 import DarkVariantExample from "./carousel/DarkVariantExample";
-
+import {
+  GiCrystalEarrings,
+  GiDiamondRing,
+  GiDoorRingHandle,
+  GiEmeraldNecklace,
+  GiPrimitiveNecklace,
+  GiTiara,
+  GiWatch,
+} from "react-icons/gi";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -60,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
   },
 }));
-export default function Home({products}) {
+export default function Home({ products }) {
   const classes = useStyles();
 
   const [expanded, setExpanded] = useState(false);
@@ -69,15 +77,14 @@ export default function Home({products}) {
     setExpanded(isExpanded ? panel : false);
   };
   const theme = extendTheme({
- 
     // Your custom theme configuration goes here
   });
-  
+
   return (
     <>
-    <div id="carousa">
-            <DarkVariantExample />
-          </div>
+      <div id="carousa">
+        <DarkVariantExample />
+      </div>
       <div>
         {" "}
         <div
@@ -88,10 +95,9 @@ export default function Home({products}) {
             marginTop: "3%",
           }}
         >
-          
           <h1>Bienvenue à HarmonyStore</h1>
         </div>
-        <div style={{ marginTop: "30px", backgroundColor: "palegoldenrod" }}>
+        <div style={{ marginTop: "30px" }}>
           <Row id="thisRow">
             <Col sm={4} id="category">
               <div>
@@ -132,8 +138,6 @@ export default function Home({products}) {
                   <AccordionDetails>
                     <Typography>
                       Donec placerat, lectus sed mattis semper, neque lectus
-                      feugiat lectus, varius pulvinar diam eros in elit.
-                      Pellentesque convallis laoreet laoreet.
                     </Typography>
                   </AccordionDetails>
                 </Accordion>
@@ -271,13 +275,119 @@ export default function Home({products}) {
             </Col>
           </Row>
         </div>
-
         <div className="promotion">
-          <h1 id="promo">Promotion</h1>
-         <div className="mycardshome">
-         {products.map((el)=>{return(<ChakraProvider theme={theme}><HomeCard key={el.id} product={el}/></ChakraProvider>)})}
-         </div>
-        </div>
+          <h1 id="promo">Exclusive Products</h1>
+          <div className="jewerllyicons">
+            <div style={{ display: "block" }}>
+              <div className="jewerllypro">
+                <GiCrystalEarrings />
+              </div>
+
+              <h3
+                style={{
+                  color: "white",
+                  justifyContent: "center",
+                  display: "flex",
+                }}
+              >
+                Earrings
+              </h3>
+            </div>
+            <div style={{ display: "block" }}>
+              <div className="jewerllypro">
+                <GiDiamondRing />
+              </div>
+              <h3
+                style={{
+                  color: "white",
+                  justifyContent: "center",
+                  display: "flex",
+                }}
+              >
+                Rings
+              </h3>
+            </div>
+            <div style={{ display: "block" }}>
+              <div className="jewerllypro">
+                <GiTiara />
+              </div>
+              <h3
+                style={{
+                  color: "white",
+                  justifyContent: "center",
+                  display: "flex",
+                }}
+              >
+                Tiaras
+              </h3>
+            </div>
+            <div style={{ display: "block" }}>
+              <div className="jewerllypro">
+                <GiWatch />
+              </div>
+              <h3
+                style={{
+                  color: "white",
+                  justifyContent: "center",
+                  display: "flex",
+                }}
+              >
+                Watchs
+              </h3>
+            </div>
+            <div style={{ display: "block" }}>
+              <div className="jewerllypro">
+                <GiEmeraldNecklace />
+              </div>
+              <h3
+                style={{
+                  color: "white",
+                  justifyContent: "center",
+                  display: "flex",
+                }}
+              >
+                Necklaces
+              </h3>
+            </div>
+            <div style={{ display: "block" }}>
+              <div className="jewerllypro">
+                <GiPrimitiveNecklace />
+              </div>
+              <h3
+                style={{
+                  color: "white",
+                  justifyContent: "center",
+                  display: "flex",
+                }}
+              >
+                Braclets
+              </h3>{" "}
+            </div>
+          </div>
+          <div className="row" style={{justifyContent: "center", marginTop:"5%"}}>
+            <div className="col-5">
+              <img src="https://i.pinimg.com/564x/17/62/6c/17626c0b40da8101e5474f9b6c6ac8f7.jpg" alt="Exclusive Products"/>
+            </div>
+            <div className="col-5" style={{position: "relative"}}>
+  <img src="https://i.pinimg.com/564x/43/82/eb/4382ebd52bd2707a92e6d286f42f80d3.jpg" alt="Exclusive Products" style={{width: "100%", height: "auto"}}/>
+  <span id="offsp">20% OFF</span>
+  <button id="shopbutt">Shop Now</button>
+</div>
+          </div>
+          </div>
+          <div style={{marginTop: "40%"}}>
+            <h3>PRODUIT EN PROMOTION</h3>
+          </div>
+          <div className="mycardshome">
+            {products.map((el) => {
+              return (
+                <ChakraProvider theme={theme}>
+                  <HomeCard key={el.id} product={el} />
+                </ChakraProvider>
+              );
+            })}
+          </div>
+      
         <div className={classes.comingSoonWrapper}>
           <div className={classes.comingSoonContent}>
             <Typography variant="h2" gutterBottom>
@@ -336,7 +446,9 @@ export default function Home({products}) {
           />
         </div>
         <div className="subscribe1">
-          <h3 id="title3">Découvrez les Dernières Tendances en Bijoux et Accessoires</h3>
+          <h3 id="title3">
+            Découvrez les Dernières Tendances en Bijoux et Accessoires
+          </h3>
           <p>
             Restez à la mode avec les tendances en bijoux et accessoires les
             plus en vogue. Abonnez-vous à notre newsletter Bijoux&Accessoires.

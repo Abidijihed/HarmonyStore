@@ -8,6 +8,8 @@ import {
 } from '@material-ui/core';
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import { add_product } from '../../redux/action/ProductAction';
+import { useDispatch } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -31,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function AddProductModal({ open, handleClose, handleAddProduct }) {
+  const dispatch=useDispatch()
   const classes = useStyles();
   const [productName, setProductName] = useState('');
   const [description, setDescription] = useState('');
@@ -49,31 +52,16 @@ function AddProductModal({ open, handleClose, handleAddProduct }) {
     formData.append("upload_preset", "HarmonyStore");
    await axios.post("https://api.cloudinary.com/v1_1/dij3lejgg/upload", formData)
     .then((res)=>{
-        axios.post('https://www.harmonystore01.com/api/Create_product',{
-            product_name:productName,
-            description:description,
-            price:price,
-            quantity_in_stock:quantity,
-            price_promo:oldPrice,
-            Product_material:Product_material,
-            image_url:res.data.url,
-            category:category
-        }).then((res)=>{
-          if(res.data==="poste done"){
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'Your work has been saved',
-              showConfirmButton: false,
-              timer: 1500
-            })
-            setTimeout(() => {
-              window.location.reload()
-            }, 1500);
-            
-          }
-        })
-        
+      console.log(res.data)
+
+      dispatch(add_product({product_name:productName,
+        description:description,
+        price:price,
+        quantity_in_stock:quantity,
+        price_promo:oldPrice,
+        Product_material:Product_material,
+        image_url:res.data.secure_url,
+        category:category}))
     })
   
     handleClose();

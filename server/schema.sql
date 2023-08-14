@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS orders (
   user_id INT NOT NULL,
   order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
   total_amount DECIMAL(10, 2) NOT NULL,
+  payement_done BOOLEAN NOT NULL,
   status ENUM('pending', 'processing', 'shipped', 'delivered', 'canceled') NOT NULL DEFAULT 'pending',
   FOREIGN KEY (user_id) REFERENCES users (id),
   PRIMARY KEY (id,user_id)
@@ -64,7 +65,7 @@ CREATE TABLE IF NOT EXISTS product_images (
 );
 
 
-INSERT INTO users(FirstName,LastName,Email,Address,PhoneNumber,Password,country,Zip)VALUES("Said","Belghaji","Malek2013malek@hotmail.fr"," Impasse bir sidi tayeb sidi bou said","+216 54 154 220","8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918","Tunisia","2026");
+INSERT INTO users(FirstName,LastName,Email,Address,PhoneNumber,Password,country,Zip,role)VALUES("Said","Belghaji","Malek2013malek@hotmail.fr"," Impasse bir sidi tayeb sidi bou said","+216 54 154 220","8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918","Tunisia","2026","admin");
 
 CREATE TABLE IF NOT EXISTS sessions (
   id INT NOT NULL AUTO_INCREMENT,
@@ -80,5 +81,17 @@ CREATE TABLE IF NOT EXISTS newsletter (
   email VARCHAR(250) NOT NULL,
   date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
   PRIMARY KEY (id)
+);
+CREATE TABLE IF NOT EXISTS payment (
+  id INT NOT NULL AUTO_INCREMENT,
+  user_id INT NOT NULL,
+  email VARCHAR(250) NOT NULL,
+  firstName VARCHAR(250) NOT NULL,
+  lastName  VARCHAR(250) NOT NULL,
+  paymentRef VARCHAR(250) NOT NULL,
+  amount  DECIMAL(10, 2) NOT NULL,
+  date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  PRIMARY KEY (id),
+  FOREIGN KEY (users_id) REFERENCES users(id)
 );
 

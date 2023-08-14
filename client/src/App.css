@@ -97,17 +97,39 @@ body {
 
 @media (max-width: 600px) {
   /* télephone */
+  .jewerllypro {
+    margin-bottom: 10px !important;
+}
+#offsp {
+  background-color: rgba(0,0,0,.5) o !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  top: 30% !important;
+}
+#shopbutt {
+  background-color: #bb5644 !important;
+  border: none !important;
+  border-radius: 5px;
+  cursor: pointer !important;
+  padding: 6px 6px !important;
+  top: 65% !important;
+}
+.promotion{
+  background-color: #413732 !important;
+  margin: 18px 0px 17px 0px !important;
+  height:950px !important;
+}
   .image1 {
-    width: 30%;
+    width: 30% !important;
 }
 #title3{
-  font-size: calc(1rem + .6vw);
+  font-size: calc(1rem + .6vw) !important;
 }
 #category{
-  margin: 18px 0px 17px 0px;
+  margin: 18px 0px 17px 0px !important;
 }
 #oneHomeCard{
-  margin: 16px;
+  margin: 16px !important;
 }
 #thisRow{
   margin-left: calc(var(--bs-gutter-x)*-.5) none !important;
@@ -118,7 +140,7 @@ body {
 @media (min-width: 600px) {
   /* web */
   #category{
-    margin-top: 10px;
+    margin-top: 10px !important;
   }
   .image1 {
     width: 450px !important;
@@ -134,17 +156,23 @@ body {
   display: flex;
 }
 .promotion{
-  background-color: #e9eef3;
+  background-color: #413732;
   margin: 18px 0px 17px 0px;
+  height: 853px;
 }
 #promo{
   font-weight: bold;
+  justify-content: center;
+  display: flex;
+  padding-top: 5%;
+  color: white;
+  box-shadow: 10px 5px 5px;
 }
 .mycardshome{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin: 20px;
+  margin: 25px 0px;
 }
 #carousa{
   margin: 20px;
@@ -152,4 +180,55 @@ body {
 .w-100 {
 
   height: 400px;
+}
+
+.MuiCardContent-root.css-1qw96cp {
+  width: 180px !important;
+}
+.jewerllypro{
+  
+color: white;
+font-size: 90px;
+border: solid 1px white;
+width: 140px;
+height: 188px;
+padding: 24px;
+cursor: pointer;
+
+}
+.jewerllyicons{
+  margin-top: 15%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.jewerllypro:hover{
+  margin-top: -15px;
+   color: #bb5644;
+}
+#oneHomeCard{
+  margin-bottom: 10px;
+}
+#offsp{
+  position: absolute; 
+  top: 50%;
+   left: 50%;
+    transform: translate(-50%, -50%);
+     background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+       padding: 10px;
+        font-size: 18px; 
+        font-weight: bold;
+}
+#shopbutt{
+  position: absolute;
+   top: 70%;
+    left: 50%;
+     transform: translate(-50%, -50%);
+      background-color: #bb5644;
+       color: white;
+        padding: 10px 20px;
+         border: none;
+          border-radius: 5px; 
+          cursor: pointer
 }

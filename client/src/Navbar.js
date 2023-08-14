@@ -40,7 +40,6 @@ import "./Navbar.css"
 import ValidateOrder from './components/order/ValidateOrder';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { get_product_card } from './redux/action/ProductAction';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -111,10 +110,7 @@ const Navbar = ({ handleChange,productItemslen})=> {
  const token=localStorage.getItem("token")
    const classes = useStyles();
 const dispatch=useDispatch()
-useEffect(()=>{
-  var user_id=localStorage.getItem('id')
-  dispatch(get_product_card(user_id))
-},[dispatch])
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };

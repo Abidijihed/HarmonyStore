@@ -10,7 +10,8 @@ import PrivateRoute from "./components/user/PrivateRoute";
 import ProfilePage from "./components/user/Profile";
 import ListProducts from "./components/products/ListProducts";
 import { useDispatch, useSelector } from "react-redux";
-import { add_to_card, get_product } from "./redux/action/ProductAction";
+import {  get_product } from "./redux/action/ProductAction";
+import Checkout from "./components/order/Checkout";
 function App() {
 const [productItemslen,setproductItemslen]=useState([])
    const dispatch=useDispatch()
@@ -18,13 +19,7 @@ const [productItemslen,setproductItemslen]=useState([])
     dispatch(get_product())
    },[dispatch])
    const products=useSelector((state)=>state.UserReducer.data)
-  const addToCart = (productId) => {
-    var user_id=localStorage.getItem('id')
-    dispatch(add_to_card({
-      product_id: productId,
-      user_id:user_id
-    }))    
-  };
+ 
   const getlen=()=>{
     var productItems=JSON.parse(localStorage.getItem("cart"))
     setproductItemslen(productItems)
@@ -48,7 +43,8 @@ const [productItemslen,setproductItemslen]=useState([])
               </PrivateRoute>
             }
           />
-          <Route path='/products' element={<ListProducts data={products} addToCart={addToCart} getlen={getlen}/>} />
+          <Route path='/products' element={<ListProducts data={products}  getlen={getlen}/>} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </BrowserRouter>
     </div>

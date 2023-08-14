@@ -9,7 +9,9 @@ const initialState = {
 const UserReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case REGISTER:
-      return { ...state, users: payload.utilisateur };
+      localStorage.setItem("token",payload.token)
+    localStorage.setItem("id",payload.id)
+      return { ...state, users: payload };
     case LOGIN: 
     localStorage.setItem("token",payload.token)
     localStorage.setItem("id",payload.id)

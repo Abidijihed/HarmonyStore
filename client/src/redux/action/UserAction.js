@@ -1,11 +1,23 @@
 import axios from 'axios'
 import { REGISTER, LOGIN, GET_CURRENT } from '../actionType/ActionType'
 import { alertError } from './AlertAction'
+import Swal from 'sweetalert2'
 
 export const register = (data) => async (dispatch) => {
     try {
-        const res = await axios.post('https://www.harmonystore01.com/api/Create_user', data)
-        dispatch({ type: REGISTER, payload: res.data })
+        await axios.post('https://www.harmonystore01.com/api/Create_user', data).then((res)=>{
+            if (res.data === "user exist") {
+                  Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong! USER Exists",
+                  });
+                }else {
+                   dispatch({ type: REGISTER, payload: res.data })
+                   
+                }
+        })
+        
 
     } catch (error) {
         if (error.response.data) {
