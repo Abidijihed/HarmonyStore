@@ -91,8 +91,8 @@ function PaymentForm() {
         lastname: lastName,
         email: email,
       }).then((response)=>{
-        console.log(response)
-        navigate(`/${response.data.payUrl}`)
+        window.location.href=response.data.payUrl
+        // navigate(`/${response.data.payUrl}`)
       })
       
       // Redirect to the Konnect payment gateway using response.data.payment_url
