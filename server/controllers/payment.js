@@ -6,8 +6,8 @@ const middleware = require('../midelwar/auth.js');
 const utils=require('../midelwar/utils.js')
 const session=require ('./session.js')
 module.exports={
-CreatePayment:(async(req,res)=>{
- await axios.post(
+CreatePayment:((req,res)=>{
+  axios.post(
           'https://api.konnect.network/api/v2/payments/init-payment',req.body,{
             headers:{
               'x-api-key':API_KEY
