@@ -364,30 +364,50 @@ export default function Home({ products }) {
               </h3>{" "}
             </div>
           </div>
-          <div className="row" style={{justifyContent: "center", marginTop:"5%"}}>
-            <div className="col-5">
-              <img src="https://i.pinimg.com/564x/17/62/6c/17626c0b40da8101e5474f9b6c6ac8f7.jpg" alt="Exclusive Products"/>
+          <div
+            className="row justify-content-center"
+            style={{ marginTop: "5%" }}
+          >
+            <div className="col-12 col-md-5 mb-4">
+              <img
+                src="https://i.pinimg.com/564x/17/62/6c/17626c0b40da8101e5474f9b6c6ac8f7.jpg"
+                alt="Exclusive Products"
+                className="img-fluid"
+              />
             </div>
-            <div className="col-5" style={{position: "relative"}}>
-  <img src="https://i.pinimg.com/564x/43/82/eb/4382ebd52bd2707a92e6d286f42f80d3.jpg" alt="Exclusive Products" style={{width: "100%", height: "auto"}}/>
-  <span id="offsp">20% OFF</span>
-  <button id="shopbutt">Shop Now</button>
-</div>
+            <div className="col-12 col-md-5 position-relative">
+              <img
+                src="https://i.pinimg.com/564x/43/82/eb/4382ebd52bd2707a92e6d286f42f80d3.jpg"
+                alt="Exclusive Products"
+                className="img-fluid"
+              />
+              <span
+                id="offsp"
+                className="position-absolute top-50 start-50 translate-middle"
+              >
+                20% OFF
+              </span>
+              <button
+                id="shopbutt"
+                className="position-absolute bottom-0 start-50 translate-middle-x"
+              >
+                Shop Now
+              </button>
+            </div>
           </div>
-          </div>
-          <div style={{marginTop: "40%"}}>
-            <h3>PRODUIT EN PROMOTION</h3>
-          </div>
-          <div className="mycardshome">
-            {products.map((el) => {
-              return (
-                <ChakraProvider theme={theme}>
-                  <HomeCard key={el.id} product={el} />
-                </ChakraProvider>
-              );
-            })}
-          </div>
-      
+        </div>
+        <div style={{ marginTop: "45%" }}>
+          <h3>PRODUIT EN PROMOTION</h3>
+        </div>
+        <div className="mycardshome">
+          {products.map((el) => {
+            return (
+              <ChakraProvider theme={theme}>
+                <HomeCard key={el.id} product={el} />
+              </ChakraProvider>
+            );
+          })}
+        </div>
         <div className={classes.comingSoonWrapper}>
           <div className={classes.comingSoonContent}>
             <Typography variant="h2" gutterBottom>

@@ -1,255 +1,133 @@
-import React, { useEffect, useState } from 'react';
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  IconButton,
-  Badge,
-  InputBase,
-  Hidden,
-  Drawer,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Divider,
-  Avatar,
-} from '@mui/material';
-import {
-  makeStyles,
-} from '@material-ui/core';
-import {alpha } from '@mui/material/styles';
-import {
-  FaShoppingCart,
-  FaUser,
-  FaPhoneAlt,
-  FaInfo,
-  FaSignInAlt,
-  FaSearch,
-  FaBars,
-  FaHome
-} from 'react-icons/fa';
-
-import { 
-   MdOutlineMailOutline,
-  MdOutlineAddShoppingCart
- } from 'react-icons/md';
-
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import InputBase from '@mui/material/InputBase';
+import SearchIcon from '@mui/icons-material/Search';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import PersonIcon from '@mui/icons-material/Person';
+import LocalMallIcon from '@mui/icons-material/LocalMall';
 import "./Navbar.css"
-import ValidateOrder from './components/order/ValidateOrder';
-import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
+import { Divider } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+const Navbar = () => {
+  const isMobile = useMediaQuery('(max-width: 768px)'); // Define the breakpoint
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [dropdownAnchor, setDropdownAnchor] = useState(null);
 
-const useStyles = makeStyles((theme) => ({
-  appBar: {
-    backgroundColor: '#fdf7f2',
-    zIndex: theme.zIndex.drawer + 1,
-    display: 'flex',
-    justifyContent: 'space-between',
-    [theme.breakpoints.up('md')]: {
-      justifyContent: 'flex-start',
-    },
-  },
-  title: {
-    flexGrow: 1,
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
-    },
-  },
-  search: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    display: 'flex',
-    alignItems: 'center',
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      marginLeft: theme.spacing(3),
-      width: 'auto',
-    },
-  },
-  searchInput: {
-    marginLeft: theme.spacing(1),
-    color: 'black',
-    backgroundColor:"white"
-  },
-  searchIcon: {
-    marginLeft: theme.spacing(1),
-    color:"black"
-  },
-  navIcons: {
-    display: 'flex',
-    alignItems: 'initial',
-  },
-  navIcon: {
-    marginLeft: theme.spacing(2),
-    fontSize:"25px",
-    '&:hover': {
-      backgroundColor: "white",
-    },
-  },
-  toolbar: theme.mixins.toolbar,
-  drawer: {
-    width: 240,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: 240,
-  },
-}));
-
-const Navbar = ({ handleChange,productItemslen})=> {
-  const [mobileOpen, setMobileOpen] = useState(false);
- const token=localStorage.getItem("token")
-   const classes = useStyles();
-const dispatch=useDispatch()
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
+  const toggleDrawer = (open) => () => {
+    setIsDrawerOpen(open);
   };
-  const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const drawer = (
-    <div>
-      <div className={classes.toolbar}>
-        <Typography variant="h6" align="center" style={{marginTop:"10px",marginLeft:"10px",textDecoration:"underline"}} component={Link} to="/">
+  const toggleDropdown = (event) => {
+    setDropdownAnchor(event.currentTarget);
+  };
+
+  const closeDropdown = () => {
+    setDropdownAnchor(null);
+  };
+
+  const renderDrawer = () => (
+    <div style={{width:"200px"}}>
+      <List>
+      <Typography variant="h6" align="center" style={{textDecoration:"underline",marginLeft:"20px"}} component={Link} to="/" onClick={()=>setIsDrawerOpen(false)}>
           HarmonyStore
         </Typography>
-      </div>
-      <Divider />
-      <List>
-        <ListItem button component={Link} to="/contact" onClick={()=>setMobileOpen(false)}>
-          <ListItemIcon>
-            <MdOutlineMailOutline />
-          </ListItemIcon>
-          <ListItemText primary="Contact Us" />
+      <Divider style={{backgroundColor:"black" ,marginTop:"10px"}}/>
+        <ListItem button component={Link} to="/products" onClick={()=>setIsDrawerOpen(false)} style={{marginLeft:"20px"}}>
+          <ListItemText primary="Product List" />
         </ListItem>
-        <ListItem button component={Link} to="/about" onClick={()=>setMobileOpen(false)}>
-          <ListItemIcon>
-            <FaInfo />
-          </ListItemIcon>
-          <ListItemText primary="About Us" />
+        <ListItem button component={Link} to="/login"onClick={()=>setIsDrawerOpen(false)}  style={{marginLeft:"20px"}} >
+          <ListItemText primary="Connexion" />
         </ListItem>
-     <ListItem button component={Link} to="/login" onClick={()=>setMobileOpen(false)}>
-          <ListItemIcon>
-            <FaSignInAlt />
-          </ListItemIcon>
-          <ListItemText primary="Login" />
-        </ListItem>
-      <ListItem button component={Link} to="/profile" onClick={()=>setMobileOpen(false)}>
-          <ListItemIcon>
-            <FaUser />
-          </ListItemIcon>
+        <ListItem button  component={Link} to="/profile" onClick={()=>setIsDrawerOpen(false)}  style={{marginLeft:"20px"}}>
           <ListItemText primary="Profile" />
         </ListItem>
-        <Divider />
-        <ListItem button component={Link} to="/products" onClick={()=>setMobileOpen(false)}>
-          <ListItemIcon>
-            <MdOutlineAddShoppingCart />
-          </ListItemIcon>
-          <ListItemText primary="Product List" />
+        <ListItem button component={Link} to="/contact" onClick={()=>setIsDrawerOpen(false)}  style={{marginLeft:"20px"}}>
+          <ListItemText primary="Contact" />
+        </ListItem>
+        <ListItem button component={Link} to="/about" onClick={()=>setIsDrawerOpen(false)}  style={{marginLeft:"20px"}}>
+          <ListItemText primary="About Us"  />
         </ListItem>
       </List>
     </div>
   );
-  
+
   return (
-    <>
-      <AppBar position="sticky" className={classes.appBar} sx={{backgroundColor:'fdf7f2'}}>
-        <Toolbar className='mynavbar'>
-       
-          {/* <Hidden mdDown> */}
-            <Typography className={classes.title} variant="h6" noWrap component={Link} to="/">
-              <FaHome style={{fontSize:"30px" ,color:"rgb(187, 86, 68)"}}/>
-            </Typography>
-          {/* </Hidden> */}
-          <Hidden mdUp>
+    <div className="navbar">
+      <AppBar  elevation={4}  style={{ background: "#FFFFFF" }}>
+        <Toolbar style={{display:"flex",justifyContent:"space-around"}} >
+          {isMobile && (
             <IconButton
-              edge="end"
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerToggle}
+              edge="start"
+              style={{color:"#000000"}}
+              aria-label="menu"
+              onClick={toggleDrawer(true)}
             >
-              <FaBars />
+              <MenuIcon />
             </IconButton>
-          </Hidden>
-          {/* <Hidden smDown> */}
-            <div className={classes.search} id='allsearch'>
-              <div className={classes.searchIcon}>
-                <FaSearch />
-              </div>
-              <InputBase
-              id='search'
-                placeholder="Search..."
-                onChange={(e) => handleChange(e)}
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                className={classes.searchInput}
-              />
-            </div>
-          {/* </Hidden> */}
-          <div className={classes.navIcons}>
-            <Hidden smDown>
-              <IconButton color="inherit" className={classes.navIcon} component={Link} to="/profile" >
-                Profile
-              </IconButton>
-          {!token&&  <IconButton color="inherit" className={classes.navIcon} component={Link} to="/login">
-                {/* <FaSignInAlt /> */}
-                Login
-              </IconButton>}
-              <IconButton color="inherit" className={classes.navIcon} component={Link} to="/contact">
-                {/* <FaPhoneAlt /> */}
-                Contact Us
-              </IconButton>
-              <IconButton color="inherit" className={classes.navIcon} component={Link} to="/about">
-                {/* <FaInfo /> */}
-                About Us
-              </IconButton>
-              <IconButton color="inherit" className={classes.navIcon} component={Link} to="/products">
-                {/* <MdOutlineAddShoppingCart /> */}
-                Products
-              </IconButton>
-            </Hidden>
-            <IconButton color="inherit">
-              <Badge badgeContent={productItemslen.length} color="secondary" onClick={handleShow}>
-                <FaShoppingCart fontSize="xlarge" color='white'/>
-              </Badge>
-            </IconButton>
+          ) }
+          {!isMobile&&<Button style={{color: "#000000" }}>
+            Harmony Store
+          </Button>}
+          <div>
+            <InputBase
+              placeholder="  Search..."
+              startAdornment={<SearchIcon style={{ color: "#B76E79" }} />}
+              style={{ marginRight: '10px', color: '#000000' }}
+            />
+            
           </div>
+          {!isMobile && (
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+            <Button
+               aria-controls="dropdown-menu"
+               aria-haspopup="true"
+               variant="text"
+               style={{ color: "#000000" }}
+               endIcon={<PersonIcon />}
+               onClick={toggleDropdown}
+            >
+            </Button>
+            <Menu
+              id="dropdown-menu"
+              anchorEl={dropdownAnchor}
+              keepMounted
+              open={Boolean(dropdownAnchor)}
+              onClose={closeDropdown}
+            >
+              <MenuItem onClick={closeDropdown}>Item 1</MenuItem>
+              <MenuItem onClick={closeDropdown}>Item 2</MenuItem>
+              <MenuItem onClick={closeDropdown}>Item 3</MenuItem>
+              <MenuItem onClick={closeDropdown}>Item 4</MenuItem>
+              <MenuItem onClick={closeDropdown}>Item 5</MenuItem>
+            </Menu>
+          </div>
+          )}
+          <Button style={{color:"#000000"}}>Connexion</Button>
+          <Button>
+             <LocalMallIcon  style={{color:"#000000",fontSize:"35px"}}/> 
+          </Button>
         </Toolbar>
+
       </AppBar>
-      <Hidden mdUp>
-        <nav className={classes.drawer}>
-          <Drawer
-            variant="temporary"
-            anchor="left"
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-          >
-            {drawer}
-          </Drawer>
-        </nav>
-      </Hidden>
-      <ValidateOrder 
-      show={show}
-      handleClose={handleClose}
-      />
-    </>
+      {isMobile && ( /* Show drawer only on mobile */
+        <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)}>
+          {renderDrawer()}
+        </Drawer>
+      )}
+    </div>
   );
 };
 
 export default Navbar;
+ 

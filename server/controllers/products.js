@@ -31,7 +31,7 @@ module.exports = {
     connection.query(query, (err, result) => {
       if (err) {
         console.error("Error updating product:", err);
-        res.status(500).send("Error updating product");
+        res.status(500).send("Error updating product",err);
       } else {
         console.log("Product updated successfully");
         res.status(201).send("Product updated");

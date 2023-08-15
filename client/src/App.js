@@ -28,7 +28,7 @@ const [productItemslen,setproductItemslen]=useState([])
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar productItemslen={productItemslen}/>
+        <Navbar productItemslen={productItemslen} />
        
         <br />
         <Routes>
