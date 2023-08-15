@@ -30,8 +30,10 @@ export const register = (data) => async (dispatch) => {
 }
 export const login = (data, navigate) => async (dispatch) => {
     try {
-        const res = await axios.post('https://www.harmonystore01.com/api/login', data)
-        dispatch({ type: LOGIN, payload: res.data })
+        await axios.post('https://www.harmonystore01.com/api/login', data).then((res)=>{
+            dispatch({ type: LOGIN, payload: res.data })
+        })
+        
         navigate("/profile")
     } catch (error) {
         if (error.response.data) {
@@ -46,8 +48,10 @@ export const login = (data, navigate) => async (dispatch) => {
 export const get_current = (id) => async (dispatch) => {
     const config = { headers: { token: localStorage.getItem("token") } }
     try {
-        const res = await axios.get('https://www.harmonystore01.com/api/getone_user/'+id, config)
-        dispatch({ type: GET_CURRENT, payload: res.data[0] })
+        await axios.get('https://www.harmonystore01.com/api/getone_user/'+id, config).then((res)=>{
+            dispatch({ type: GET_CURRENT, payload:res.data[0] })
+
+        })
     } catch (error) {
         console.log(error)
     }

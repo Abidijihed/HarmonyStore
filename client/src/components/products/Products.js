@@ -6,9 +6,10 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { BiCartAdd } from "react-icons/bi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { add_to_card,delete_product } from "../../redux/action/ProductAction";
 import UpdateProduct from "./UpdateProduct";
+import { get_current } from "../../redux/action/UserAction";
 const useStyles = makeStyles({
   root: {
     maxWidth: 180,
@@ -103,6 +104,11 @@ getlen()
     setProductToupdate(oneproduct)
     
   }
+  useEffect(() => {
+    const id = localStorage.getItem("id");
+      dispatch(get_current(id))
+  }, [dispatch]);
+  const user=useSelector((state)=>state.UserReducer.users)
   // const check_add_or_not = product.check_add_or_not;
   return (
   <>
@@ -160,8 +166,8 @@ getlen()
       </button>
     </Card>
     <div style={{display:"flex",justifyContent:"space-around"}}>
-    <button style={{background:"red"}} onClick={()=>dispatch(delete_product(product.id))} >Delete</button>
-    <button style={{background:"orange"}} onClick={() => handleUpdateProduct(product)} >Edite</button>
+    {user?.role==="admin"?<button style={{background:"red"}} onClick={()=>dispatch(delete_product(product.id))} >Delete</button>:null}
+    {user?.role==="admin"?<button style={{background:"orange"}} onClick={() => handleUpdateProduct(product)} >Edite</button>:null}
     </div>
     <UpdateProduct productToUpdate={productToUpdate} open={UpdateProducte}
         handleClose={() => setUpdateProduct(false)}/>

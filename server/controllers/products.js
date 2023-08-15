@@ -14,7 +14,6 @@ module.exports = {
     });
   },
   UpdateProduct: (req, res) => {
-    console.log(req.body);
     const {
       Product_material,
       product_name,
@@ -30,10 +29,8 @@ module.exports = {
   
     connection.query(query, (err, result) => {
       if (err) {
-        console.error("Error updating product:", err);
-        res.status(500).send("Error updating product",err);
+        res.status(500).send(err);
       } else {
-        console.log("Product updated successfully");
         res.status(201).send("Product updated");
       }
     });

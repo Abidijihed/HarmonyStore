@@ -52,8 +52,6 @@ function AddProductModal({ open, handleClose, handleAddProduct }) {
     formData.append("upload_preset", "HarmonyStore");
    await axios.post("https://api.cloudinary.com/v1_1/dij3lejgg/upload", formData)
     .then((res)=>{
-      console.log(res.data)
-
       dispatch(add_product({product_name:productName,
         description:description,
         price:price,

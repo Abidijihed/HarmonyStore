@@ -97,6 +97,16 @@ body {
 
 @media (max-width: 600px) {
   /* télephone */
+  .steptow{
+    border: none;
+    box-shadow: 0 2px 4px rgb(139 31 31 / 36%);
+    display: flex;
+    justify-content: space-around;
+    margin: 22px;
+    width: 500px;
+    background: #70809038;
+    padding: 26px;
+}
   .jewerllypro {
     margin-bottom: 10px !important;
 }
@@ -145,7 +155,16 @@ body {
   .image1 {
     width: 450px !important;
 }
- 
+.steptow{
+  border: none;
+  box-shadow: 0 2px 4px rgb(139 31 31 / 36%);
+  display: flex;
+  justify-content: space-around;
+  margin: 22px;
+  width: 700px;
+  background: #70809038;
+  padding: 26px;
+}
  
 }
 .carousel .thumb img {

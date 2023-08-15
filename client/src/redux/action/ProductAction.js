@@ -44,10 +44,19 @@ export const add_product = (data) => async (dispatch) => {
 }
 
 export const update_product = (id,data) => async (dispatch) => {
-    console.log(id)
     try {
-        await axios.put(`https://www.harmonystore01.com/api/update/product/${id}`,data)
-        dispatch(get_product())
+       const res= await axios.put(`https://www.harmonystore01.com/api/update/product/${id}`,data)
+        if(res.data==="Product updated"){
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Your work has been saved',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            dispatch(get_product())
+            
+          }
 
     } catch (error) {
      console.log(error)

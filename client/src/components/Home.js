@@ -398,7 +398,7 @@ export default function Home({ products }) {
         </div>
         <div style={{ marginTop: "45%" }}>
           <h3>PRODUIT EN PROMOTION</h3>
-        </div>
+        
         <div className="mycardshome">
           {products.map((el) => {
             return (
@@ -407,6 +407,7 @@ export default function Home({ products }) {
               </ChakraProvider>
             );
           })}
+        </div>
         </div>
         <div className={classes.comingSoonWrapper}>
           <div className={classes.comingSoonContent}>

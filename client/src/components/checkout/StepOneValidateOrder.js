@@ -46,21 +46,22 @@ function StepOneValidateOrder() {
         <>
         <Row className="justify-content-center">
 
-        <Col xs={12} md={6} lg={4} className="mb-3"> 
-            <img src={product.image_url} style={{width:"400px",height:"300px"}}/> 
+        <Col xs={12} md={6} lg={4} className="mb-3" style={{border:"1px solid",margin:"2px"}}id='stepone' > 
+            <img src={product.image_url} style={{width:"100%",height:"300px"}}/> 
         </Col>
-        <Col xs={12} md={6} lg={4} className="mb-3">
+        <Col xs={12} md={6} lg={4} className="mb-3" style={{padding:"20px",border:"1px solid",margin:"2px"}} id='stepone1'>
           <div className="text-center">
             <h4>{product.name}</h4>
             <h3>{product.Product_material}</h3>
             </div>
-            <div style={{marginTop:"15px",color:"red"}} className="text-center">
-                <span>{product.currency}{" "}{product.price}.00</span><br/>
+            <div style={{marginTop:"15px",color:"#B76E79",fontWeight:700}} className="text-center">
+                <span>Prix:{" "}{product.price}{" "}{product.currency}</span><br/>
             </div>
            <div style={{float: "right",marginTop: "33px"}}>
               <span style={{margin:"0% 0% 0% 35%"}}>Quantity</span>
                  <div style={{display:"flex",marginLeft:"5%"}}>
                  <Button
+                 style={{background:"#708090",color:"white"}}
                     variant="outline-secondary"
                     onClick={() =>
                       handleQuantityChange(
@@ -73,8 +74,9 @@ function StepOneValidateOrder() {
                   >
                     -
                   </Button>
-                  <p style={{margin:"10px",fontFamily:"sans-serif",fontSize:"15px"}}>{product.quantity}</p>
+                  <h2 style={{margin:"10px",fontWeight: 700}}>{product.quantity}</h2>
                   <Button
+                  style={{background:"#708090",color:"white"}}
                     variant="outline-secondary"
                     onClick={() =>
                       handleQuantityChange(product.id, product.quantity + 1)
@@ -84,6 +86,9 @@ function StepOneValidateOrder() {
                   </Button>
                  </div>
            </div>
+           <div style={{float: "left",marginTop: "60px",color:"#B76E79",fontWeight:700 }}>
+               Subtotal:{" "}{product.quantity * product.price}{" "}{product.currency}
+               </div>
           
         </Col>
         
@@ -91,9 +96,12 @@ function StepOneValidateOrder() {
       
       </>)
     })}
-         <div>
-            <Button>Ajouter Produit</Button>
-            <Button>Confirmer Votre Achat</Button>
+         <div style={{display:"flex",justifyContent:"space-around"}}>
+            <Button style={{backgroundColor:"#708090", border:"none",borderRadius:"3%",padding:"5px"}}>Ajouter Produit</Button>
+            <Button style={{backgroundColor:"#708090", border:"none",borderRadius:"3%",padding:"5px"}}>Confirmer Votre Achat</Button>
+          </div>
+          <div style={{color:"#B76E79",fontWeight:900,display:"flex",justifyContent:"center",fontSize:"20px"}}>
+            Pix Total:{" "}{totalPrice}{" "}{products[0]?.currency}
           </div>
     </>
   );

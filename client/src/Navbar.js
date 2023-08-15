@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -20,11 +20,15 @@ import "./Navbar.css"
 import { Divider } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 const Navbar = () => {
-  const token=localStorage.getItem('token')
+  const [token, setToken] = useState(null);
+  
   const isMobile = useMediaQuery('(max-width: 768px)'); // Define the breakpoint
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [dropdownAnchor, setDropdownAnchor] = useState(null);
-
+useEffect(()=>{
+  const token=localStorage.getItem('token')
+  setToken(token)
+},[token])
   const toggleDrawer = (open) => () => {
     setIsDrawerOpen(open);
   };

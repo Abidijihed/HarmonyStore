@@ -166,6 +166,7 @@ import { register } from "../../redux/action/UserAction";
 import { useNavigate } from "react-router-dom";
 import Test2 from "../Test2";
 import StepOneValidateOrder from "../checkout/StepOneValidateOrder";
+import StepTowSaveInformation from "../checkout/StepTowSaveInformation";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
@@ -175,7 +176,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const steps = ["Validate Order", "Register","Test2"]; // Add more steps if needed
+const steps = ["Verifer votre achat", "Register Votre Information","Confirmer votre payment"]; // Add more steps if needed
 
 export default function CombinedComponent() {
   const classes = useStyles();
@@ -208,7 +209,7 @@ export default function CombinedComponent() {
       case 0:
         return <StepOneValidateOrder />;
       case 1:
-        return <Register handleRegister={handleRegister} />;
+        return <StepTowSaveInformation />;
       case 2:
         return <Test2 />
       default:

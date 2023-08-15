@@ -63,16 +63,8 @@ function ProfilePage() {
   const dispatch= useDispatch() 
   useEffect(() => {
     const id = localStorage.getItem("id");
-    /*axios
-      .get("https://www.harmonystore01.com/api/getone_user/" + user_id)
-      .then((res) => {
-        setUser(res.data);
-        res.data.map((el) => {
-          setRole(user.role);
-        });
-      });*/
       dispatch(get_current(id))
-  }, []);
+  }, [dispatch]);
   const user=useSelector((state)=>state.UserReducer.users)
   const logout = () => {
     axios.get("https://www.harmonystore01.com/api/logout").then((res) => {
@@ -84,7 +76,8 @@ function ProfilePage() {
   };
   return (
     <>
-      {/* First section */}
+      {console.log(user)}
+      
      { !user ?
      <Spinner animation="border" role="status">
       <span className="visually-hidden">Loading...</span>

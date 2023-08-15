@@ -85,7 +85,7 @@ function UpdateProduct({ open, handleClose, handleAddProduct,productToUpdate }) 
         price_promo:price_promo,
         Product_material:Product_material,
         image_url:image_url,
-        category:category}))
+        category:category}),handleClose())
 }
   };
 
