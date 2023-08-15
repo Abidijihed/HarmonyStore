@@ -35,6 +35,8 @@ const useStyles = makeStyles((theme) => ({
 function UpdateProduct({ open, handleClose, handleAddProduct,productToUpdate }) {
   const dispatch=useDispatch()
   const classes = useStyles();
+  const [id, setId] = useState(0);
+  const [image_url,setImageUrl]=useState('')
   const [productName, setProductName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState(0);
@@ -52,6 +54,8 @@ function UpdateProduct({ open, handleClose, handleAddProduct,productToUpdate }) 
       setprice_promo(productToUpdate.price_promo || 0);
       setProduct_material(productToUpdate.Product_material || '');
       setcategory(productToUpdate.category || '');
+      setId(productToUpdate.id || 0);
+      setImageUrl(productToUpdate.image_url||'')
     }
   }, [productToUpdate]);
   const handleSubmit = async(event) => {
@@ -62,7 +66,7 @@ function UpdateProduct({ open, handleClose, handleAddProduct,productToUpdate }) 
     if(productImage.name){
    await axios.post("https://api.cloudinary.com/v1_1/dij3lejgg/upload", formData)
     .then((res)=>{
-      dispatch(update_product({product_name:productName,
+      dispatch(update_product(id,{product_name:productName,
         description:description,
         price:price,
         quantity_in_stock:quantity,
@@ -74,13 +78,13 @@ function UpdateProduct({ open, handleClose, handleAddProduct,productToUpdate }) 
   
     handleClose();
 }else{
-    dispatch(update_product({product_name:productName,
+    dispatch(update_product(id,{product_name:productName,
         description:description,
         price:price,
         quantity_in_stock:quantity,
         price_promo:price_promo,
         Product_material:Product_material,
-        image_url:productToUpdate?.image_url,
+        image_url:image_url,
         category:category}))
 }
   };

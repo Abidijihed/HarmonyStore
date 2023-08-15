@@ -2,7 +2,7 @@ const { connection } = require("../dataBaseConfig/config")
 
 module.exports = {
   CreateProduct: ((req, res) => {
-    const query = `INSERT INTO products(product_name,description,price,price_promo,quantity_in_stock,image_url,category,Product_material) VALUES("${req.body.product_name}","${req.body.description}",${req.body.price},${req.body.price_promo},${req.body.quantity_in_stock},"${req.body.image_url}","${req.body.catigory}","${req.body.Product_material}")`;
+    const query = `INSERT INTO products(product_name,description,price,price_promo,quantity_in_stock,image_url,category,Product_material) VALUES("${req.body.product_name}","${req.body.description}",${req.body.price},${req.body.price_promo},${req.body.quantity_in_stock},"${req.body.image_url}","${req.body.category}","${req.body.Product_material}")`;
     connection.query(query, (err, result) =>
       err ? res.status(500).send(err) : res.status(201).send("poste done")
     )

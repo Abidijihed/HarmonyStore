@@ -44,6 +44,7 @@ export const add_product = (data) => async (dispatch) => {
 }
 
 export const update_product = (id,data) => async (dispatch) => {
+    console.log(id)
     try {
         await axios.put(`https://www.harmonystore01.com/api/update/product/${id}`,data)
         dispatch(get_product())

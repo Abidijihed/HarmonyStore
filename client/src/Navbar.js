@@ -20,6 +20,7 @@ import "./Navbar.css"
 import { Divider } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 const Navbar = () => {
+  const token=localStorage.getItem('token')
   const isMobile = useMediaQuery('(max-width: 768px)'); // Define the breakpoint
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [dropdownAnchor, setDropdownAnchor] = useState(null);
@@ -46,12 +47,12 @@ const Navbar = () => {
         <ListItem button component={Link} to="/products" onClick={()=>setIsDrawerOpen(false)} style={{marginLeft:"20px"}}>
           <ListItemText primary="Product List" />
         </ListItem>
-        <ListItem button component={Link} to="/login"onClick={()=>setIsDrawerOpen(false)}  style={{marginLeft:"20px"}} >
+      {!token ?(  <ListItem button component={Link} to="/login"onClick={()=>setIsDrawerOpen(false)}  style={{marginLeft:"20px"}} >
           <ListItemText primary="Connexion" />
-        </ListItem>
-        <ListItem button  component={Link} to="/profile" onClick={()=>setIsDrawerOpen(false)}  style={{marginLeft:"20px"}}>
+        </ListItem>):null}
+        {token?(<ListItem button  component={Link} to="/profile" onClick={()=>setIsDrawerOpen(false)}  style={{marginLeft:"20px"}}>
           <ListItemText primary="Profile" />
-        </ListItem>
+        </ListItem>):null}
         <ListItem button component={Link} to="/contact" onClick={()=>setIsDrawerOpen(false)}  style={{marginLeft:"20px"}}>
           <ListItemText primary="Contact" />
         </ListItem>
@@ -94,7 +95,7 @@ const Navbar = () => {
                aria-haspopup="true"
                variant="text"
                style={{ color: "#000000" }}
-               endIcon={<PersonIcon />}
+               endIcon={<PersonIcon style={{color:"#000000",fontSize:"35px"}}/>}
                onClick={toggleDropdown}
             >
             </Button>
@@ -113,10 +114,11 @@ const Navbar = () => {
             </Menu>
           </div>
           )}
-          <Button style={{color:"#000000"}}>Connexion</Button>
+          
           <Button>
              <LocalMallIcon  style={{color:"#000000",fontSize:"35px"}}/> 
           </Button>
+          {!token?(<Button component={Link} to="/login" style={{color:"#000000"}}>Connexion</Button>):null}
         </Toolbar>
 
       </AppBar>
