@@ -33,28 +33,26 @@ CREATE TABLE IF NOT EXISTS products (
   PRIMARY KEY (id)
 );
 
-
-CREATE TABLE IF NOT EXISTS orders (
-  id INT NOT NULL AUTO_INCREMENT,
-  user_id INT NOT NULL,
-  order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
-  total_amount DECIMAL(10, 2) NOT NULL,
-  payement_done BOOLEAN NOT NULL,
-  status ENUM('pending', 'processing', 'shipped', 'delivered', 'canceled') NOT NULL DEFAULT 'pending',
-  FOREIGN KEY (user_id) REFERENCES users (id),
-  PRIMARY KEY (id,user_id)
-);
-
 CREATE TABLE IF NOT EXISTS order_items (
   id INT NOT NULL AUTO_INCREMENT,
-  order_id INT NOT NULL,
+  total_amount DECIMAL(10, 2) NOT NULL,
   product_id INT NOT NULL,
   quantity INT NOT NULL,
   price_per_unit DECIMAL(10, 2) NOT NULL,
   total_price DECIMAL(10, 2) NOT NULL,
-  FOREIGN KEY (order_id) REFERENCES orders (id),
   FOREIGN KEY (product_id) REFERENCES products (id),
-  PRIMARY KEY (id,order_id,product_id)
+  PRIMARY KEY (id,product_id)
+);
+CREATE TABLE IF NOT EXISTS orders (
+  id INT NOT NULL AUTO_INCREMENT,
+  user_id INT NOT NULL,
+  order_items_id INT NOT NULL,
+  order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+  payement_done BOOLEAN NOT NULL,
+  status ENUM('pending', 'processing', 'shipped', 'delivered', 'canceled') NOT NULL DEFAULT 'pending',
+  FOREIGN KEY (order_items_id) REFERENCES order_items (id),
+  FOREIGN KEY (user_id) REFERENCES users (id),
+  PRIMARY KEY (id,user_id)
 );
 CREATE TABLE IF NOT EXISTS product_images (
   id INT NOT NULL AUTO_INCREMENT,

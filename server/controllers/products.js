@@ -42,29 +42,71 @@ module.exports = {
       err ? res.status(500).send(err) : res.status(200).send("product deleted");
     });
   },
-  AddToCard: ((req, res) => {
-  
-    const query = `UPDATE products SET check_add_or_not=${req.body.updateCheck} WHERE id=${req.params.id}`
-    connection.query(query, (err, result) => {
-       err ? res.status(500).send(err) : res.status(201).send("product added")
-    })
-  }),
-  getProductadded:((req,res)=>{
-    const query = 'SELECT * FROM products WHERE check_add_or_not = 1';
-    connection.query(query, (error, results) => {
-      error ? res.status(500).send(error):res.status(200).send(results)
-    })
-  }),
-  UpdateStockquantity:((req, res) => {
-  console.log(req.body,req.params.id)
-  const query = `UPDATE products SET stockquantity = ${req.body.stockQuantity} WHERE id =${req.params.id}`;
+  CreateOrderItems:((req,res)=>{
+    console.log(req.body,'hello')
+    const orderItems = req.body;
 
-  connection.query(query,(error, results) => {
-    if (error) {
-      console.error('Error updating stock quantity:', error);
-      return res.status(500).json({ error: 'Failed to update stock quantity' });
+    if (!orderItems || !Array.isArray(orderItems) || orderItems.length === 0) {
+      return res.status(400).json({ error: 'Invalid order items data' });
     }
-    return res.json({ message: 'Stock quantity updated successfully' });
-  });
+  
+    const insertQuery = 'INSERT INTO order_items (total_amount, product_id, quantity, price_per_unit, total_price) VALUES ?';
+    const values = orderItems.map(item => [
+      item.total_amount,
+      item.product_id,
+      item.quantity,
+      item.price,
+      item.total_price
+    ]);
+  
+    // Update quantityinstock in products table
+    const updateQuery = 'UPDATE products SET quantityinstock = quantityinstock - ? WHERE id = ?';
+  
+    connection.beginTransaction(err => {
+      if (err) {
+        console.error('Transaction error: ', err);
+        return res.status(500).json({ error: 'An error occurred while processing the request' });
+      }
+  
+      connection.query(insertQuery, [values], (insertErr, insertResult) => {
+        if (insertErr) {
+          connection.rollback(() => {
+            console.error('Insert error: ', insertErr);
+            return res.status(500).json({ error: 'An error occurred while processing the request' });
+          });
+        }
+  
+        const updatePromises = orderItems.map(item => {
+          return new Promise((resolve, reject) => {
+            connection.query(updateQuery, [item.quantity, item.product_id], (updateErr, updateResult) => {
+              if (updateErr) {
+                reject(updateErr);
+              } else {
+                resolve(updateResult);
+              }
+            });
+          });
+        });
+  
+        Promise.all(updatePromises)
+          .then(() => {
+            connection.commit(commitErr => {
+              if (commitErr) {
+                connection.rollback(() => {
+                  console.error('Commit error: ', commitErr);
+                  return res.status(500).json({ error: 'An error occurred while processing the request' });
+                });
+              }
+              return res.status(200).json({ message: 'Order items created successfully' });
+            });
+          })
+          .catch(updateErr => {
+            connection.rollback(() => {
+              console.error('Update error: ', updateErr);
+              return res.status(500).json({ error: 'An error occurred while processing the request' });
+            });
+          });
+      });
+    });
   })
 }

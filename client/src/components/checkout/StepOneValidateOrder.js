@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Button } from '@material-ui/core';
+import axios from 'axios';
 
 function StepOneValidateOrder() {
     const [totalPrice, setTotalPrice] = useState(0);
@@ -38,7 +39,25 @@ function StepOneValidateOrder() {
       );
       setTotalPrice(totalPrice);
     }
-  
+    const handelproductorder = () => {
+      const updatedProducts = products.map(product => {
+        const updatedTotalPrice = product.quantity * product.price;
+        return {
+          ...product,
+          total_amount: totalPrice,  // Set total_amount for the order
+          total_price: updatedTotalPrice
+        };
+      });
+    
+      // Update the products array with calculated values
+      setProducts(updatedProducts);
+    
+      // Save the updated products array to local storage
+      localStorage.setItem('cart', JSON.stringify(updatedProducts));
+      const data=JSON.parse(localStorage.getItem('cart'))
+      axios.post('http://localhost:5700/api/createOrderItems',{data})
+      .then((res)=>{console.log(res)})
+    }
   return (
     <>
     {products.map((product)=>{
@@ -98,7 +117,7 @@ function StepOneValidateOrder() {
     })}
          <div style={{display:"flex",justifyContent:"space-around"}}>
             <Button style={{backgroundColor:"#708090", border:"none",borderRadius:"3%",padding:"5px"}}>Ajouter Produit</Button>
-            <Button style={{backgroundColor:"#708090", border:"none",borderRadius:"3%",padding:"5px"}}>Confirmer Votre Achat</Button>
+            <Button style={{backgroundColor:"#708090", border:"none",borderRadius:"3%",padding:"5px"}} onClick={handelproductorder} >Confirmer Votre Achat</Button>
           </div>
           <div style={{color:"#B76E79",fontWeight:900,display:"flex",justifyContent:"center",fontSize:"20px"}}>
             Pix Total:{" "}{totalPrice}{" "}{products[0]?.currency}

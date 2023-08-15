@@ -8,8 +8,8 @@ const ProductController=require("../controllers/products")
 
 
 
- router.put("/api/add_to_card/:id",ProductController.AddToCard)
-router.get('/api/get/product/added',ProductController.getProductadded)
-router.put('/api/update/Stockquantity/:id',ProductController.UpdateStockquantity)
+ router.put("/api/createOrderItems",ProductController.CreateOrderItems)
+// router.get('/api/get/product/added',ProductController.getProductadded)
+// router.put('/api/update/Stockquantity/:id',ProductController.UpdateStockquantity)
 
  module.exports={ProductRouter:router}
