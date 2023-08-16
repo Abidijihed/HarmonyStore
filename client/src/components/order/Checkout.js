@@ -100,9 +100,7 @@
 //       console.error('Error initiating payment:', error);
 //     }
   
-// }else{
-//   alert("Please fill all fields");
-// }
+
 // };
 
 //   return (
@@ -165,6 +163,7 @@ import { useNavigate } from "react-router-dom";
 import Test2 from "../Test2";
 import StepOneValidateOrder from "../checkout/StepOneValidateOrder";
 import StepTowSaveInformation from "../checkout/StepTowSaveInformation";
+import StepThreeMakePayment from "../checkout/StepThreeMakePayment";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
@@ -190,18 +189,6 @@ export default function CombinedComponent() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleRegister = ({ FirstName, Email, PhoneNumber, Password }) => {
-    // Handle registration logic
-    dispatch(
-      register({
-        FirstName: FirstName,
-        Email: Email,
-        PhoneNumber: PhoneNumber,
-        Password: Password,
-      })
-    );
-  };
-
   const getStepContent = (stepIndex) => {
     switch (stepIndex) {
       case 0:
@@ -209,7 +196,7 @@ export default function CombinedComponent() {
       case 1:
         return <StepTowSaveInformation handleNext={handleNext} />;
       case 2:
-        return <Test2 />
+        return <StepThreeMakePayment handleNext={handleNext} />
       default:
         return "Unknown step";
     }
@@ -247,14 +234,14 @@ export default function CombinedComponent() {
               >
                 Back
               </Button>
-              <Button
+              {/* <Button
                 variant="contained"
                 color="primary"
                 onClick={handleNext}
                 className={classes.button}
               >
                 {activeStep === steps.length - 1 ? "Place Order" : "Next"}
-              </Button>
+              </Button> */}
             </Box>
           </div>
         )}

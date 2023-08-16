@@ -59,10 +59,8 @@ export const get_current = (id) => async (dispatch) => {
 export const update_current_user = (id,data) => async (dispatch) => {
     const config = { headers: { token: localStorage.getItem("token") } }
     try {
-        await axios.put('http://localhost:5700/api/update_user/'+id,data, config).then((res)=>{
-            console.log(res)
-            dispatch(get_current())
-
+        await axios.put('https://www.harmonystore01.com/api/update_user/'+id,data, config).then((res)=>{
+          console.log(res)
         })
     } catch (error) {
         console.log(error)

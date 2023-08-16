@@ -123,7 +123,7 @@ useEffect(()=>{
           </div>
           )}
           
-          <Button  onClick={productItemslen.length>0?() => navigate("/checkout"):()=> Swal.fire("Please select a product")}>
+          <Button  onClick={productItemslen?.length>0?() => navigate("/checkout"):()=> Swal.fire("Please select a product")}>
              <LocalMallIcon  style={{color:"#000000",fontSize:"35px"}} badgeContent={productItemslen?.length}/> 
           </Button>
           {!token?(<Button component={Link} to="/login" style={{color:"#000000"}}>Connexion</Button>):null}

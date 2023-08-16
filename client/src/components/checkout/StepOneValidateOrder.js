@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import { Button } from '@material-ui/core';
 import axios from 'axios';
 
-function StepOneValidateOrder() {
+function StepOneValidateOrder({handleNext}) {
     const [totalPrice, setTotalPrice] = useState(0);
     const [products, setProducts] = useState([]);
   
@@ -55,8 +55,12 @@ function StepOneValidateOrder() {
       // Save the updated products array to local storage
       localStorage.setItem('cart', JSON.stringify(updatedProducts));
       const data=JSON.parse(localStorage.getItem('cart'))
-      axios.post('http://localhost:5700/api/createOrderItems',data)
-      .then((res)=>{console.log(res)})
+      axios.post('https://www.harmonystore01.com/api/createOrderItems',data)
+      .then((res)=>{
+        if(res.data.message==="Order items created successfully"){
+          handleNext()
+        }
+      })
     }
   return (
     <>
