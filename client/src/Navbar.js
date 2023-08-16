@@ -17,7 +17,7 @@ import MenuItem from '@mui/material/MenuItem';
 import PersonIcon from '@mui/icons-material/Person';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import "./Navbar.css"
-import { Divider } from '@material-ui/core';
+import { Badge, Divider } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
@@ -84,7 +84,7 @@ useEffect(()=>{
               <MenuIcon />
             </IconButton>
           ) }
-          {!isMobile&&<Button style={{color: "#000000" }}>
+          {!isMobile&&<Button style={{color: "#000000",fontWeight: 900 }}component={Link} to="/" onClick={()=>setIsDrawerOpen(false)}>
             Harmony Store
           </Button>}
           <div>
@@ -123,9 +123,17 @@ useEffect(()=>{
           </div>
           )}
           
-          <Button  onClick={productItemslen?.length>0?() => navigate("/checkout"):()=> Swal.fire("Please select a product")}>
-             <LocalMallIcon  style={{color:"#000000",fontSize:"35px"}} badgeContent={productItemslen?.length}/> 
-          </Button>
+          <Button
+      onClick={() =>
+        productItemslen?.length > 0
+          ? navigate('/checkout')
+          : Swal.fire('Please select a product')
+      }
+    >
+      <Badge badgeContent={productItemslen?.length} color="#B76E79">
+        <LocalMallIcon style={{ color: '#000000', fontSize: '35px' }} />
+      </Badge>
+    </Button>
           {!token?(<Button component={Link} to="/login" style={{color:"#000000"}}>Connexion</Button>):null}
         </Toolbar>
 

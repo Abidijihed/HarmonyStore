@@ -12,6 +12,9 @@ import ListProducts from "./components/products/ListProducts";
 import { useDispatch, useSelector } from "react-redux";
 import {  get_product } from "./redux/action/ProductAction";
 import Checkout from "./components/order/Checkout";
+import Contact from "./components/information/Contact";
+import About from "./components/information/About";
+import Footer from "./Footer";
 function App() {
 const [productItemslen,setproductItemslen]=useState([])
    const dispatch=useDispatch()
@@ -45,9 +48,12 @@ const [productItemslen,setproductItemslen]=useState([])
               </PrivateRoute>
             }
           />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
           <Route path='/products' element={<ListProducts data={products}  getlen={getlen}/>} />
           <Route path="/checkout" element={<Checkout />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );

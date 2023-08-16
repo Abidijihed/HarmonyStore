@@ -396,8 +396,8 @@ export default function Home({ products }) {
             </div>
           </div>
         </div>
-        <div style={{ marginTop: "45%" }}>
-          <h3>PRODUIT EN PROMOTION</h3>
+        <div className="productpromotion">
+          <h3 id="pep">PRODUIT EN PROMOTION</h3>
         
         <div className="mycardshome">
           {products.map((el) => {
@@ -408,54 +408,6 @@ export default function Home({ products }) {
             );
           })}
         </div>
-        </div>
-        <div className={classes.comingSoonWrapper}>
-          <div className={classes.comingSoonContent}>
-            <Typography variant="h2" gutterBottom>
-              Coming Soon...
-            </Typography>
-            <Typography variant="h5" paragraph>
-              Website under construction
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              <BsFillTelephoneFill /> +216 54 154 220
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              <AiOutlineMail /> Malek2013malek@hotmail.fr
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              <AiFillHome /> Impasse bir sidi tayeb sidi bou said 2026
-            </Typography>
-            <div className="socialmedia">
-              <Typography variant="body1" gutterBottom>
-                <a
-                  href="https://www.facebook.com/HarmonyStore01?mibextid=ZbWKwL"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FaFacebook fontSize="40px" />
-                </a>
-              </Typography>
-              <Typography variant="body1" gutterBottom>
-                <a
-                  href="https://instagram.com/harmony_store01?igshid=MzNlNGNkZWQ4Mg=="
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FaInstagram fontSize="40px" />
-                </a>
-              </Typography>
-              <Typography variant="body1" gutterBottom>
-                <a
-                  href="http://tiktok.com/@harmonystore01"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FaTiktok fontSize="40px" />
-                </a>
-              </Typography>
-            </div>
-          </div>
         </div>
       </div>
 

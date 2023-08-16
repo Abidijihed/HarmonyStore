@@ -37,7 +37,7 @@ body {
   align-items: center;
   justify-content: space-between;
   border-radius: 1rem;
-  background-color: palegoldenrod;
+  background-color: white;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
 }
 
@@ -74,7 +74,7 @@ body {
   outline: none;
   border: 1px solid #94949c;
   background: transparent;
-  color: #94949c;
+  color: black;
   font-weight: 300;
 }
 
@@ -83,20 +83,29 @@ body {
   border-radius: 0.25rem;
   outline: none;
   margin-left: 0.5rem;
-  border: 1px solid #93c814;
-  background-color: #93c814;
-  color: #303037;
+  border: 1px solid #708090;
+  background-color: #708090;
+  color: white;
   cursor: pointer;
   transition: 0.3s ease-in-out;
 }
 
 .subscribe1 button:hover {
   background: transparent;
-  color: #93c814;
+  color:#B76E79 ;
 }
 
 @media (max-width: 600px) {
   /* télephone */
+  .productpromotion{
+    margin-top: 15%;
+  }
+  
+  .img-fluid {
+    height: 400px !important;
+    width: 300px !important;
+    margin: 20px 0px 20px 49px !important;
+}
   .steptow{
     border: none;
     box-shadow: 0 2px 4px rgb(139 31 31 / 36%);
@@ -116,18 +125,13 @@ body {
   font-weight: 700 !important;
   top: 30% !important;
 }
-#shopbutt {
-  background-color: #bb5644 !important;
-  border: none !important;
-  border-radius: 5px;
-  cursor: pointer !important;
-  padding: 6px 6px !important;
-  top: 65% !important;
-}
+
 .promotion{
-  background-color: #413732 !important;
+  background-color: #000000 !important;
   margin: 18px 0px 17px 0px !important;
-  height:950px !important;
+  height: auto !important;
+  display: block;
+  margin: 18px 0 17px!important;
 }
   .image1 {
     width: 30% !important;
@@ -145,10 +149,33 @@ body {
   margin-left: calc(var(--bs-gutter-x)*-.5) none !important;
     margin-right: calc(var(--bs-gutter-x)*-.5) none !important;
 }
+#shopbutt{
+  background-color: #708090;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  left: 50%;
+  padding: 10px 20px;
+  position: absolute !important;
+  top: 50% !important;
+  -webkit-transform: translate(-50%,-50%) !important;
+  transform: translate(-50%,-50%) !important;
+  bottom: auto !important;
+}
 }
 
 @media (min-width: 600px) {
+
   /* web */
+  .productpromotion{
+    margin-top: 45%;
+  }
+  .promotion {
+    background-color: #000000 !important;
+    height: 950px !important;
+    margin: 18px 0 17px!important;
+}
   #category{
     margin-top: 10px !important;
   }
@@ -165,6 +192,20 @@ body {
   background: #70809038;
   padding: 26px;
 }
+#shopbutt{
+  background-color: #708090;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  left: 50%;
+  padding: 10px 20px;
+  position: absolute !important;
+  top: 57%!important ;
+  -webkit-transform: translate(-50%,-50%) !important;
+  transform: translate(-50%,-50%) !important;
+  bottom: auto !important;
+}
  
 }
 .carousel .thumb img {
@@ -174,11 +215,7 @@ body {
   justify-content: center;
   display: flex;
 }
-.promotion{
-  background-color: #413732;
-  margin: 18px 0px 17px 0px;
-  height: 1000px;
-}
+
 #promo{
   font-weight: bold;
   justify-content: center;
@@ -187,11 +224,14 @@ body {
   color: white;
   box-shadow: 10px 5px 5px;
 }
-.mycardshome{
+.mycardshome {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin: 25px 0px;
+  /* margin: 25px 0; */
+  /* background: #B76E79; */
+  box-shadow: 10px 5px 5px #708090;
+  padding: 10px;
 }
 #carousa{
   margin: 20px;
@@ -239,15 +279,37 @@ cursor: pointer;
         font-size: 18px; 
         font-weight: bold;
 }
-#shopbutt{
-  position: absolute;
-   top: 70%;
-    left: 50%;
-     transform: translate(-50%, -50%);
-      background-color: #bb5644;
-       color: white;
-        padding: 10px 20px;
-         border: none;
-          border-radius: 5px; 
-          cursor: pointer
+#pep{
+  color: #708090;
+  box-shadow: 10px 5px 5px #B76E79;
+  justify-content: center;
+  display: flex;
+  font-weight: 900;
+  font-family: revert;
+  height: 50px;
+  padding: 5px;
+}
+.footer{
+  background-color: black;
+  color: white;
+  padding: 15px;
+}
+.socialmedia{
+  display: flex;
+  justify-content: space-around;
+  color: white !important;
+}
+.payment-methods{
+  width: 220px ;
+  display: flex;
+  justify-content: space-around;
+}
+.payment-methods img{
+  width: 65px!important; ;
+}
+.imagepay{
+  margin-right: 15px;
+}
+.socialmmmm{
+  color: white !important;
 }
