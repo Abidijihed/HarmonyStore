@@ -7,6 +7,7 @@ const utils=require('../midelwar/utils.js')
 const session=require ('./session.js')
 module.exports={
 CreatePayment:(async (req,res)=>{
+  console.log(req.body)
   try {
     const response=await axios.post(
       'https://api.konnect.network/api/v2/payments/init-payment',req.body,{
