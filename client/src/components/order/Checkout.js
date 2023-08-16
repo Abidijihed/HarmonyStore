@@ -158,8 +158,6 @@ import {
   Button,
   makeStyles,
 } from "@material-ui/core";
-import ValidateOrder from "./ValidateOrder"; // Import the ValidateOrder component
-import Register from "../test"; // Import the Register component
 import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/action/UserAction";
@@ -207,9 +205,9 @@ export default function CombinedComponent() {
   const getStepContent = (stepIndex) => {
     switch (stepIndex) {
       case 0:
-        return <StepOneValidateOrder />;
+        return <StepOneValidateOrder handleNext={handleNext}/>;
       case 1:
-        return <StepTowSaveInformation />;
+        return <StepTowSaveInformation handleNext={handleNext} />;
       case 2:
         return <Test2 />
       default:

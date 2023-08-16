@@ -59,7 +59,6 @@ const useStyles = makeStyles((theme) => ({
 
 function ProfilePage() {
   const classes = useStyles();
-  const [role, setRole] = useState("");
   const dispatch= useDispatch() 
   useEffect(() => {
     const id = localStorage.getItem("id");

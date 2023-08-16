@@ -8,7 +8,7 @@ const ProductController=require("../controllers/products")
 
 
 
- router.put("/api/createOrderItems",ProductController.CreateOrderItems)
+ router.post("/api/createOrderItems",ProductController.CreateOrderItems)
 // router.get('/api/get/product/added',ProductController.getProductadded)
 // router.put('/api/update/Stockquantity/:id',ProductController.UpdateStockquantity)
 

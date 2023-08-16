@@ -55,7 +55,7 @@ function StepOneValidateOrder() {
       // Save the updated products array to local storage
       localStorage.setItem('cart', JSON.stringify(updatedProducts));
       const data=JSON.parse(localStorage.getItem('cart'))
-      axios.post('http://localhost:5700/api/createOrderItems',{data})
+      axios.post('http://localhost:5700/api/createOrderItems',data)
       .then((res)=>{console.log(res)})
     }
   return (

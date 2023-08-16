@@ -15,16 +15,18 @@ import Checkout from "./components/order/Checkout";
 function App() {
 const [productItemslen,setproductItemslen]=useState([])
    const dispatch=useDispatch()
-   useEffect(()=>{
-    dispatch(get_product())
-   },[dispatch])
-   const products=useSelector((state)=>state.UserReducer.data)
- 
-  const getlen=()=>{
+   const getlen=()=>{
     var productItems=JSON.parse(localStorage.getItem("cart"))
     setproductItemslen(productItems)
 
   }
+   useEffect(()=>{
+    dispatch(get_product())
+    getlen()
+   },[dispatch])
+   const products=useSelector((state)=>state.UserReducer.data)
+ 
+  
   return (
     <div className="App">
       <BrowserRouter>

@@ -19,7 +19,10 @@ import LocalMallIcon from '@mui/icons-material/LocalMall';
 import "./Navbar.css"
 import { Divider } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-const Navbar = () => {
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
+const Navbar = ({productItemslen}) => {
+  const navigate=useNavigate()
   const [token, setToken] = useState(null);
   
   const isMobile = useMediaQuery('(max-width: 768px)'); // Define the breakpoint
@@ -104,23 +107,24 @@ useEffect(()=>{
             >
             </Button>
             <Menu
+            style={{width:'200px'}}
               id="dropdown-menu"
               anchorEl={dropdownAnchor}
               keepMounted
               open={Boolean(dropdownAnchor)}
               onClose={closeDropdown}
             >
-              <MenuItem onClick={closeDropdown}>Item 1</MenuItem>
-              <MenuItem onClick={closeDropdown}>Item 2</MenuItem>
-              <MenuItem onClick={closeDropdown}>Item 3</MenuItem>
-              <MenuItem onClick={closeDropdown}>Item 4</MenuItem>
-              <MenuItem onClick={closeDropdown}>Item 5</MenuItem>
+              <MenuItem onClick={closeDropdown} component={Link} to="/products">Product List</MenuItem>
+              <MenuItem onClick={closeDropdown} component={Link} to="/profile">Profile</MenuItem>
+              <MenuItem onClick={closeDropdown} component={Link} to="/contact">Contact</MenuItem>
+              <MenuItem onClick={closeDropdown} component={Link} to="/about">About</MenuItem>
+              {/* <MenuItem onClick={closeDropdown}>Item 5</MenuItem> */}
             </Menu>
           </div>
           )}
           
-          <Button>
-             <LocalMallIcon  style={{color:"#000000",fontSize:"35px"}}/> 
+          <Button  onClick={productItemslen.length>0?() => navigate("/checkout"):()=> Swal.fire("Please select a product")}>
+             <LocalMallIcon  style={{color:"#000000",fontSize:"35px"}} badgeContent={productItemslen?.length}/> 
           </Button>
           {!token?(<Button component={Link} to="/login" style={{color:"#000000"}}>Connexion</Button>):null}
         </Toolbar>

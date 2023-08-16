@@ -53,14 +53,14 @@ module.exports = {
     const insertQuery = 'INSERT INTO order_items (total_amount, product_id, quantity, price_per_unit, total_price) VALUES ?';
     const values = orderItems.map(item => [
       item.total_amount,
-      item.product_id,
+      item.id,
       item.quantity,
       item.price,
       item.total_price
     ]);
   
     // Update quantityinstock in products table
-    const updateQuery = 'UPDATE products SET quantityinstock = quantityinstock - ? WHERE id = ?';
+    const updateQuery = 'UPDATE products SET quantity_in_stock = quantity_in_stock - ? WHERE id = ?';
   
     connection.beginTransaction(err => {
       if (err) {
@@ -78,7 +78,7 @@ module.exports = {
   
         const updatePromises = orderItems.map(item => {
           return new Promise((resolve, reject) => {
-            connection.query(updateQuery, [item.quantity, item.product_id], (updateErr, updateResult) => {
+            connection.query(updateQuery, [item.quantity, item.id], (updateErr, updateResult) => {
               if (updateErr) {
                 reject(updateErr);
               } else {
