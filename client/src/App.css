@@ -127,7 +127,7 @@ body {
 }
 
 .promotion{
-  background-color: #000000 !important;
+  background-color: white !important;
   margin: 18px 0px 17px 0px !important;
   height: auto !important;
   display: block;
@@ -169,10 +169,10 @@ body {
 
   /* web */
   .productpromotion{
-    margin-top: 45%;
+    margin-top: 33%;
   }
   .promotion {
-    background-color: #000000 !important;
+    background-color: white !important;
     height: 950px !important;
     margin: 18px 0 17px!important;
 }
@@ -196,7 +196,7 @@ body {
   background-color: #708090;
   border: none;
   border-radius: 5px;
-  color: #fff;
+  color: black;
   cursor: pointer;
   left: 50%;
   padding: 10px 20px;
@@ -221,8 +221,8 @@ body {
   justify-content: center;
   display: flex;
   padding-top: 5%;
-  color: white;
-  box-shadow: 10px 5px 5px;
+  color: black;
+  box-shadow: 10px 12px 13px;
 }
 .mycardshome {
   display: flex;
@@ -246,9 +246,9 @@ body {
 }
 .jewerllypro{
   
-color: white;
+color: black;
 font-size: 90px;
-border: solid 1px white;
+border: solid 1px black;
 width: 140px;
 height: 188px;
 padding: 24px;
@@ -256,7 +256,7 @@ cursor: pointer;
 
 }
 .jewerllyicons{
-  margin-top: 15%;
+  margin-top: 7%;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -293,6 +293,8 @@ cursor: pointer;
   background-color: black;
   color: white;
   padding: 15px;
+  margin-top: 30px;
+  width: 100%;
 }
 .socialmedia{
   display: flex;
@@ -359,4 +361,16 @@ cursor: pointer;
 }
 .App .navbar {
   margin: 0;
+}
+.category:hover{
+  color: #B76E79 !important;
+  
+}
+.categorytitle{
+  font-family: monospace !important;
+    font-weight: 900 !important;
+}
+.category{
+  font-family: initial !important;
+  font-weight: 600 !important;
 }

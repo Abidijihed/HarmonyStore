@@ -15,6 +15,7 @@ import Checkout from "./components/order/Checkout";
 import Contact from "./components/information/Contact";
 import About from "./components/information/About";
 import Footer from "./Footer";
+import ProductsFiltrer from "./components/FiltrageProductsjs/ProductsFiltrer";
 function App() {
 const [productItemslen,setproductItemslen]=useState([])
    const dispatch=useDispatch()
@@ -52,6 +53,8 @@ const [productItemslen,setproductItemslen]=useState([])
           <Route path="/about" element={<About />} />
           <Route path='/products' element={<ListProducts data={products}  getlen={getlen}/>} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/products/:category" element={<ProductsFiltrer />} />
+
         </Routes>
         <Footer />
       </BrowserRouter>

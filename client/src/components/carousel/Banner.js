@@ -10,7 +10,7 @@ const VideoBanner = () => {
       <div className="overlay"></div>
       <div className="content">
         <h1>Harmony Store</h1>
-        <p></p>
+        <p>Tendances en Bijoux && Accessoires</p>
       </div>
     </div>
   );

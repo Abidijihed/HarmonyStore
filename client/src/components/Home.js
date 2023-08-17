@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import { BsFillTelephoneFill } from "react-icons/bs";
-import { AiOutlineMail, AiFillHome } from "react-icons/ai";
-import { FaFacebook, FaInstagram, FaTiktok } from "react-icons/fa";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
@@ -14,8 +11,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import HomeCard from "./card/HomeCard";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import chakraTheme from "@chakra-ui/theme";
-import DarkVariantExample from "./carousel/DarkVariantExample";
+import { useNavigate } from "react-router-dom";
 import {
   GiCrystalEarrings,
   GiDiamondRing,
@@ -26,6 +22,8 @@ import {
   GiWatch,
 } from "react-icons/gi";
 import VideoBanner from "./carousel/Banner";
+import { Link } from "react-router-dom";
+import { Divider } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -71,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function Home({ products }) {
   const classes = useStyles();
-
+const navigate=useNavigate()
   const [expanded, setExpanded] = useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -114,15 +112,25 @@ export default function Home({ products }) {
                     aria-controls="panel1bh-content"
                     id="panel1bh-header"
                   >
-                    <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                      General settings
+                    <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
+                    Boucles d'oreilles.
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                    <Typography>
-                      Nulla facilisi. Phasellus sollicitudin nulla et quam
-                      mattis feugiat. Aliquam eget maximus est, id dignissim
-                      quam.
+                    <Typography   onClick={() =>
+                      navigate(
+                        `/product/${encodeURIComponent("Dormeuses d'or")}`
+                      )
+                    } style={{cursor: "pointer",marginBottom:"3px",padding:"10px"}} className="category">
+                    Dormeuses d'or
+                    </Typography>
+                    <Divider />
+                    <Typography onClick={() =>
+                      navigate(
+                        `/product/${encodeURIComponent("Dormeuses d'argent")}`
+                      )
+                    } style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                    Dormeuses d'argent
                     </Typography>
                   </AccordionDetails>
                 </Accordion>
@@ -135,13 +143,25 @@ export default function Home({ products }) {
                     aria-controls="panel2bh-content"
                     id="panel2bh-header"
                   >
-                    <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                      Users
+                    <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
+                    Bagues
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                    <Typography>
-                      Donec placerat, lectus sed mattis semper, neque lectus
+                  <Typography   onClick={() =>
+                      navigate(
+                        `/product/${encodeURIComponent("Bagues d'or")}`
+                      )
+                    } style={{cursor: "pointer",marginBottom:"3px",padding:"10px"}} className="category">
+                    Bagues d'or
+                    </Typography>
+                    <Divider />
+                    <Typography onClick={() =>
+                      navigate(
+                        `/product/${encodeURIComponent("Bagues d'argent")}`
+                      )
+                    } style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                    Bagues d'argent
                     </Typography>
                   </AccordionDetails>
                 </Accordion>
@@ -154,7 +174,7 @@ export default function Home({ products }) {
                     aria-controls="panel3bh-content"
                     id="panel3bh-header"
                   >
-                    <Typography sx={{ width: "33%", flexShrink: 0 }}>
+                    <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
                       Advanced settings
                     </Typography>
                   </AccordionSummary>
@@ -175,7 +195,7 @@ export default function Home({ products }) {
                     aria-controls="panel4bh-content"
                     id="panel4bh-header"
                   >
-                    <Typography sx={{ width: "33%", flexShrink: 0 }}>
+                    <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
                       Personal data
                     </Typography>
                   </AccordionSummary>
@@ -196,7 +216,7 @@ export default function Home({ products }) {
                     aria-controls="panel5bh-content"
                     id="panel5bh-header"
                   >
-                    <Typography sx={{ width: "33%", flexShrink: 0 }}>
+                    <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
                       Personal data
                     </Typography>
                   </AccordionSummary>
@@ -217,7 +237,7 @@ export default function Home({ products }) {
                     aria-controls="panel6bh-content"
                     id="panel6bh-header"
                   >
-                    <Typography sx={{ width: "33%", flexShrink: 0 }}>
+                    <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
                       Personal data
                     </Typography>
                   </AccordionSummary>
@@ -238,7 +258,7 @@ export default function Home({ products }) {
                     aria-controls="panel7bh-content"
                     id="panel7bh-header"
                   >
-                    <Typography sx={{ width: "33%", flexShrink: 0 }}>
+                    <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
                       Personal data
                     </Typography>
                   </AccordionSummary>
@@ -277,6 +297,9 @@ export default function Home({ products }) {
                 </div>
               </Carousel>
             </Col>
+            {/* <Col>
+      <img src="https://im2.ezgif.com/tmp/ezgif-2-b07d620f05.gif" alt="GIF" style={{width:'100%',height:'342px',padding:"10px"}} />
+    </Col> */}
           </Row>
         </div>
         <div className="promotion">
@@ -289,7 +312,7 @@ export default function Home({ products }) {
 
               <h3
                 style={{
-                  color: "white",
+                  color: "black",
                   justifyContent: "center",
                   display: "flex",
                 }}
@@ -303,7 +326,7 @@ export default function Home({ products }) {
               </div>
               <h3
                 style={{
-                  color: "white",
+                  color: "black",
                   justifyContent: "center",
                   display: "flex",
                 }}
@@ -317,7 +340,7 @@ export default function Home({ products }) {
               </div>
               <h3
                 style={{
-                  color: "white",
+                  color: "black",
                   justifyContent: "center",
                   display: "flex",
                 }}
@@ -331,7 +354,7 @@ export default function Home({ products }) {
               </div>
               <h3
                 style={{
-                  color: "white",
+                  color: "black",
                   justifyContent: "center",
                   display: "flex",
                 }}
@@ -345,7 +368,7 @@ export default function Home({ products }) {
               </div>
               <h3
                 style={{
-                  color: "white",
+                  color: "black",
                   justifyContent: "center",
                   display: "flex",
                 }}
@@ -359,7 +382,7 @@ export default function Home({ products }) {
               </div>
               <h3
                 style={{
-                  color: "white",
+                  color: "black",
                   justifyContent: "center",
                   display: "flex",
                 }}
