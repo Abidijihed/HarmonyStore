@@ -25,6 +25,7 @@ import {
   GiTiara,
   GiWatch,
 } from "react-icons/gi";
+import VideoBanner from "./carousel/Banner";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -82,8 +83,11 @@ export default function Home({ products }) {
 
   return (
     <>
-      <div id="carousa">
+      {/* <div id="carousa">
         <DarkVariantExample />
+      </div> */}
+      <div>
+        <VideoBanner />
       </div>
       <div>
         {" "}

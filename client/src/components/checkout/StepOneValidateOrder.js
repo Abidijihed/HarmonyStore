@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Button } from '@material-ui/core';
+import { Button, Divider } from '@material-ui/core';
 import axios from 'axios';
-
+import {useNavigate} from 'react-router-dom'
 function StepOneValidateOrder({handleNext}) {
+  const navigate=useNavigate()
     const [totalPrice, setTotalPrice] = useState(0);
     const [products, setProducts] = useState([]);
   
@@ -69,17 +70,19 @@ function StepOneValidateOrder({handleNext}) {
         <>
         <Row className="justify-content-center">
 
-        <Col xs={12} md={6} lg={4} className="mb-3" style={{border:"1px solid",margin:"2px"}}id='stepone' > 
+        <Col xs={12} md={6} lg={4} className="mb-3" style={{margin:"2px"}}id='stepone' > 
             <img src={product.image_url} style={{width:"100%",height:"300px"}}/> 
         </Col>
-        <Col xs={12} md={6} lg={4} className="mb-3" style={{padding:"20px",border:"1px solid",margin:"2px"}} id='stepone1'>
+        <Col xs={12} md={6} lg={4} className="mb-3" style={{padding:"20px",margin:"2px"}} id='stepone1'>
           <div className="text-center">
             <h4>{product.name}</h4>
             <h3>{product.Product_material}</h3>
             </div>
+            <Divider style={{backgroundColor:'black'}}/>
             <div style={{marginTop:"15px",color:"#B76E79",fontWeight:700}} className="text-center">
                 <span>Prix:{" "}{product.price}{" "}{product.currency}</span><br/>
             </div>
+            <Divider style={{backgroundColor:'black'}}/>
            <div style={{float: "right",marginTop: "33px"}}>
               <span style={{margin:"0% 0% 0% 35%"}}>Quantity</span>
                  <div style={{display:"flex",marginLeft:"5%"}}>
@@ -119,13 +122,14 @@ function StepOneValidateOrder({handleNext}) {
       
       </>)
     })}
-         <div style={{display:"flex",justifyContent:"space-around"}}>
-            <Button style={{backgroundColor:"#708090", border:"none",borderRadius:"3%",padding:"5px"}}>Ajouter Produit</Button>
+    <div style={{color:"#B76E79",fontWeight:900,display:"flex",justifyContent:"center",fontSize:"20px"}}>
+            Prix Total:{" "}{totalPrice}{" "}{products[0]?.currency}
+          </div>
+         <div style={{display:"flex",justifyContent:"space-around",marginTop:'10px'}}>
+            <Button style={{backgroundColor:"#708090", border:"none",borderRadius:"3%",padding:"5px"}} onClick={()=>navigate("/products")}>Continuez Votre Achat</Button>
             <Button style={{backgroundColor:"#708090", border:"none",borderRadius:"3%",padding:"5px"}} onClick={handelproductorder} >Confirmer Votre Achat</Button>
           </div>
-          <div style={{color:"#B76E79",fontWeight:900,display:"flex",justifyContent:"center",fontSize:"20px"}}>
-            Pix Total:{" "}{totalPrice}{" "}{products[0]?.currency}
-          </div>
+          
     </>
   );
 }

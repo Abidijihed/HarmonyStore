@@ -313,3 +313,50 @@ cursor: pointer;
 .socialmmmm{
   color: white !important;
 }
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.product-table th,
+.product-table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.product-table th {
+  background-color: #f2f2f2;
+}
+
+.product-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.product-table tr:hover {
+  background-color: #ddd;
+}
+
+.payment-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.payment-buttons button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.payment-buttons button:hover {
+  background-color: #0056b3;
+}
+.App .navbar {
+  margin: 0;
+}

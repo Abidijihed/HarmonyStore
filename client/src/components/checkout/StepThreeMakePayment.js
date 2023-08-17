@@ -11,6 +11,8 @@ export default function StepThreeMakePayment() {
   const [datacart, setData] = useState([]); // Initialize datacart as an empty array
   const [amount, setAmount] = useState(0);
   const [type, setType] = useState('immediate');
+  const [exchangeRate, setExchangeRate] = useState(1);
+  const [delevrycharge,setDelevrycharge]=useState(7)
 
   useEffect(() => {
     const id = localStorage.getItem('id');
@@ -19,18 +21,29 @@ export default function StepThreeMakePayment() {
 
   const user = useSelector((state) => state.UserReducer.users);
 
-  useEffect(() => {
+  useEffect(async() => {
     const data = JSON.parse(localStorage.getItem('cart'));
+    // let charge=7
+
     if (data && data.length > 0) {
       const cartToken = data[0]?.currency || 'TND';
+      const response = await axios.get(
+      "https://api.exchangerate-api.com/v4/latest/TND"
+    );
+    const rates = response.data.rates;
+    const selectedRate = rates[cartToken];
+    setExchangeRate(selectedRate);
+      
       let convertedAmount = data[0]?.total_amount;
 
       if (cartToken === 'EUR' || cartToken === 'USD') {
+        // charge=charge*100
         convertedAmount *= 100;
       } else if (cartToken === 'TND') {
+        // charge=charge*100
         convertedAmount *= 1000;
       }
-
+      // setDelevrycharge(charge)
       setToken(cartToken);
       setAmount(convertedAmount || 0);
       setData(data);
@@ -43,7 +56,7 @@ export default function StepThreeMakePayment() {
         .post('https://www.harmonystore01.com/payments/payment', {
           receiverWalletId: receiverWalletId || WALLET_ID,
           token: token,
-          amount: amount,
+          amount: amount+(delevrycharge*exchangeRate),
           type: type,
           firstname: user?.FirstName,
           lastname: user?.LastName,
@@ -59,9 +72,50 @@ export default function StepThreeMakePayment() {
 
   return (
     <div>
+    <div className="user-card">
       <h1>{user?.FirstName}</h1>
-      <h2>{datacart[0]?.total_amount}</h2>
-      <button onClick={makepayment}>make payment</button>
+      <h2>{user?.LastName}</h2>
+      <p>Email: {user?.Email}</p>
     </div>
+    <div className="product-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Price per Unit</th>
+            <th>Total Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {datacart.map((product, index) => (
+            <tr key={index}>
+              <td>{product.name}</td>
+              <td>{product.quantity}</td>
+              <td>{product.price}</td>
+              <td>{product.quantity * product.price}</td>
+            </tr>
+          ))}
+          <tr>
+            <td colSpan="3">Total Amount:</td>
+            <td>{datacart[0]?.total_amount}{" "}{token}</td>
+          </tr>
+          <tr>
+            <td colSpan="3">Delivery Charge :</td>
+            <td>{delevrycharge*exchangeRate}{" "}{token}</td>
+          </tr>
+          <tr>
+            <td colSpan="3">Total Payment:</td>
+            <td>{datacart[0]?.total_amount+(delevrycharge*exchangeRate)} {" "}{token} </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div className="payment-buttons">
+      <button onClick={makepayment}>Pay Online</button>
+      <button>Pay on Delivery</button>
+    </div>
+  </div>
   );
 }
+
