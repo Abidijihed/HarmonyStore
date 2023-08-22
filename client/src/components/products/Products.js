@@ -13,7 +13,7 @@ import { get_current } from "../../redux/action/UserAction";
 const useStyles = makeStyles({
   root: {
     maxWidth: 180,
-    height:285,
+    height:316,
     margin: "6px",
   },
   media: {
@@ -123,10 +123,10 @@ getlen()
           {product.product_name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {product.description}
+          {product.description.slice(0,12)}
         </Typography>
         <Typography style={{fontSize:"14px"}} component="div" >
-          {product.price_promo>0?<span style={{color: "red",textDecoration:"line-through",}}>{product.price}</span>:null}<br/>
+          {product.price_promo>0?<span style={{color: "red",textDecoration:"line-through",}}>{product.price}{" "}{priceCurrency}</span>:null}<br/>
           prix: {convertCurrency(product.price_promo>0?product.price_promo: product.price, priceCurrency)}{" "}
           {priceCurrency}
         </Typography>
@@ -153,7 +153,7 @@ getlen()
       </CardContent>
       <button
         onClick={handleAddToCart}
-        style={{ border: "none", marginLeft:"4%", background: "#f8c714",
+        style={{ border: "none", marginLeft:"4%", background: "#708090",
         padding: "2px",
         borderRadius: "5%" }}
       >

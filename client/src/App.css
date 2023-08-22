@@ -19,6 +19,7 @@ body {
 }
 .myproducts{
     display: flex;
+    margin-top: 40px;
     justify-content: space-around;
     flex-wrap: wrap;
 }
@@ -373,4 +374,8 @@ cursor: pointer;
 .category{
   font-family: initial !important;
   font-weight: 600 !important;
+}
+#price{
+  display: flex;
+  justify-content: space-around;
 }

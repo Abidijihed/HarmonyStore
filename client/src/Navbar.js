@@ -136,7 +136,6 @@ useEffect(()=>{
     </Button>
           {!token?(<Button component={Link} to="/login" style={{color:"#000000"}}>Connexion</Button>):null}
         </Toolbar>
-
       </AppBar>
       {isMobile && ( /* Show drawer only on mobile */
         <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)}>

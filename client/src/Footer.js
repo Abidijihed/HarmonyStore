@@ -1,7 +1,8 @@
 import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import Typography from '@material-ui/core/Typography';
+import Typography  from "@mui/material/Typography";
+
  import {
    FaFacebook,
    FaInstagram,

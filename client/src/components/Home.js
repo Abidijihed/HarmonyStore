@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Row from "react-bootstrap/Row";
@@ -67,11 +67,28 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
   },
 }));
-export default function Home({ products }) {
+export default function Home({ products,getlen }) {
   const classes = useStyles();
 const navigate=useNavigate()
   const [expanded, setExpanded] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const images = [
+    'https://i.pinimg.com/236x/b0/2a/26/b02a26627db3d8c26c53d4823d1b0b59.jpg',
+    'https://i.pinimg.com/564x/14/27/01/142701ebdf4690c97a301efedf606213.jpg',
+    'https://i.pinimg.com/564x/42/d8/9f/42d89f4064254bea9cb2498df4bc7126.jpg',
+  ];
 
+  const nextSlide = () => {
+    setActiveIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+setTimeout(() => {
+  nextSlide()
+}, 3000);
+  // useEffect(() => {
+  //   const interval = setInterval(nextSlide, 3000); // Change slide every 3 seconds
+
+  //   return () => clearInterval(interval);
+  // }, []);
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
@@ -174,15 +191,25 @@ const navigate=useNavigate()
                     aria-controls="panel3bh-content"
                     id="panel3bh-header"
                   >
-                    <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
-                      Advanced settings
+                     <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
+                     Couronnes royales
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                    <Typography>
-                      Nunc vitae orci ultricies, auctor nunc in, volutpat nisl.
-                      Integer sit amet egestas eros, vitae egestas augue. Duis
-                      vel est augue.
+                  <Typography   onClick={() =>
+                      navigate(
+                        `/product/${encodeURIComponent("Couronnes royales d'or")}`
+                      )
+                    } style={{cursor: "pointer",marginBottom:"3px",padding:"10px"}} className="category">
+                    Couronnes royales d'or
+                    </Typography>
+                    <Divider />
+                    <Typography onClick={() =>
+                      navigate(
+                        `/product/${encodeURIComponent("Couronnes royales d'argent")}`
+                      )
+                    } style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                    Couronnes royales d'argent
                     </Typography>
                   </AccordionDetails>
                 </Accordion>
@@ -195,15 +222,25 @@ const navigate=useNavigate()
                     aria-controls="panel4bh-content"
                     id="panel4bh-header"
                   >
-                    <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
-                      Personal data
+                     <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
+                     Montres
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                    <Typography>
-                      Nunc vitae orci ultricies, auctor nunc in, volutpat nisl.
-                      Integer sit amet egestas eros, vitae egestas augue. Duis
-                      vel est augue.
+                  <Typography   onClick={() =>
+                      navigate(
+                        `/product/${encodeURIComponent("Montres")}`
+                      )
+                    } style={{cursor: "pointer",marginBottom:"3px",padding:"10px"}} className="category">
+                    Montres
+                    </Typography>
+                    <Divider />
+                    <Typography onClick={() =>
+                      navigate(
+                        `/product/${encodeURIComponent("Montres")}`
+                      )
+                    } style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                    Montres
                     </Typography>
                   </AccordionDetails>
                 </Accordion>
@@ -216,15 +253,25 @@ const navigate=useNavigate()
                     aria-controls="panel5bh-content"
                     id="panel5bh-header"
                   >
-                    <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
-                      Personal data
+                     <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
+                     Colliers
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                    <Typography>
-                      Nunc vitae orci ultricies, auctor nunc in, volutpat nisl.
-                      Integer sit amet egestas eros, vitae egestas augue. Duis
-                      vel est augue.
+                  <Typography   onClick={() =>
+                      navigate(
+                        `/product/${encodeURIComponent("Colliers d'or")}`
+                      )
+                    } style={{cursor: "pointer",marginBottom:"3px",padding:"10px"}} className="category">
+                    Colliers d'or
+                    </Typography>
+                    <Divider />
+                    <Typography onClick={() =>
+                      navigate(
+                        `/product/${encodeURIComponent("Colliers d'argent")}`
+                      )
+                    } style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                    Colliers d'argent
                     </Typography>
                   </AccordionDetails>
                 </Accordion>
@@ -237,15 +284,25 @@ const navigate=useNavigate()
                     aria-controls="panel6bh-content"
                     id="panel6bh-header"
                   >
-                    <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
-                      Personal data
+                     <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
+                     Bracelets
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                    <Typography>
-                      Nunc vitae orci ultricies, auctor nunc in, volutpat nisl.
-                      Integer sit amet egestas eros, vitae egestas augue. Duis
-                      vel est augue.
+                  <Typography   onClick={() =>
+                      navigate(
+                        `/product/${encodeURIComponent("Bracelets d'or")}`
+                      )
+                    } style={{cursor: "pointer",marginBottom:"3px",padding:"10px"}} className="category">
+                    Bracelets d'or
+                    </Typography>
+                    <Divider />
+                    <Typography onClick={() =>
+                      navigate(
+                        `/product/${encodeURIComponent("Bracelets d'argent")}`
+                      )
+                    } style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                    Bracelets d'argent
                     </Typography>
                   </AccordionDetails>
                 </Accordion>
@@ -258,44 +315,42 @@ const navigate=useNavigate()
                     aria-controls="panel7bh-content"
                     id="panel7bh-header"
                   >
-                    <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
-                      Personal data
+                     <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
+                    Bagues
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                    <Typography>
-                      Nunc vitae orci ultricies, auctor nunc in, volutpat nisl.
-                      Integer sit amet egestas eros, vitae egestas augue. Duis
-                      vel est augue.
+                  <Typography   onClick={() =>
+                      navigate(
+                        `/product/${encodeURIComponent("Bagues d'or")}`
+                      )
+                    } style={{cursor: "pointer",marginBottom:"3px",padding:"10px"}} className="category">
+                    Bagues d'or
+                    </Typography>
+                    <Divider />
+                    <Typography onClick={() =>
+                      navigate(
+                        `/product/${encodeURIComponent("Bagues d'argent")}`
+                      )
+                    } style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                    Bagues d'argent
                     </Typography>
                   </AccordionDetails>
                 </Accordion>
               </div>
             </Col>
             <Col sm={5}>
-              <Carousel>
-                <div>
-                  <img
-                    src="https://i.pinimg.com/236x/b0/2a/26/b02a26627db3d8c26c53d4823d1b0b59.jpg"
-                    alt="bijoux"
-                    style={{ height: "345px" }}
-                  />
-                </div>
-                <div>
-                  <img
-                    src="https://i.pinimg.com/236x/b0/2a/26/b02a26627db3d8c26c53d4823d1b0b59.jpg"
-                    alt="bague"
-                    style={{ height: "345px" }}
-                  />
-                </div>
-                <div>
-                  <img
-                    src="https://i.pinimg.com/564x/42/d8/9f/42d89f4064254bea9cb2498df4bc7126.jpg"
-                    alt="couliller"
-                    style={{ height: "345px" }}
-                  />
-                </div>
-              </Carousel>
+            <Carousel>
+      {images.map((imageUrl, index) => (
+        <div key={index}>
+          <img
+            src={images[activeIndex]}
+            alt={`Image ${index}`}
+            style={{ height: '345px' }}
+          />
+        </div>
+      ))}
+    </Carousel>
             </Col>
             {/* <Col>
       <img src="https://im2.ezgif.com/tmp/ezgif-2-b07d620f05.gif" alt="GIF" style={{width:'100%',height:'342px',padding:"10px"}} />
@@ -430,7 +485,7 @@ const navigate=useNavigate()
           {products.map((el) => {
             return (
               <ChakraProvider theme={theme}>
-                <HomeCard key={el.id} product={el} />
+                <HomeCard key={el.id} product={el}getlen={getlen} />
               </ChakraProvider>
             );
           })}
