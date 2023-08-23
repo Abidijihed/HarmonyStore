@@ -3,7 +3,7 @@ import { REGISTER, LOGIN, GET_CURRENT } from '../actionType/ActionType'
 import { alertError } from './AlertAction'
 import Swal from 'sweetalert2'
 
-export const register = (data) => async (dispatch) => {
+export const register = (data,handleNext) => async (dispatch) => {
     try {
         await axios.post('https://www.harmonystore01.com/api/Create_user', data).then((res)=>{
             if (res.data === "user exist") {
@@ -13,7 +13,7 @@ export const register = (data) => async (dispatch) => {
                     text: "Something went wrong! USER Exists",
                   });
                 }else {
-                   dispatch({ type: REGISTER, payload: res.data })
+                   dispatch({ type: REGISTER, payload: res.data },handleNext())
                    
                 }
         })
@@ -56,11 +56,20 @@ export const get_current = (id) => async (dispatch) => {
         console.log(error)
     }
 }
-export const update_current_user = (id,data) => async (dispatch) => {
+export const update_current_user = (id,data,handleNext) => async (dispatch) => {
     const config = { headers: { token: localStorage.getItem("token") } }
     try {
         await axios.put('https://www.harmonystore01.com/api/update_user/'+id,data, config).then((res)=>{
-       dispatch(get_current(id))
+       if(res.data.message=="User updated successfully."){
+        dispatch(get_current(id),handleNext())
+       }else{
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+          })
+       }
+        
     })
     } catch (error) {
         console.log(error)

@@ -4,7 +4,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Checkbox, FormControlLabel, FormGroup } from '@material-ui/core';
 import { Pagination } from '@mui/material';
-export default function ProductsFiltrer() {
+import HomeCard from '../card/HomeCard';
+export default function ProductsFiltrer({products}) {
   const { category  } = useParams();
 
   return (
@@ -24,6 +25,12 @@ export default function ProductsFiltrer() {
 </FormGroup>
     </Col>
     <Col sm={8}>
+      {products.filter((el)=>(el.category.toUpperCase()==category.toUpperCase())).map((el)=>(
+            <>
+             <HomeCard product={el} key={el.id} />
+             </>
+
+      ))}
     <Pagination count={10} color="secondary" />
     </Col>
   </Row>

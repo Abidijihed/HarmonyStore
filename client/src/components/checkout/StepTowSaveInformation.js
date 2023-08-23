@@ -61,7 +61,7 @@ function StepTowSaveInformation({handleNext}) {
           City:City,
           Zip:Zip,
           phoneNumber:phoneNumber
-        }),handleNext())
+        },handleNext))
     }else if(validated && !user){
       event.preventDefault();
       event.stopPropagation();
@@ -75,7 +75,7 @@ function StepTowSaveInformation({handleNext}) {
           Zip:Zip,
           phoneNumber:phoneNumber,
           Password:Password
-        }),handleNext())
+        },handleNext))
     }
   };
 

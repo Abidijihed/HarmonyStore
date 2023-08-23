@@ -53,7 +53,7 @@ const [productItemslen,setproductItemslen]=useState([])
           <Route path="/about" element={<About />} />
           <Route path='/products' element={<ListProducts data={products}  getlen={getlen}/>} />
           <Route path="/checkout" element={<Checkout />} />
-          <Route path="/product/:category" element={<ProductsFiltrer />} />
+          <Route path="/product/:category" element={<ProductsFiltrer products={products} />} />
 
         </Routes>
         <Footer />
