@@ -361,7 +361,10 @@ setTimeout(() => {
           <h1 id="promo">Exclusive Products</h1>
           <div className="jewerllyicons">
             <div style={{ display: "block" }}>
-              <div className="jewerllypro">
+              <div className="jewerllypro"  onClick={() =>
+                      navigate(
+                        `/product/${encodeURIComponent("Dormeuses d'or")}`
+                      )}>
                 <GiCrystalEarrings />
               </div>
 
@@ -376,7 +379,10 @@ setTimeout(() => {
               </h3>
             </div>
             <div style={{ display: "block" }}>
-              <div className="jewerllypro">
+              <div className="jewerllypro" onClick={() =>
+                      navigate(
+                        `/product/${encodeURIComponent("Dormeuses d'or")}`
+                      )}>
                 <GiDiamondRing />
               </div>
               <h3
@@ -390,7 +396,10 @@ setTimeout(() => {
               </h3>
             </div>
             <div style={{ display: "block" }}>
-              <div className="jewerllypro">
+              <div className="jewerllypro" onClick={() =>
+                      navigate(
+                        `/product/${encodeURIComponent("Dormeuses d'or")}`
+                      )}>
                 <GiTiara />
               </div>
               <h3
@@ -404,7 +413,10 @@ setTimeout(() => {
               </h3>
             </div>
             <div style={{ display: "block" }}>
-              <div className="jewerllypro">
+              <div className="jewerllypro"onClick={() =>
+                      navigate(
+                        `/product/${encodeURIComponent("Dormeuses d'or")}`
+                      )}>
                 <GiWatch />
               </div>
               <h3
@@ -418,7 +430,10 @@ setTimeout(() => {
               </h3>
             </div>
             <div style={{ display: "block" }}>
-              <div className="jewerllypro">
+              <div className="jewerllypro" onClick={() =>
+                      navigate(
+                        `/product/${encodeURIComponent("Dormeuses d'or")}`
+                      )}>
                 <GiEmeraldNecklace />
               </div>
               <h3
@@ -432,7 +447,10 @@ setTimeout(() => {
               </h3>
             </div>
             <div style={{ display: "block" }}>
-              <div className="jewerllypro">
+              <div className="jewerllypro" onClick={() =>
+                      navigate(
+                        `/product/${encodeURIComponent("Bracelets d'or")}`
+                      )}>
                 <GiPrimitiveNecklace />
               </div>
               <h3

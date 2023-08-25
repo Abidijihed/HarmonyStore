@@ -1,5 +1,5 @@
-DROP DATABASE IF EXISTS harmonystore_db;
-CREATE DATABASE IF NOT EXISTS harmonystore_db;
+-- DROP DATABASE IF EXISTS harmonystore_db;
+-- CREATE DATABASE IF NOT EXISTS harmonystore_db;
 USE harmonystore_db;
 
 
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS product_images (
 );
 
 
-INSERT INTO users(FirstName,LastName,Email,Address,PhoneNumber,Password,country,Zip,role)VALUES("Said","Belghaji","Malek2013malek@hotmail.fr"," Impasse bir sidi tayeb sidi bou said","+216 54 154 220","8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918","Tunisia","2026","admin");
+-- INSERT INTO users(FirstName,LastName,Email,Address,PhoneNumber,Password,country,Zip,role)VALUES("Said","Belghaji","Malek2013malek@hotmail.fr"," Impasse bir sidi tayeb sidi bou said","+216 54 154 220","8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918","Tunisia","2026","admin");
 
 CREATE TABLE IF NOT EXISTS sessions (
   id INT NOT NULL AUTO_INCREMENT,

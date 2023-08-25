@@ -37,6 +37,7 @@ module.exports = {
   },
   
   DeleteProduct: (req, res) => {
+    
     const query = `DELETE FROM products WHERE id=${req.params.id}`;
     connection.query(query, (err, result) => {
       err ? res.status(500).send(err) : res.status(200).send("product deleted");
