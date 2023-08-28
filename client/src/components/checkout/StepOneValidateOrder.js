@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 import { Button, Divider } from '@material-ui/core';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom'
+import {AiOutlineDelete} from 'react-icons/ai'
 function StepOneValidateOrder({handleNext}) {
   const navigate=useNavigate()
     const [totalPrice, setTotalPrice] = useState(0);
@@ -63,6 +64,12 @@ function StepOneValidateOrder({handleNext}) {
         }
       })
     }
+    const handleRemoveProduct = (productId) => {
+      const updatedProducts = products.filter((product) => product.id !== productId);
+      setProducts(updatedProducts);
+      calculateTotalPrice(updatedProducts);
+      localStorage.setItem("cart", JSON.stringify(updatedProducts));
+    };
   return (
     <>
     {products.map((product)=>{
@@ -74,6 +81,9 @@ function StepOneValidateOrder({handleNext}) {
             <img src={product.image_url} style={{width:"100%",height:"300px"}}/> 
         </Col>
         <Col xs={12} md={6} lg={4} className="mb-3" style={{padding:"20px",margin:"2px"}} id='stepone1'>
+          <button style={{background:"none",border:"none"}} onClick={()=>handleRemoveProduct(product.id)}>
+            <AiOutlineDelete style={{fontSize:"45px",color:"red"}} />
+          </button>
           <div className="text-center">
             <h4>{product.name}</h4>
             <h3>{product.Product_material}</h3>

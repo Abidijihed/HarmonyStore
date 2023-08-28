@@ -1,10 +1,11 @@
 import React from "react";
 import Card from 'react-bootstrap/Card';
-
-export default function HomeCard({product,getlen}) {
+import { useNavigate } from "react-router-dom";
+export default function HomeCard({product}) {
+  const navigate=useNavigate()
   return (
    <div>
-     <Card style={{ width: '18rem' }}>
+     <Card style={{ width: '18rem',cursor:'pointer' }} onClick={()=>navigate(`/productinfo/${product?.id}`)} >
     <Card.Img variant="top" src={product.image_url} style={{height: "234px"}}/>
     <Card.Body>
       <Card.Title>{product.product_name}</Card.Title>

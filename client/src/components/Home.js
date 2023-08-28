@@ -72,6 +72,7 @@ export default function Home({ products,getlen }) {
 const navigate=useNavigate()
   const [expanded, setExpanded] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [Email,setEmail]=useState('')
   const images = [
     'https://i.pinimg.com/236x/b0/2a/26/b02a26627db3d8c26c53d4823d1b0b59.jpg',
     'https://i.pinimg.com/564x/14/27/01/142701ebdf4690c97a301efedf606213.jpg',
@@ -95,7 +96,9 @@ setTimeout(() => {
   const theme = extendTheme({
     // Your custom theme configuration goes here
   });
-
+const hadelsuscribe=()=>{
+  setEmail("")
+}
   return (
     <>
       {/* <div id="carousa">
@@ -534,9 +537,23 @@ setTimeout(() => {
             placeholder="Enter your email address"
             autocomplete="off"
           />
-          <button type="button">Subscribe</button>
+          <button type="button" onClick={hadelsuscribe} >Subscribe</button>
         </div>
       </div>
+      <Row>
+        <Col>
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12766.899372957596!2d10.3395141!3d36.8730045!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12e2b59295202219%3A0x666111cb4f0596a6!2sharmony%20Store!5e0!3m2!1sfr!2stn!4v1693234238802!5m2!1sfr!2stn"
+            width="100%"
+            height="300"
+            style={{ border: 0 }}
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </Col>
+      </Row>
+
     </>
   );
 }
