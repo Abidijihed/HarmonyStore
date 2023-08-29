@@ -1,11 +1,11 @@
 import axios from 'axios'
-import { GET_CARD_Product, GET_PRODUCT } from '../actionType/ProtactType'
+import { GET_CARD_Product, GET_PRODUCT,GET_ONE_PRODUCT } from '../actionType/ProtactType'
 import { alertError } from './AlertAction'
 import Swal from 'sweetalert2'
 
 export const get_product = () => async (dispatch) => {
     try {
-       await axios.get('https://www.harmonystore01.com/api/get_All_product').then((res)=>{
+       await axios.get('https://www.harmonystore01.com/api/get_All_products').then((res)=>{
         dispatch({ type: GET_PRODUCT, payload: res.data })
 
        })
@@ -21,7 +21,7 @@ export const get_product = () => async (dispatch) => {
 }
 export const add_product = (data) => async (dispatch) => {
     try {
-        await axios.post('https://www.harmonystore01.com/api/Create_product',data)
+        await axios.post('https://www.harmonystore01.com/api/Create_products',data)
         .then((res)=>{
             if(res.data==="poste done"){
               Swal.fire({
@@ -45,7 +45,7 @@ export const add_product = (data) => async (dispatch) => {
 
 export const update_product = (id,data) => async (dispatch) => {
     try {
-       const res= await axios.put(`https://www.harmonystore01.com/api/update/product/${id}`,data)
+       const res= await axios.put(`https://www.harmonystore01.com/api/update_product/${id}`,data)
         if(res.data==="Product updated"){
             Swal.fire({
               position: 'center',
@@ -66,7 +66,7 @@ export const update_product = (id,data) => async (dispatch) => {
 
 export const delete_product = (id) => async (dispatch) => {
     try {
-        await axios.delete(`https://www.harmonystore01.com/api/delete/product/${id}`)
+        await axios.delete(`https://www.harmonystore01.com/api/delete_product/${id}`)
         dispatch(get_product())
 
     } catch (error) {
@@ -92,6 +92,18 @@ export const add_to_card = (data) => async (dispatch) => {
     try {
         const res = await axios.post(`https://www.harmonystore01.com/api/add-to-cart`,data)
         dispatch(get_product_card(data.user_id))
+
+    } catch (error) {
+       console.log(error)
+
+    }
+}
+export const get_one_product = (id) => async (dispatch) => {
+    try {
+       await axios.post(`https://www.harmonystore01.com/api/get_one_product/${id}`).then((res)=>{
+        dispatch({type:GET_ONE_PRODUCT,payload:res.data[0]})
+       })
+        
 
     } catch (error) {
        console.log(error)

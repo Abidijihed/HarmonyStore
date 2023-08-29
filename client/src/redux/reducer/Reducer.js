@@ -1,9 +1,10 @@
 import { GET_CURRENT , LOGIN , REGISTER} from "../actionType/ActionType";
-import { GET_CARD_Product, GET_PRODUCT } from "../actionType/ProtactType";
+import { GET_CARD_Product, GET_ONE_PRODUCT, GET_PRODUCT } from "../actionType/ProtactType";
 const initialState = {
   users: {},
   data:[],
-  cardProduct:[]
+  cardProduct:[],
+  oneproduct:{}
 };
 
 const UserReducer = (state = initialState, { type, payload }) => {
@@ -22,6 +23,8 @@ const UserReducer = (state = initialState, { type, payload }) => {
       return {...state,data:payload}
       case GET_CARD_Product:
         return {...state,cardProduct:payload}
+        case GET_ONE_PRODUCT:
+        return {...state,oneproduct:payload}
     default:
       return state;
   }

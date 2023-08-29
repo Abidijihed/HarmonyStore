@@ -110,5 +110,10 @@ module.exports = {
       });
     });
   }),
-  
+  GetoneProduct:((req,res)=>{
+    const query=`select * from products where id=${req.params.id}`
+    connection.query(query,(err,result)=>{
+      err ? res.status(500).send(err):res.status(200).send(result)
+    })
+  })
 }
