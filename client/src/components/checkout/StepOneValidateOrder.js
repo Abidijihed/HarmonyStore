@@ -56,13 +56,7 @@ function StepOneValidateOrder({handleNext}) {
     
       // Save the updated products array to local storage
       localStorage.setItem('cart', JSON.stringify(updatedProducts));
-      const data=JSON.parse(localStorage.getItem('cart'))
-      axios.post('https://www.harmonystore01.com/api/createOrderItems',data)
-      .then((res)=>{
-        if(res.data.message==="Order items created successfully"){
-          handleNext()
-        }
-      })
+     handleNext()
     }
     const handleRemoveProduct = (productId) => {
       const updatedProducts = products.filter((product) => product.id !== productId);

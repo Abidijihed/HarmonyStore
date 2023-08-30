@@ -366,7 +366,7 @@ const hadelsuscribe=()=>{
             <div style={{ display: "block" }}>
               <div className="jewerllypro"  onClick={() =>
                       navigate(
-                        `/product/${encodeURIComponent("Dormeuses d'or")}`
+                        `/product/${encodeURIComponent("Dormeuses")}`
                       )}>
                 <GiCrystalEarrings />
               </div>
@@ -378,13 +378,13 @@ const hadelsuscribe=()=>{
                   display: "flex",
                 }}
               >
-                Earrings
+                Dormeuses
               </h3>
             </div>
             <div style={{ display: "block" }}>
               <div className="jewerllypro" onClick={() =>
                       navigate(
-                        `/product/${encodeURIComponent("Dormeuses d'or")}`
+                        `/product/${encodeURIComponent("Bagues")}`
                       )}>
                 <GiDiamondRing />
               </div>
@@ -395,13 +395,13 @@ const hadelsuscribe=()=>{
                   display: "flex",
                 }}
               >
-                Rings
+                Bagues
               </h3>
             </div>
             <div style={{ display: "block" }}>
               <div className="jewerllypro" onClick={() =>
                       navigate(
-                        `/product/${encodeURIComponent("Dormeuses d'or")}`
+                        `/product/${encodeURIComponent("Couronnes")}`
                       )}>
                 <GiTiara />
               </div>
@@ -412,13 +412,13 @@ const hadelsuscribe=()=>{
                   display: "flex",
                 }}
               >
-                Tiaras
+                Couronnes
               </h3>
             </div>
             <div style={{ display: "block" }}>
               <div className="jewerllypro"onClick={() =>
                       navigate(
-                        `/product/${encodeURIComponent("Dormeuses d'or")}`
+                        `/product/${encodeURIComponent("Montres")}`
                       )}>
                 <GiWatch />
               </div>
@@ -429,13 +429,13 @@ const hadelsuscribe=()=>{
                   display: "flex",
                 }}
               >
-                Watchs
+                Montres
               </h3>
             </div>
             <div style={{ display: "block" }}>
               <div className="jewerllypro" onClick={() =>
                       navigate(
-                        `/product/${encodeURIComponent("Dormeuses d'or")}`
+                        `/product/${encodeURIComponent("Colliers")}`
                       )}>
                 <GiEmeraldNecklace />
               </div>
@@ -446,13 +446,13 @@ const hadelsuscribe=()=>{
                   display: "flex",
                 }}
               >
-                Necklaces
+                Colliers
               </h3>
             </div>
             <div style={{ display: "block" }}>
               <div className="jewerllypro" onClick={() =>
                       navigate(
-                        `/product/${encodeURIComponent("Bracelets d'or")}`
+                        `/product/${encodeURIComponent("Bracelets")}`
                       )}>
                 <GiPrimitiveNecklace />
               </div>
@@ -463,7 +463,7 @@ const hadelsuscribe=()=>{
                   display: "flex",
                 }}
               >
-                Braclets
+                Bracelets
               </h3>{" "}
             </div>
           </div>

@@ -101,7 +101,12 @@ body {
   .productpromotion{
     margin-top: 15%;
   }
-  
+  #productinfoo{
+    justify-content: center !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    margin-top: 20px !important;
+  }
   .img-fluid {
     height: 400px !important;
     width: 300px !important;

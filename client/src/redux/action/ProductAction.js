@@ -100,7 +100,7 @@ export const add_to_card = (data) => async (dispatch) => {
 }
 export const get_one_product = (id) => async (dispatch) => {
     try {
-       await axios.post(`https://www.harmonystore01.com/api/get_one_product/${id}`).then((res)=>{
+       await axios.get(`https://www.harmonystore01.com/api/get_one_product/${id}`).then((res)=>{
         dispatch({type:GET_ONE_PRODUCT,payload:res.data[0]})
        })
         

@@ -34,7 +34,7 @@ export default function StepThreeMakePayment() {
     const selectedRate = rates[cartToken];
     setExchangeRate(selectedRate);
       
-      let convertedAmount = data[0]?.total_amount;
+      let convertedAmount = data[0]?.total_amount+(delevrycharge*selectedRate);
 
       if (cartToken === 'EUR' || cartToken === 'USD') {
         // charge=charge*100
@@ -49,14 +49,24 @@ export default function StepThreeMakePayment() {
       setData(data);
     }
   }, []);
-
-  const makepayment = async () => {
+ const handelorder=(paymenttype)=>{
+  const id=localStorage.getItem('id')
+  const data=JSON.parse(localStorage.getItem('cart'))
+  axios.post('http://localhost:5700/api/createOrderItems',{data,paymenttype,id})
+  .then((res)=>{
+    // if(res.data.message==="Order items created successfully"){
+    //   handleNext()
+    // }
+    console.log(res)
+  })
+ }
+  const makepayment = async (paymenttype) => {
     try {
       await axios
         .post('https://www.harmonystore01.com/payments/payment', {
           receiverWalletId: receiverWalletId || WALLET_ID,
           token: token,
-          amount: amount+(delevrycharge*exchangeRate),
+          amount: amount,
           type: type,
           firstname: user?.FirstName,
           lastname: user?.LastName,
@@ -65,6 +75,7 @@ export default function StepThreeMakePayment() {
         .then((response) => {
           window.location.href = response.data.payUrl;
         });
+        handelorder(paymenttype)
     } catch (error) {
       console.error('Error initiating payment:', error);
     }
@@ -112,8 +123,8 @@ export default function StepThreeMakePayment() {
       </table>
     </div>
     <div className="payment-buttons">
-      <button onClick={makepayment}>Pay Online</button>
-      <button>Pay on Delivery</button>
+    <button onClick={() => makepayment(true)}>Pay Online</button>
+  <button onClick={() => handelorder(false)}>Pay on Delivery</button>
     </div>
   </div>
   );

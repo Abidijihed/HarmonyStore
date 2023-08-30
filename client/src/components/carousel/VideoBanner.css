@@ -13,6 +13,11 @@
         height: 30vh;
         overflow: hidden;
       }
+      .content h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+      
     }
   /* Video Styling */
   .video-banner video {

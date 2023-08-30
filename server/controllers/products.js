@@ -43,27 +43,29 @@ module.exports = {
       err ? res.status(500).send(err) : res.status(200).send("product deleted");
     });
   },
-  CreateOrderItems:((req,res)=>{
-    console.log(req.body,'hello')
-    const orderItems = req.body;
-
+  CreateOrderItems: async (req, res) => {
+    console.log(req.body);
+    const orderItems = req.body.data;
+    const paymentType = req.body.paymenttype; // 'online' or 'delivery'
+    const user_id=req.body.id
+  
     if (!orderItems || !Array.isArray(orderItems) || orderItems.length === 0) {
       return res.status(400).json({ error: 'Invalid order items data' });
     }
   
     const insertQuery = 'INSERT INTO order_items (total_amount, product_id, quantity, price_per_unit, total_price) VALUES ?';
-    const values = orderItems.map(item => [
+    const values = orderItems.map((item) => [
       item.total_amount,
       item.id,
       item.quantity,
       item.price,
-      item.total_price
+      item.total_price,
     ]);
   
     // Update quantityinstock in products table
     const updateQuery = 'UPDATE products SET quantity_in_stock = quantity_in_stock - ? WHERE id = ?';
   
-    connection.beginTransaction(err => {
+    connection.beginTransaction((err) => {
       if (err) {
         console.error('Transaction error: ', err);
         return res.status(500).json({ error: 'An error occurred while processing the request' });
@@ -77,7 +79,7 @@ module.exports = {
           });
         }
   
-        const updatePromises = orderItems.map(item => {
+        const updatePromises = orderItems.map((item) => {
           return new Promise((resolve, reject) => {
             connection.query(updateQuery, [item.quantity, item.id], (updateErr, updateResult) => {
               if (updateErr) {
@@ -90,18 +92,23 @@ module.exports = {
         });
   
         Promise.all(updatePromises)
-          .then(() => {
-            connection.commit(commitErr => {
+        console.log(insertResult)
+          .then(async () => {
+            const insertOrderQuery = 'INSERT INTO orders (user_id, order_items_id, payement_done, status) VALUES (?, ?, ?, ?)';
+            const paymentDone = paymentType === true ? 1 : 0; // 1 for online payment, 0 for payment on delivery
+  
+            await connection.query(insertOrderQuery, [user_id, insertResult.insertId, paymentDone, 'pending']);
+            connection.commit((commitErr) => {
               if (commitErr) {
                 connection.rollback(() => {
                   console.error('Commit error: ', commitErr);
                   return res.status(500).json({ error: 'An error occurred while processing the request' });
                 });
               }
-              return res.status(200).json({ message: 'Order items created successfully' });
+              return res.status(200).json({ message: 'Order items and order created successfully' });
             });
           })
-          .catch(updateErr => {
+          .catch((updateErr) => {
             connection.rollback(() => {
               console.error('Update error: ', updateErr);
               return res.status(500).json({ error: 'An error occurred while processing the request' });
@@ -109,7 +116,8 @@ module.exports = {
           });
       });
     });
-  }),
+  },
+  
   GetoneProduct:((req,res)=>{
     const query=`select * from products where id=${req.params.id}`
     connection.query(query,(err,result)=>{
