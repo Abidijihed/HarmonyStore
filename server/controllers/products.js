@@ -46,8 +46,8 @@ module.exports = {
   CreateOrderItems: async (req, res) => {
     console.log(req.body);
     const orderItems = req.body.data;
-    const paymentType = req.body.paymenttype; // 'online' or 'delivery'
-    const user_id=req.body.id
+    const paymentType = req.body.paymenttype;
+    const user_id = req.body.id;
   
     if (!orderItems || !Array.isArray(orderItems) || orderItems.length === 0) {
       return res.status(400).json({ error: 'Invalid order items data' });
@@ -92,36 +92,94 @@ module.exports = {
         });
   
         Promise.all(updatePromises)
-        console.log(insertResult)
-          .then(async () => {
+          .then(() => {
             const insertOrderQuery = 'INSERT INTO orders (user_id, order_items_id, payement_done, status) VALUES (?, ?, ?, ?)';
-            const paymentDone = paymentType === true ? 1 : 0; // 1 for online payment, 0 for payment on delivery
+            const paymentDone = paymentType === true ? 1 : 0;
   
-            await connection.query(insertOrderQuery, [user_id, insertResult.insertId, paymentDone, 'pending']);
-            connection.commit((commitErr) => {
-              if (commitErr) {
-                connection.rollback(() => {
-                  console.error('Commit error: ', commitErr);
-                  return res.status(500).json({ error: 'An error occurred while processing the request' });
-                });
-              }
-              return res.status(200).json({ message: 'Order items and order created successfully' });
+            const insertedOrderItemId = insertResult.insertId;
+  
+            const orderInsertPromises = orderItems.map(() => {
+              return new Promise((resolve, reject) => {
+                connection.query(
+                  insertOrderQuery,
+                  [user_id, insertedOrderItemId, paymentDone, 'pending'],
+                  (orderErr, orderResult) => {
+                    if (orderErr) {
+                      reject(orderErr);
+                    } else {
+                      resolve(orderResult);
+                    }
+                  }
+                );
+              });
             });
+  
+            Promise.all(orderInsertPromises)
+              .then(() => {
+                connection.commit((commitErr) => {
+                  if (commitErr) {
+                    connection.rollback(() => {
+                      console.error('Commit error: ', commitErr);
+                       res.status(500).json({ error: 'An error occurred while processing the request' });
+                    });
+                  }
+                  console.log('Order items and orders created successfully');
+                   res.status(200).send({ message: 'Order items and orders created successfully' });
+                });
+              })
+              .catch((orderInsertErr) => {
+                connection.rollback(() => {
+                  console.error('Order insert error: ', orderInsertErr);
+                   res.status(500).json({ error: 'An error occurred while processing the request' });
+                });
+              });
           })
           .catch((updateErr) => {
             connection.rollback(() => {
               console.error('Update error: ', updateErr);
-              return res.status(500).json({ error: 'An error occurred while processing the request' });
+               res.status(500).json({ error: 'An error occurred while processing the request' });
             });
           });
       });
     });
   },
-  
+
   GetoneProduct:((req,res)=>{
     const query=`select * from products where id=${req.params.id}`
     connection.query(query,(err,result)=>{
       err ? res.status(500).send(err):res.status(200).send(result)
     })
+  }),
+  GetUserOrder: ((req, res) => {
+    const userId = req.params.id; // Assuming you're passing the userId in the URL parameters
+    const query = `
+      SELECT
+        p.product_name,
+        oi.total_amount,
+        oi.quantity,
+        oi.price_per_unit,
+        oi.total_price,
+        o.payement_done,
+        o.status
+      FROM
+        products p
+      JOIN
+        order_items oi ON p.id = oi.product_id
+      JOIN
+        orders o ON oi.id = o.order_items_id
+      WHERE
+        o.user_id = ?
+    `;
+  
+    connection.query(query, [userId], (err, result) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send(err);
+      } else {
+        console.log(result);
+        res.status(200).send(result);
+      }
+    });
   })
+  
 }

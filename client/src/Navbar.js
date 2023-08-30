@@ -21,7 +21,10 @@ import { Badge, Divider } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import { get_current } from './redux/action/UserAction';
+import { useDispatch, useSelector } from 'react-redux';
 const Navbar = ({productItemslen}) => {
+  const dispatch=useDispatch()
   const navigate=useNavigate()
   const [token, setToken] = useState(null);
   
@@ -32,6 +35,12 @@ useEffect(()=>{
   const token=localStorage.getItem('token')
   setToken(token)
 },[token])
+useEffect(() => {
+  const id = localStorage.getItem("id");
+    dispatch(get_current(id))
+}, [dispatch]);
+const user=useSelector((state)=>state.UserReducer.users)
+
   const toggleDrawer = (open) => () => {
     setIsDrawerOpen(open);
   };
@@ -114,6 +123,8 @@ useEffect(()=>{
               open={Boolean(dropdownAnchor)}
               onClose={closeDropdown}
             >
+              {token && user.role!=="admin"?<MenuItem onClick={closeDropdown} component={Link} to="/monorder">Mon Order</MenuItem>:null}
+              {token && user.role==="admin"?<MenuItem onClick={closeDropdown} component={Link} to="/userorder">User Order</MenuItem>:null}
               <MenuItem onClick={closeDropdown} component={Link} to="/products">Product List</MenuItem>
               <MenuItem onClick={closeDropdown} component={Link} to="/profile">Profile</MenuItem>
               <MenuItem onClick={closeDropdown} component={Link} to="/contact">Contact</MenuItem>

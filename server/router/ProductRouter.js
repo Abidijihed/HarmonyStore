@@ -9,7 +9,7 @@ const ProductController=require("../controllers/products")
 
 
  router.post("/api/createOrderItems",ProductController.CreateOrderItems)
-// router.get('/api/get/product/added',ProductController.getProductadded)
+router.get('/api/get_user_order/:id',ProductController.GetUserOrder)
 // router.put('/api/update/Stockquantity/:id',ProductController.UpdateStockquantity)
 
  module.exports={ProductRouter:router}

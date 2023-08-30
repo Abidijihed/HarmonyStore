@@ -17,6 +17,9 @@ import About from "./components/information/About";
 import Footer from "./Footer";
 import ProductsFiltrer from "./components/FiltrageProductsjs/ProductsFiltrer";
 import ProductInfo from "./components/FiltrageProductsjs/ProductInfo";
+import PrivetOrder from "./components/user/PrivetOrder";
+import UserOrder from "./components/information/UserOrder";
+import MyOrder from "./components/user/MyOrder";
 function App() {
 const [productItemslen,setproductItemslen]=useState([])
    const dispatch=useDispatch()
@@ -56,6 +59,12 @@ const [productItemslen,setproductItemslen]=useState([])
           <Route path='/products' element={<ListProducts data={products}  getlen={getlen}/>} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/product/:category" element={<ProductsFiltrer products={products} />} />
+          <Route path="/userorder" element={
+            <PrivetOrder>
+              <UserOrder />
+            </PrivetOrder>
+          } />
+         <Route path="/monorder" element={<MyOrder />} />
 
         </Routes>
         <Footer />

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { get_current } from '../../redux/action/UserAction';
+import Swal from 'sweetalert2';
 
 export default function StepThreeMakePayment() {
   const dispatch = useDispatch();
@@ -52,12 +53,18 @@ export default function StepThreeMakePayment() {
  const handelorder=(paymenttype)=>{
   const id=localStorage.getItem('id')
   const data=JSON.parse(localStorage.getItem('cart'))
-  axios.post('http://localhost:5700/api/createOrderItems',{data,paymenttype,id})
+  axios.post('https://www.harmonystore01.com/api/createOrderItems',{data,paymenttype,id})
   .then((res)=>{
-    // if(res.data.message==="Order items created successfully"){
-    //   handleNext()
-    // }
     console.log(res)
+    if(res.data.message==="Order items created successfully"){
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Voutere Ordre a etait envoyer',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
   })
  }
   const makepayment = async (paymenttype) => {
@@ -124,7 +131,7 @@ export default function StepThreeMakePayment() {
     </div>
     <div className="payment-buttons">
     <button onClick={() => makepayment(true)}>Pay Online</button>
-  <button onClick={() => handelorder(false)}>Pay on Delivery</button>
+  <button onClick={() => handelorder(false)}>Pay a la livraison</button>
     </div>
   </div>
   );
