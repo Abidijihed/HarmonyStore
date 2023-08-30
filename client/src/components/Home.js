@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
   },
 }));
-export default function Home({ products,getlen }) {
+export default function Home({ products,getlen,search }) {
   const classes = useStyles();
 const navigate=useNavigate()
   const [expanded, setExpanded] = useState(false);
@@ -503,7 +503,7 @@ const hadelsuscribe=()=>{
           <h3 id="pep">PRODUIT EN PROMOTION</h3>
         
         <div className="mycardshome">
-          {products.map((el) => {
+          {products.filter((el)=>el.product_name.toUpperCase().includes(search.toUpperCase())||el.Product_material.toUpperCase().includes(search.toUpperCase())||el.category.toUpperCase().includes(search.toUpperCase())).map((el) => {
             return (
               <ChakraProvider theme={theme}>
                 <HomeCard key={el.id} product={el}getlen={getlen} />

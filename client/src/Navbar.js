@@ -23,7 +23,7 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import { get_current } from './redux/action/UserAction';
 import { useDispatch, useSelector } from 'react-redux';
-const Navbar = ({productItemslen}) => {
+const Navbar = ({productItemslen,handelsearch}) => {
   const dispatch=useDispatch()
   const navigate=useNavigate()
   const [token, setToken] = useState(null);
@@ -98,6 +98,7 @@ const user=useSelector((state)=>state.UserReducer.users)
           </Button>}
           <div>
             <InputBase
+            onChange={(e)=>handelsearch(e)}
               placeholder="  Search..."
               startAdornment={<SearchIcon style={{ color: "#B76E79" }} />}
               style={{ marginRight: '10px', color: '#000000' }}

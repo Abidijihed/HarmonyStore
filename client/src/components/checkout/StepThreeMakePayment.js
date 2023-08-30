@@ -55,8 +55,7 @@ export default function StepThreeMakePayment() {
   const data=JSON.parse(localStorage.getItem('cart'))
   axios.post('https://www.harmonystore01.com/api/createOrderItems',{data,paymenttype,id})
   .then((res)=>{
-    console.log(res)
-    if(res.data.message==="Order items created successfully"){
+    if(res.data.message==="Order items and orders created successfully"){
       Swal.fire({
         position: 'center',
         icon: 'success',
@@ -64,6 +63,7 @@ export default function StepThreeMakePayment() {
         showConfirmButton: false,
         timer: 1500
       })
+      localStorage.removeItem('cart')
     }
   })
  }

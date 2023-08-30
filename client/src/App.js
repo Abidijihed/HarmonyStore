@@ -22,6 +22,7 @@ import UserOrder from "./components/information/UserOrder";
 import MyOrder from "./components/user/MyOrder";
 function App() {
 const [productItemslen,setproductItemslen]=useState([])
+const [search,setSearch]=useState("")
    const dispatch=useDispatch()
    const getlen=()=>{
     var productItems=JSON.parse(localStorage.getItem("cart"))
@@ -33,18 +34,20 @@ const [productItemslen,setproductItemslen]=useState([])
     getlen()
    },[dispatch])
    const products=useSelector((state)=>state.UserReducer.data)
- 
+ const handelsearch=(e)=>{
+  setSearch(e.target.value)
+ }
   
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar productItemslen={productItemslen} />
+        <Navbar productItemslen={productItemslen} handelsearch={handelsearch} />
        
         <br />
         <Routes>
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/login" element={<SignInPge />} />
-          <Route path="/" element={<Home products={products}getlen={getlen} />} />
+          <Route path="/" element={<Home products={products}getlen={getlen} search={search}/>} />
           <Route
             path="/profile"
             element={
@@ -53,12 +56,12 @@ const [productItemslen,setproductItemslen]=useState([])
               </PrivateRoute>
             }
           />
-           <Route path="/productinfo/:id" element={<ProductInfo />} />
+           <Route path="/productinfo/:id" element={<ProductInfo getlen={getlen}  />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
-          <Route path='/products' element={<ListProducts data={products}  getlen={getlen}/>} />
+          <Route path='/products' element={<ListProducts data={products}  getlen={getlen} search={search}/>} />
           <Route path="/checkout" element={<Checkout />} />
-          <Route path="/product/:category" element={<ProductsFiltrer products={products} />} />
+          <Route path="/product/:category" element={<ProductsFiltrer products={products}getlen={getlen}  />} />
           <Route path="/userorder" element={
             <PrivetOrder>
               <UserOrder />

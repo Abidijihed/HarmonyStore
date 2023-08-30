@@ -180,6 +180,46 @@ module.exports = {
         res.status(200).send(result);
       }
     });
-  })
+  }),
+  GetAllOrderUsers:((req,res)=>{
+    const query=`
+    SELECT
+  p.product_name,
+  oi.total_amount,
+  oi.quantity,
+  oi.price_per_unit,
+  oi.total_price,
+  o.payement_done,
+  o.status,
+  o.id AS order_id,
+  u.FirstName,
+  u.Email,
+  u.id AS user_id
+FROM
+  products p
+JOIN
+  order_items oi ON p.id = oi.product_id
+JOIN
+  orders o ON oi.id = o.order_items_id
+JOIN
+  users u ON o.user_id = u.id`
+
+    connection.query(query,(err,result)=>{
+      err ? res.status(500).send(err) : res.status(200).send(result)
+    })
+  }),
+  updateOrderStatus :  (req, res) => {
+    const orderId = req.params.id;
+    const newStatus = req.body.newStatus; // Make sure you have this value in the request body
+  
+    try {
+      const updateQuery = 'UPDATE orders SET status = ? WHERE id = ?';
+       connection.query(updateQuery, [newStatus, orderId]);
+  
+      res.status(200).json({ message: 'Order status updated successfully' });
+    } catch (error) {
+      res.status(500).send({ error: 'An error occurred while updating the order status' });
+    }
+  }
   
 }

@@ -5,7 +5,7 @@ import axios from "axios";
 import { useSelector,useDispatch } from "react-redux";
 import { get_current } from "../../redux/action/UserAction";
 
-export default function ListProducts({data,addToCart,getlen}) {
+export default function ListProducts({data,getlen,search}) {
   const dispatch=useDispatch()
   const [openAddProductModal, setOpenAddProductModal] = useState(false);
   useEffect(() => {
@@ -18,10 +18,10 @@ export default function ListProducts({data,addToCart,getlen}) {
   return (
     <div>
       <div className="myproducts">
-        {data.map((element) => {
+        {data.filter((el)=>el.product_name.toUpperCase().includes(search.toUpperCase())||el.Product_material.toUpperCase().includes(search.toUpperCase())||el.category.toUpperCase().includes(search.toUpperCase())).map((element) => {
           return (
             <div key={element.id}>
-              <Products product={element} addToCart={addToCart} getlen={getlen}/>
+              <Products product={element}  getlen={getlen}/>
             </div>
           );
         })}

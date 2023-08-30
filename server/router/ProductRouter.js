@@ -10,6 +10,6 @@ const ProductController=require("../controllers/products")
 
  router.post("/api/createOrderItems",ProductController.CreateOrderItems)
 router.get('/api/get_user_order/:id',ProductController.GetUserOrder)
-// router.put('/api/update/Stockquantity/:id',ProductController.UpdateStockquantity)
-
+router.get('/api/get_all_users_order',ProductController.GetAllOrderUsers)
+router.put('/api/update-order-status/:id', ProductController.updateOrderStatus)
  module.exports={ProductRouter:router}

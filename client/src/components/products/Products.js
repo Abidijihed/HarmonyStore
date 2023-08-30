@@ -42,7 +42,6 @@ const JewelryCard = ({ product ,getlen}) => {
             product.price_promo > 0 ? product.price_promo : product.price,
             priceCurrency
           );
-console.log(product)
     const cartItem = {
       id: product.id, // Replace with the actual ID of the product
       name: product.product_name,
@@ -126,7 +125,7 @@ getlen()
           {product.description.slice(0,12)}
         </Typography>
         <Typography style={{fontSize:"14px"}} component="div" >
-          {product.price_promo>0?<span style={{color: "red",textDecoration:"line-through",}}>{product.price}{" "}{priceCurrency}</span>:null}<br/>
+          {product.price_promo>0?<span style={{color: "red",textDecoration:"line-through",}}>{convertCurrency(product.price)}{" "}{priceCurrency}</span>:null}<br/>
           prix: {convertCurrency(product.price_promo>0?product.price_promo: product.price, priceCurrency)}{" "}
           {priceCurrency}
         </Typography>
