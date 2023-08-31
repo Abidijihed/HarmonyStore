@@ -152,16 +152,54 @@ export default function ProductsFiltrer({ products }) {
               }
               label="Article enfant"
             />
+             <FormControlLabel
+              control={
+                <Checkbox
+                  value="Bijoux enfant"
+                  onChange={handleCheckboxChange}
+                />
+              }
+              label="Bijoux enfant"
+            />
             <FormControlLabel
               control={
                 <Checkbox value="Parures" onChange={handleCheckboxChange} />
               }
               label="Parures"
             />
+             <FormControlLabel
+              control={
+                <Checkbox value="Idées Cadeaux" onChange={handleCheckboxChange} />
+              }
+              label="Idées Cadeaux"
+            />
+             {selectedProducts==="Idées Cadeaux"?<><Accordion
+                  expanded={expanded === "panel3"}
+                  onChange={handleChange("panel3")}
+                >
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel3bh-content"
+                    id="panel3bh-header"
+                  >
+                    <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
+                    Idées Cadeaux
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails style={{display:'block'}}>
+                    <Typography
+                      style={{cursor: "pointer",marginBottom:"3px",padding:"10px"}} className="category">
+                    Idées Cadeaux Aniversare
+                    </Typography>
+                    <Divider />
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                    Idées Cadeaux Mariage
+                    </Typography>
+                  </AccordionDetails>
+                  </Accordion></>:null}
           </FormGroup>
         </Col>
         <Col sm={8} id="productinfoo">
-          {console.log(category.toUpperCase().slice(0, category.indexOf(" ")),selectedProducts)}
           {products.filter((el)=>
           el.category.toUpperCase() === category.toUpperCase() ||
          el.category.toUpperCase() === category.toUpperCase().slice(0, category.indexOf(" ")) ||
