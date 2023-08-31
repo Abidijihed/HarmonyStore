@@ -170,8 +170,8 @@ export default function ProductsFiltrer({ products }) {
               <HomeCard product={el} />
             </React.Fragment>
           ))}
-          <Pagination count={10} color="secondary" />
         </Col>
+        <Pagination count={10} color="secondary" style={{marginTop:"10px",display:'flex',justifyContent:'center'}}/>
       </Row>
     </div>
   );
