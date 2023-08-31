@@ -162,7 +162,7 @@ export default function ProductInfo({ getlen }) {
           />
           {images.map((image,index) => (
             <>
-            {user.role==='admin'?<button onClick={()=>updateImage(id,image.id)}>
+            {user?.role==='admin'?<button onClick={()=>updateImage(id,image.id)}>
               <FcEditImage style={{fontSize:'30px',color:'green'}} />
               </button>:null}
             <img
@@ -178,7 +178,7 @@ export default function ProductInfo({ getlen }) {
                 cursor: "pointer",
               }}
             />
-           {user.role==="admin"? <button style={{border:'none',background:'none'}}>
+           {user?.role==="admin"? <button style={{border:'none',background:'none'}}>
             <TiDelete style={{color:'red',fontSize:'30px'}} onClick={()=>dispatch(delete_images(image.id,id))} />
             </button>:null}
             </>
@@ -264,7 +264,7 @@ export default function ProductInfo({ getlen }) {
           </Col>
         </Row>
       </Row>
-      {user.role==="admin"? <><input type="file" onChange={(e) => setProductImage(e.target.files[0])} />
+      {user?.role==="admin"? <><input type="file" onChange={(e) => setProductImage(e.target.files[0])} />
       <button onClick={handleAddimage}>Ajouter une images</button></>:null}
     </div>
   );
