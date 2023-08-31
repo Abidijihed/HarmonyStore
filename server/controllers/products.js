@@ -240,6 +240,7 @@ JOIN
     })
   }),
   updateimages:((req,res)=>{
+    console.log(req.body)
     const query=`update product_images set product_images="${req.body.product_images}" where id=${req.params.id}`
     connection.query(query,(err,result)=>{
       err ? res.status(500).send(err) : res.status(200).send('image updated')

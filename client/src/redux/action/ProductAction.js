@@ -114,7 +114,6 @@ export const get_one_product = (id) => async (dispatch) => {
 export const get_images = (id) => async (dispatch) => {
     try {
        await axios.get(`https://www.harmonystore01.com/api/get_images/${id}`).then((res)=>{
-        console.log(res)
         dispatch({type:GET_IMAGES,payload:res.data})
        })
     } catch (error) {
@@ -122,33 +121,39 @@ export const get_images = (id) => async (dispatch) => {
 
     }
 }
-export const Add_images = (data) => async (dispatch) => {
+export const Add_images = (data,id) => async (dispatch) => {
     try {
        await axios.post(`https://www.harmonystore01.com/api/create_images`,data).then((res)=>{
-        console.log(res)
-        dispatch(get_images())
+        if(res.data==='image added'){
+          Swal.fire('Success', 'Image Added successfully', 'success');
+          dispatch(get_images(id))
+        }
+        
        })
     } catch (error) {
        console.log(error)
 
     }
 }
-export const update_images = (data,id) => async (dispatch) => {
+export const update_images = (data,p_id,id) => async (dispatch) => {
     try {
        await axios.put(`https://www.harmonystore01.com/api/update_images/${id}`,data).then((res)=>{
         console.log(res)
-        dispatch(get_images())
+        dispatch(get_images(p_id))
        })
     } catch (error) {
        console.log(error)
 
     }
 }
-export const delete_images = (id) => async (dispatch) => {
+export const delete_images = (id,p_id) => async (dispatch) => {
     try {
        await axios.delete(`https://www.harmonystore01.com/api/delete_images/${id}`).then((res)=>{
-        console.log(res)
-        dispatch(get_images())
+        if(res.data==='image deleted'){
+            Swal.fire('Success', 'Image deleted successfully', 'success');
+            dispatch(get_images(p_id))
+          }
+      
        })
     } catch (error) {
        console.log(error)
