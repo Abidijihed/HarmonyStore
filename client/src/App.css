@@ -177,6 +177,11 @@ body {
   .productpromotion{
     margin-top: 33%;
   }
+  #productinfoo{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
   .promotion {
     background-color: white !important;
     height: 950px !important;

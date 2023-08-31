@@ -133,7 +133,7 @@ const hadelsuscribe=()=>{
                     id="panel1bh-header"
                   >
                     <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
-                    Boucles d'oreilles.
+                    Boucles d'oreilles
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
@@ -142,7 +142,7 @@ const hadelsuscribe=()=>{
                         `/product/${encodeURIComponent("Dormeuses d'or")}`
                       )
                     } style={{cursor: "pointer",marginBottom:"3px",padding:"10px"}} className="category">
-                    Dormeuses d'or
+                    Boucles d'oreilles en or
                     </Typography>
                     <Divider />
                     <Typography onClick={() =>
@@ -150,7 +150,7 @@ const hadelsuscribe=()=>{
                         `/product/${encodeURIComponent("Dormeuses d'argent")}`
                       )
                     } style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
-                    Dormeuses d'argent
+                   Boucles d'oreilles en argent
                     </Typography>
                   </AccordionDetails>
                 </Accordion>
@@ -173,7 +173,7 @@ const hadelsuscribe=()=>{
                         `/product/${encodeURIComponent("Bagues d'or")}`
                       )
                     } style={{cursor: "pointer",marginBottom:"3px",padding:"10px"}} className="category">
-                    Bagues d'or
+                    Bagues en or
                     </Typography>
                     <Divider />
                     <Typography onClick={() =>
@@ -181,7 +181,7 @@ const hadelsuscribe=()=>{
                         `/product/${encodeURIComponent("Bagues d'argent")}`
                       )
                     } style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
-                    Bagues d'argent
+                    Bagues en argent
                     </Typography>
                   </AccordionDetails>
                 </Accordion>
@@ -195,24 +195,32 @@ const hadelsuscribe=()=>{
                     id="panel3bh-header"
                   >
                      <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
-                     Couronnes royales
+                     Montres
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                  <Typography   onClick={() =>
+                    <Typography onClick={() =>
                       navigate(
-                        `/product/${encodeURIComponent("Couronnes royales d'or")}`
+                        `/product/${encodeURIComponent("Montres Homme")}`
                       )
-                    } style={{cursor: "pointer",marginBottom:"3px",padding:"10px"}} className="category">
-                    Couronnes royales d'or
+                    } style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                    Montres Homme
                     </Typography>
                     <Divider />
                     <Typography onClick={() =>
                       navigate(
-                        `/product/${encodeURIComponent("Couronnes royales d'argent")}`
+                        `/product/${encodeURIComponent("Montres Femme")}`
                       )
                     } style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
-                    Couronnes royales d'argent
+                    Montres Femme
+                    </Typography>
+                    <Divider />
+                    <Typography onClick={() =>
+                      navigate(
+                        `/product/${encodeURIComponent("Montres Enfant")}`
+                      )
+                    } style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                    Montres Enfant
                     </Typography>
                   </AccordionDetails>
                 </Accordion>
@@ -226,24 +234,24 @@ const hadelsuscribe=()=>{
                     id="panel4bh-header"
                   >
                      <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
-                     Montres
+                     Colliers
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                   <Typography   onClick={() =>
                       navigate(
-                        `/product/${encodeURIComponent("Montres")}`
+                        `/product/${encodeURIComponent("Colliers d'or")}`
                       )
                     } style={{cursor: "pointer",marginBottom:"3px",padding:"10px"}} className="category">
-                    Montres
+                    Colliers en or
                     </Typography>
                     <Divider />
                     <Typography onClick={() =>
                       navigate(
-                        `/product/${encodeURIComponent("Montres")}`
+                        `/product/${encodeURIComponent("Colliers d'argent")}`
                       )
                     } style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
-                    Montres
+                    Colliers en argent
                     </Typography>
                   </AccordionDetails>
                 </Accordion>
@@ -257,24 +265,24 @@ const hadelsuscribe=()=>{
                     id="panel5bh-header"
                   >
                      <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
-                     Colliers
+                     Bracelets
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                   <Typography   onClick={() =>
                       navigate(
-                        `/product/${encodeURIComponent("Colliers d'or")}`
+                        `/product/${encodeURIComponent("Bracelets d'or")}`
                       )
                     } style={{cursor: "pointer",marginBottom:"3px",padding:"10px"}} className="category">
-                    Colliers d'or
+                    Bracelets en or
                     </Typography>
                     <Divider />
                     <Typography onClick={() =>
                       navigate(
-                        `/product/${encodeURIComponent("Colliers d'argent")}`
+                        `/product/${encodeURIComponent("Bracelets d'argent")}`
                       )
                     } style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
-                    Colliers d'argent
+                    Bracelets en argent
                     </Typography>
                   </AccordionDetails>
                 </Accordion>
@@ -288,30 +296,30 @@ const hadelsuscribe=()=>{
                     id="panel6bh-header"
                   >
                      <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
-                     Bracelets
+                     Parures 
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                   <Typography   onClick={() =>
                       navigate(
-                        `/product/${encodeURIComponent("Bracelets d'or")}`
+                        `/product/${encodeURIComponent("Parures  d'or")}`
                       )
                     } style={{cursor: "pointer",marginBottom:"3px",padding:"10px"}} className="category">
-                    Bracelets d'or
+                    Parures  en or
                     </Typography>
                     <Divider />
                     <Typography onClick={() =>
                       navigate(
-                        `/product/${encodeURIComponent("Bracelets d'argent")}`
+                        `/product/${encodeURIComponent("Parures  d'argent")}`
                       )
                     } style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
-                    Bracelets d'argent
+                    Parures  en argent
                     </Typography>
                   </AccordionDetails>
                 </Accordion>
-                <Accordion
-                  expanded={expanded === "panel7"}
-                  onChange={handleChange("panel7")}
+                {/* <Accordion
+                  expanded={expanded === "panel5"}
+                  onChange={handleChange("panel5")}
                 >
                   <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
@@ -339,7 +347,7 @@ const hadelsuscribe=()=>{
                     Bagues d'argent
                     </Typography>
                   </AccordionDetails>
-                </Accordion>
+                </Accordion> */}
               </div>
             </Col>
             <Col sm={5}>
@@ -378,7 +386,7 @@ const hadelsuscribe=()=>{
                   display: "flex",
                 }}
               >
-                Dormeuses
+                Boucles d'oreilles
               </h3>
             </div>
             <div style={{ display: "block" }}>
@@ -398,7 +406,7 @@ const hadelsuscribe=()=>{
                 Bagues
               </h3>
             </div>
-            <div style={{ display: "block" }}>
+            {/* <div style={{ display: "block" }}>
               <div className="jewerllypro" onClick={() =>
                       navigate(
                         `/product/${encodeURIComponent("Couronnes")}`
@@ -414,7 +422,7 @@ const hadelsuscribe=()=>{
               >
                 Couronnes
               </h3>
-            </div>
+            </div> */}
             <div style={{ display: "block" }}>
               <div className="jewerllypro"onClick={() =>
                       navigate(
