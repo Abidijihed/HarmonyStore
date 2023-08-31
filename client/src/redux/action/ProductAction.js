@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GET_CARD_Product, GET_PRODUCT,GET_ONE_PRODUCT } from '../actionType/ProtactType'
+import { GET_CARD_Product, GET_PRODUCT,GET_ONE_PRODUCT, GET_IMAGES } from '../actionType/ProtactType'
 import { alertError } from './AlertAction'
 import Swal from 'sweetalert2'
 
@@ -105,6 +105,51 @@ export const get_one_product = (id) => async (dispatch) => {
        })
         
 
+    } catch (error) {
+       console.log(error)
+
+    }
+}
+
+export const get_images = (id) => async (dispatch) => {
+    try {
+       await axios.get(`https://www.harmonystore01.com/api/get_images/${id}`).then((res)=>{
+        console.log(res)
+        dispatch({type:GET_IMAGES,payload:res.data})
+       })
+    } catch (error) {
+       console.log(error)
+
+    }
+}
+export const Add_images = (data) => async (dispatch) => {
+    try {
+       await axios.post(`https://www.harmonystore01.com/api/create_images`,data).then((res)=>{
+        console.log(res)
+        dispatch(get_images())
+       })
+    } catch (error) {
+       console.log(error)
+
+    }
+}
+export const update_images = (data,id) => async (dispatch) => {
+    try {
+       await axios.put(`https://www.harmonystore01.com/api/update_images/${id}`,data).then((res)=>{
+        console.log(res)
+        dispatch(get_images())
+       })
+    } catch (error) {
+       console.log(error)
+
+    }
+}
+export const delete_images = (id) => async (dispatch) => {
+    try {
+       await axios.delete(`https://www.harmonystore01.com/api/delete_images/${id}`).then((res)=>{
+        console.log(res)
+        dispatch(get_images())
+       })
     } catch (error) {
        console.log(error)
 

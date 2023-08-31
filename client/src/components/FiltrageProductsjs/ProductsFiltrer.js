@@ -139,9 +139,9 @@ export default function ProductsFiltrer({ products }) {
             />
             <FormControlLabel
               control={
-                <Checkbox value="Braclets" onChange={handleCheckboxChange} />
+                <Checkbox value="Bracelets" onChange={handleCheckboxChange} />
               }
-              label="Braclets"
+              label="Bracelets"
             />
             <FormControlLabel
               control={

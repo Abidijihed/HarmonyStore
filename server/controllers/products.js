@@ -220,6 +220,30 @@ JOIN
     } catch (error) {
       res.status(500).send({ error: 'An error occurred while updating the order status' });
     }
-  }
+  },
+  AddImages:((req,res)=>{
+    const query=`insert into product_images (product_image,products_id) values("${req.body.product_image}",${req.body.products_id})`
+    connection.query(query,(err,result)=>{
+      err ? res.status(500).send(err) : res.status(200).send("image added")
+    })
+  }),
+  getimages:((req,res)=>{
+    const query=`select * from product_images where products_id=${req.params.id}`
+    connection.query(query,(err,result)=>{
+      err ? res.status(500).send(err) : res.status(200).send(result)
+    })
+  }),
+  deleteimages:((req,res)=>{
+    const query=`delete from product_images where id=${req.params.id}`
+    connection.query(query,(err,result)=>{
+      err ? res.status(500).send(err) : res.status(200).send('image deleted')
+    })
+  }),
+  updateimages:((req,res)=>{
+    const query=`update product_images set product_images="${req.body.product_images}" where id=${req.params.id}`
+    connection.query(query,(err,result)=>{
+      err ? res.status(500).send(err) : res.status(200).send('image updated')
+    })
+  })
   
 }

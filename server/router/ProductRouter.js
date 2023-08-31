@@ -12,4 +12,11 @@ const ProductController=require("../controllers/products")
 router.get('/api/get_user_order/:id',ProductController.GetUserOrder)
 router.get('/api/get_all_users_order',ProductController.GetAllOrderUsers)
 router.put('/api/update-order-status/:id', ProductController.updateOrderStatus)
+
+
+
+router.post('/api/create_images',ProductController.AddImages)
+router.get('/api/get_images/:id',ProductController.getimages)
+router.put("/api/update_images/:id",ProductController.updateimages)
+router.delete("/api/delete_images/:id",ProductController.deleteimages)
  module.exports={ProductRouter:router}

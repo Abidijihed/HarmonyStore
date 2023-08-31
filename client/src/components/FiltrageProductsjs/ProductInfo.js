@@ -1,22 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { get_one_product } from '../../redux/action/ProductAction';
+import { Add_images, get_images, get_one_product } from '../../redux/action/ProductAction';
 import { BiCartAdd } from 'react-icons/bi';
 import axios from 'axios';
 import { Col, Row } from 'reactstrap';
 import { Typography } from '@material-ui/core';
+import { get_current } from '../../redux/action/UserAction';
 
 export default function ProductInfo({getlen}) {
+  const [productImage, setProductImage] = useState([]);
+
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate=useNavigate()
   useEffect(() => {
     dispatch(get_one_product(id));
   }, [dispatch, id]);
-
+  useEffect(() => {
+      const id = localStorage.getItem("id");
+        dispatch(get_current(id))
+    }, [dispatch]);
+    
+    const user=useSelector((state)=>state.UserReducer.users)
   const oneproduct = useSelector((state) => state.UserReducer.oneproduct);
-
+  useEffect(() => {
+    dispatch(get_images(oneproduct?.id));
+  }, [dispatch]);
+  const images1=useSelector((state)=>console.log(state.UserReducer))
   // State to track the currently selected thumbnail
   const [selectedThumbnail, setSelectedThumbnail] = useState(0);
 
@@ -96,12 +107,20 @@ export default function ProductInfo({getlen}) {
   const handleCurrencyChange = (currency) => {
     setPriceCurrency(currency);
   };
-
+  const handleAddimage= async(event) => {
+    // event.preventDefault();
+    const formData = new FormData();
+    formData.append("file", productImage);
+    formData.append("upload_preset", "HarmonyStore");
+   await axios.post("https://api.cloudinary.com/v1_1/dij3lejgg/upload", formData)
+    .then((res)=>{
+     dispatch(Add_images(res.data.secure_url,oneproduct?.id))
+    })}
   return (
 
     <div style={{ margin: '10% 5% 5% 5%' }}>
       <Row>
-        <Col sm={4} style={{boxShadow: '2px 4px 4px', padding: '5px' }}>
+        <Col sm={8} style={{boxShadow: '2px 4px 4px', padding: '5px' }}>
         <img
             src={oneproduct.image_url}
             alt={oneproduct.product_name}
@@ -123,13 +142,13 @@ export default function ProductInfo({getlen}) {
                   width: '80px', // Adjust the width of thumbnails
                   height: '80px', // Adjust the height of thumbnails
                   border: selectedThumbnail === index ? '2px solid blue' : 'none',
-                  margin: '5px',
+                  margin: '8px',
                   cursor: 'pointer',
                 }}
               />
             ))}
         </Col>
-        <Col sm={8} id="productinfoo">
+        <Col sm={4} id="productinfoo">
         
         <div style={{ textAlign: 'center' }}>
           <h1>{oneproduct.product_name}</h1>
@@ -185,6 +204,8 @@ export default function ProductInfo({getlen}) {
           </Col>
           </Row>
       </Row>
+      <input type='file' onChange={(e) => setProductImage(e.target.files[0])}/>
+      <button onClick={handleAddimage}>add images</button>
     </div>
    
   );
