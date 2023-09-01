@@ -35,6 +35,9 @@ export const login = (data, navigate) => async (dispatch) => {
         })
         
         navigate("/profile")
+        setTimeout(() => {
+            window.location.reload()
+        }, 1500);
     } catch (error) {
         if (error.response.data) {
             (error.response.data.errors.forEach(element => {

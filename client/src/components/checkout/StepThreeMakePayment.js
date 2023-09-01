@@ -3,9 +3,11 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { get_current } from '../../redux/action/UserAction';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 export default function StepThreeMakePayment() {
   const dispatch = useDispatch();
+  const navigate=useNavigate()
   const WALLET_ID = '64ccc6d74760b71467c919e9';
   const [receiverWalletId, setReceiverWalletId] = useState(WALLET_ID);
   const [token, setToken] = useState('TND');
@@ -59,11 +61,16 @@ export default function StepThreeMakePayment() {
       Swal.fire({
         position: 'center',
         icon: 'success',
-        title: 'Voutere Ordre a etait envoyer',
+        title: 'Votre commande a etait envoyer',
         showConfirmButton: false,
         timer: 1500
       })
+      
       localStorage.removeItem('cart')
+      window.location.reload()
+      setTimeout(() => {
+        navigate("/monorder")
+      }, 2000);
     }
   })
  }

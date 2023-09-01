@@ -67,7 +67,7 @@ const Navbar = ({ productItemslen, handelsearch }) => {
           HarmonyStore
         </Typography>
         <Divider style={{ backgroundColor: "black", marginTop: "10px" }} />
-        {token && user.role !== "admin" ? (
+        {token? (
           <ListItem component={Link} to="/monorder">
             <ListItemText primary="Mes commandes" />
           </ListItem>
@@ -190,7 +190,7 @@ const Navbar = ({ productItemslen, handelsearch }) => {
                     component={Link}
                     to="/monorder"
                   >
-                    Mon Order
+                    Mes commandes
                   </MenuItem>
                 ) : null}
                 {token && user.role === "admin" ? (
@@ -199,7 +199,7 @@ const Navbar = ({ productItemslen, handelsearch }) => {
                     component={Link}
                     to="/userorder"
                   >
-                    User Order
+                   Toutes les commandes
                   </MenuItem>
                 ) : null}
                 <MenuItem

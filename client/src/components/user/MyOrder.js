@@ -20,22 +20,20 @@ export default function MyOrder() {
         <thead>
           <tr>
             <th>Product Name</th>
-            <th>Total Amount</th>
             <th>Quantity</th>
             <th>Price Per Unit</th>
-            <th>Total Price</th>
+            <th>Total Amount</th>
             <th>Payment Done</th>
             <th>Status</th>
           </tr>
         </thead>
         <tbody>
-          {order.map((item, index) => (
+          {order.reverse().map((item, index) => (
             <tr key={index}>
               <td>{item.product_name}</td>
-              <td>{item.total_amount}</td>
               <td>{item.quantity}</td>
               <td>{item.price_per_unit}</td>
-              <td>{item.total_price}</td>
+              <td>{item.total_amount}</td>
               <td>{item.payement_done ? 'Yes' : 'No'}</td>
               <td>{item.status}</td>
             </tr>

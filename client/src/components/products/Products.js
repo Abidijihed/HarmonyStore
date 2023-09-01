@@ -73,6 +73,13 @@ const JewelryCard = ({ product ,getlen}) => {
 
     // Dispatch an action to update the cart in Redux state if needed
 getlen()
+Swal.fire({
+  position: 'center',
+  icon: 'success',
+  title: 'Votre Produit est ajouter',
+  showConfirmButton: false,
+  timer: 1500
+})
     // You can also provide user feedback that the product was added to the cart
     // For example, show a notification or change the color of the cart icon
   };
