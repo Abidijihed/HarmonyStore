@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { add_to_card,delete_product } from "../../redux/action/ProductAction";
 import UpdateProduct from "./UpdateProduct";
 import { get_current } from "../../redux/action/UserAction";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 const useStyles = makeStyles({
   root: {
     maxWidth: 180,
@@ -23,6 +25,7 @@ const useStyles = makeStyles({
 });
 
 const JewelryCard = ({ product ,getlen}) => {
+  const navigate=useNavigate()
   const classes = useStyles();
   const [UpdateProducte, setUpdateProduct] = useState(false);
 
@@ -111,7 +114,7 @@ getlen()
   // const check_add_or_not = product.check_add_or_not;
   return (
   <>
-    <Card className={classes.root}>
+    <Card className={classes.root} onClick={()=>navigate(`/productinfo/${product?.id}`)}>
       <CardMedia
         className={classes.media}
         image={product.image_url}
@@ -119,10 +122,10 @@ getlen()
       />
       <CardContent>
         <Typography variant="h5" component="div">
-          {product.product_name}
+          {product.product_name.slice(0,14)}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {product.description.slice(0,12)}
+          {/* {product.description.slice(0,12)} */}
         </Typography>
         <Typography style={{fontSize:"14px"}} component="div" >
           {product.price_promo>0?<span style={{color: "red",textDecoration:"line-through",}}>{convertCurrency(product.price)}{" "}{priceCurrency}</span>:null}<br/>
@@ -149,9 +152,13 @@ getlen()
         >
           TND
         </button>
+        <Typography style={{display:"flex",justifyContent:'center'}}>
+     {product.quantity_in_stock>=1?<span style={{color: "green"}}>En Stock</span>:<span style={{color: "red"}}>Épuisé</span>}<br/>
+          
+     </Typography>
       </CardContent>
       <button
-        onClick={handleAddToCart}
+        onClick={product.quantity_in_stock >=1?()=>handleAddToCart():()=>Swal.fire("Produit Épuisé")}
         style={{ border: "none", marginLeft:"4%", background: "#708090",
         padding: "2px",
         borderRadius: "5%" }}

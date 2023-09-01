@@ -15,6 +15,7 @@ import { Typography } from "@material-ui/core";
 import { get_current } from "../../redux/action/UserAction";
 import {TiDelete} from 'react-icons/ti'
 import {FcEditImage} from 'react-icons/fc'
+import Swal from "sweetalert2";
 export default function ProductInfo({ getlen }) {
   const [productImage, setProductImage] = useState([]);
 
@@ -227,6 +228,10 @@ export default function ProductInfo({ getlen }) {
               TND
             </button>
           </div>
+          <Typography style={{display:"flex",justifyContent:'center'}}>
+     {oneproduct.quantity_in_stock>=1?<span style={{color: "green"}}>En Stock</span>:<span style={{color: "red"}}>Épuisé</span>}<br/>
+          
+     </Typography>
         </Col>
         <Row>
           <Col
@@ -249,7 +254,7 @@ export default function ProductInfo({ getlen }) {
               Continue Shopping
             </button>
             <button
-              onClick={handleAddToCart}
+               onClick={oneproduct.quantity_in_stock >=1?()=>handleAddToCart():()=>Swal.fire("Produit Épuisé")}
               style={{
                 border: "none",
                 marginLeft: "4%",

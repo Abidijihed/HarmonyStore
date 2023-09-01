@@ -16,6 +16,10 @@ export default function HomeCard({product}) {
      {product.price_promo>0?<span style={{color: "red",textDecoration:"line-through",}}>{product.price}{" "} TND</span>:null}<br/>
           Prix: {product.price_promo>0?product.price_promo: product.price}{" "}TND
      </Card.Text>
+     <Card.Text style={{display:"flex",justifyContent:'center'}}>
+     {product.quantity_in_stock>=1?<span style={{color: "green"}}>En Stock</span>:<span style={{color: "red"}}>Épuisé</span>}<br/>
+          
+     </Card.Text>
     </Card.Body>
   </Card>
   </div>

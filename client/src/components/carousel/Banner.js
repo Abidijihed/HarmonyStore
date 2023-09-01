@@ -9,8 +9,8 @@ const VideoBanner = () => {
       </video>
       <div className="overlay"></div>
       <div className="content">
-        <h1>Harmony Store</h1>
-        <p>Tendances en Bijoux && Accessoires</p>
+        <h1 style={{fontFamily:'math'}}>Harmony Store</h1>
+        <p style={{fontFamily:'inherit'}}>Tendances en Bijoux && Accessoires</p>
       </div>
     </div>
   );

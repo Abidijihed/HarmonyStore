@@ -24,6 +24,8 @@ import {
 import VideoBanner from "./carousel/Banner";
 import { Link } from "react-router-dom";
 import { Divider } from "@material-ui/core";
+import { RiSecurePaymentLine } from "react-icons/ri";
+import {GrDeliver} from 'react-icons/gr'
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -119,10 +121,72 @@ const hadelsuscribe=()=>{
         >
           <h1>Bienvenue à HarmonyStore</h1>
         </div>
+        <div style={{marginTop:'30px',justifyContent:'center'}}>
+        <Row >
+  <Col xs={12} sm={6}>
+    <h2 style={{fontFamily: "fantasy",color:'red'}} >Livraison à domicile</h2>
+    <div>Achat plus de 200 TND 100% Gratuites<span><GrDeliver style={{fontSize: '50px',marginLeft: '34%'}}  /></span></div>
+  </Col>
+  <Col xs={12} sm={12} md={6}>
+  <h2 style={{display:'flex',fontFamily: "fantasy",color:'red'}}>Payment Secure <RiSecurePaymentLine/></h2>
+          <div className="payment-methods">
+            <div>
+            <img className='imagepay' src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/1280px-MasterCard_Logo.svg.png' alt='mastercard'/>
+            </div>
+            <div>
+            <img className='imagepay'  src='https://img.freepik.com/icones-gratuites/visa_318-202971.jpg'alt='visa'/>
+            </div>
+            <div>
+            <img   src='https://kapitalis.com/tunisie/wp-content/uploads/2022/10/La-Poste-MasterCard.jpg' alt='e-dinar' />
+            </div>
+            {/* Payment method icons and secure payment text go here */}
+          </div>
+  </Col>
+</Row>
+        </div>
         <div style={{ marginTop: "30px" }}>
           <Row id="thisRow">
             <Col sm={4} id="category">
               <div>
+              <Accordion
+                  expanded={expanded === "panel9"}
+                  onChange={handleChange("panel9")}
+                >
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel9bh-content"
+                    id="panel9bh-header"
+                  >
+                     <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
+                     Bijoux
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography onClick={() =>
+                      navigate(
+                        `/product/${encodeURIComponent("Bijoux Homme")}`
+                      )
+                    } style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                    Bijoux Homme
+                    </Typography>
+                    <Divider />
+                    <Typography onClick={() =>
+                      navigate(
+                        `/product/${encodeURIComponent("Bijoux Femme")}`
+                      )
+                    } style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                    Bijoux Femme
+                    </Typography>
+                    <Divider />
+                    <Typography onClick={() =>
+                      navigate(
+                        `/product/${encodeURIComponent("Bijoux Enfant")}`
+                      )
+                    } style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                    Bijoux Enfant
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
                 <Accordion
                   expanded={expanded === "panel1"}
                   onChange={handleChange("panel1")}
@@ -164,24 +228,24 @@ const hadelsuscribe=()=>{
                     id="panel2bh-header"
                   >
                     <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
-                    Bagues
+                    Bague
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                   <Typography   onClick={() =>
                       navigate(
-                        `/product/${encodeURIComponent("Bagues d'or")}`
+                        `/product/${encodeURIComponent("Bague d'or")}`
                       )
                     } style={{cursor: "pointer",marginBottom:"3px",padding:"10px"}} className="category">
-                    Bagues en or
+                    Bague en or
                     </Typography>
                     <Divider />
                     <Typography onClick={() =>
                       navigate(
-                        `/product/${encodeURIComponent("Bagues d'argent")}`
+                        `/product/${encodeURIComponent("Bague d'argent")}`
                       )
                     } style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
-                    Bagues en argent
+                    Bague en argent
                     </Typography>
                   </AccordionDetails>
                 </Accordion>
@@ -331,13 +395,6 @@ const hadelsuscribe=()=>{
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                  <Typography   onClick={() =>
-                      navigate(
-                        `/product/${encodeURIComponent("Article Enfant")}`
-                      )
-                    } style={{cursor: "pointer",marginBottom:"3px",padding:"10px"}} className="category">
-                    Article Enfant
-                    </Typography>
                     <Divider />
                     <Typography onClick={() =>
                       navigate(
@@ -437,23 +494,6 @@ const hadelsuscribe=()=>{
                 Bagues
               </h3>
             </div>
-            {/* <div style={{ display: "block" }}>
-              <div className="jewerllypro" onClick={() =>
-                      navigate(
-                        `/product/${encodeURIComponent("Couronnes")}`
-                      )}>
-                <GiTiara />
-              </div>
-              <h3
-                style={{
-                  color: "black",
-                  justifyContent: "center",
-                  display: "flex",
-                }}
-              >
-                Couronnes
-              </h3>
-            </div> */}
             <div style={{ display: "block" }}>
               <div className="jewerllypro"onClick={() =>
                       navigate(

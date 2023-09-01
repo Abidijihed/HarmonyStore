@@ -38,6 +38,169 @@ export default function ProductsFiltrer({ products }) {
           }}
         >
           <FormGroup>
+          <FormControlLabel
+              control={
+                <Checkbox
+                  value="Bijoux"
+                  onChange={handleCheckboxChange}
+                />
+              }
+              label="Bijoux"
+            />
+           {selectedProducts==="Bijoux"?<><Accordion
+                  expanded={expanded === "panel1"}
+                  onChange={handleChange("panel1")}
+                >
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1bh-content"
+                    id="panel1bh-header"
+                  >
+                    <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
+                    Bijoux Homme
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails style={{display:'block'}}>
+                    <Typography
+                      style={{cursor: "pointer",marginBottom:"3px",padding:"10px"}} className="category">
+                    Chaine
+                    </Typography>
+                    <Divider />
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Bague
+                    </Typography>
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Gourmette
+                    </Typography>
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Accessoire
+                    </Typography>
+                  </AccordionDetails>
+                  </Accordion>
+                  <Accordion
+                  expanded={expanded === "panel2"}
+                  onChange={handleChange("panel2")}
+                >
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel2bh-content"
+                    id="panel2bh-header"
+                  >
+                    <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
+                    Bijoux Femme
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails style={{display:'block'}}>
+                    <Typography
+                      style={{cursor: "pointer",marginBottom:"3px",padding:"10px"}} className="category">
+                    Série
+                    </Typography>
+                    <Divider />
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Bague
+                    </Typography>
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Solitaire
+                    </Typography>
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Alliance
+                    </Typography>
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Pendentif
+                    </Typography>
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Bracelet
+                    </Typography>
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Gourmette
+                    </Typography>
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Chaine
+                    </Typography>
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Boucles D'Oreilles
+                    </Typography>
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Broche
+                    </Typography>
+                  </AccordionDetails>
+                  </Accordion>
+                  <Accordion
+                  expanded={expanded === "panel3"}
+                  onChange={handleChange("panel3")}
+                >
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel3bh-content"
+                    id="panel3bh-header"
+                  >
+                    <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
+                    CHICHKHAN
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails style={{display:'block'}}>
+                  <Typography
+                      style={{cursor: "pointer",marginBottom:"3px",padding:"10px"}} className="category">
+                    Série
+                    </Typography>
+                    <Divider />
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Bague
+                    </Typography>
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Pendentif
+                    </Typography>
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Bracelet
+                    </Typography>
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Gourmette
+                    </Typography>
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Chaine
+                    </Typography>
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Boucle
+                    </Typography>
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Broche
+                    </Typography>
+                  </AccordionDetails>
+                  </Accordion>
+                  <Accordion
+                  expanded={expanded === "panel4"}
+                  onChange={handleChange("panel4")}
+                >
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel4bh-content"
+                    id="panel4bh-header"
+                  >
+                    <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
+                    Bijoux Enfant
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails style={{display:'block'}}>
+                    <Typography
+                      style={{cursor: "pointer",marginBottom:"3px",padding:"10px"}} className="category">
+                    Bague
+                    </Typography>
+                    <Divider />
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Bracelet
+                    </Typography>
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Gourmette
+                    </Typography>
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Pendentif
+                    </Typography>
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Boucle
+                    </Typography>
+                  </AccordionDetails>
+                  </Accordion>
+                </>:null}
             <FormControlLabel
               control={
                 <Checkbox
@@ -49,9 +212,9 @@ export default function ProductsFiltrer({ products }) {
             />
             <FormControlLabel
               control={
-                <Checkbox value="Bagues" onChange={handleCheckboxChange} />
+                <Checkbox value="Bague" onChange={handleCheckboxChange} />
               }
-              label="Bagues"
+              label="Bague"
             />
             <FormControlLabel
               control={
@@ -130,7 +293,33 @@ export default function ProductsFiltrer({ products }) {
                    Tissu
                     </Typography>
                   </AccordionDetails>
-                </Accordion></>:null}
+                </Accordion>
+                <Accordion
+                  expanded={expanded === "panel2"}
+                  onChange={handleChange("panel2")}
+                >
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel2bh-content"
+                    id="panel2bh-header"
+                  >
+                    <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
+                    Montres Enfant
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails style={{display:'block'}}>
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Plastique
+                    </Typography>
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Gomme
+                    </Typography>
+                    <Typography style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Tissu
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+                </>:null}
             <FormControlLabel
               control={
                 <Checkbox value="Colliers" onChange={handleCheckboxChange} />
@@ -142,24 +331,6 @@ export default function ProductsFiltrer({ products }) {
                 <Checkbox value="Bracelets" onChange={handleCheckboxChange} />
               }
               label="Bracelets"
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  value="Article enfant"
-                  onChange={handleCheckboxChange}
-                />
-              }
-              label="Article enfant"
-            />
-             <FormControlLabel
-              control={
-                <Checkbox
-                  value="Bijoux enfant"
-                  onChange={handleCheckboxChange}
-                />
-              }
-              label="Bijoux enfant"
             />
             <FormControlLabel
               control={
