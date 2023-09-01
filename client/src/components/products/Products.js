@@ -114,20 +114,20 @@ getlen()
   // const check_add_or_not = product.check_add_or_not;
   return (
   <>
-    <Card className={classes.root} onClick={()=>navigate(`/productinfo/${product?.id}`)}>
+    <Card className={classes.root}>
       <CardMedia
         className={classes.media}
         image={product.image_url}
-       
+        onClick={()=>navigate(`/productinfo/${product?.id}`)}
       />
       <CardContent>
-        <Typography variant="h5" component="div">
+        <Typography variant="h5" component="div"  onClick={()=>navigate(`/productinfo/${product?.id}`)}>
           {product.product_name.slice(0,14)}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {/* {product.description.slice(0,12)} */}
         </Typography>
-        <Typography style={{fontSize:"14px"}} component="div" >
+        <Typography style={{fontSize:"14px"}} component="div"  onClick={()=>navigate(`/productinfo/${product?.id}`)}>
           {product.price_promo>0?<span style={{color: "red",textDecoration:"line-through",}}>{convertCurrency(product.price)}{" "}{priceCurrency}</span>:null}<br/>
           prix: {convertCurrency(product.price_promo>0?product.price_promo: product.price, priceCurrency)}{" "}
           {priceCurrency}

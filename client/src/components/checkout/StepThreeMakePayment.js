@@ -53,7 +53,7 @@ export default function StepThreeMakePayment() {
  const handelorder=(paymenttype)=>{
   const id=localStorage.getItem('id')
   const data=JSON.parse(localStorage.getItem('cart'))
-  axios.post('https://www.harmonystore01.com/api/createOrderItems',{data,amount,paymenttype,id})
+  axios.post('https://www.harmonystore01.com/api/createOrderItems',{data,liverison:delevrycharge*exchangeRate,paymenttype,id})
   .then((res)=>{
     if(res.data.message==="Order items and orders created successfully"){
       Swal.fire({

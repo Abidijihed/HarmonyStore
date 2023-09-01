@@ -121,7 +121,7 @@ const hadelsuscribe=()=>{
         >
           <h1>Bienvenue à HarmonyStore</h1>
         </div>
-        <div style={{marginTop:'30px',justifyContent:'center'}}>
+        <div style={{marginTop:'30px',justifyContent:'center',display:"flex"}}>
         <Row >
   <Col xs={12} sm={6}>
     <h2 style={{fontFamily: "fantasy",color:'red'}} >Livraison à domicile</h2>

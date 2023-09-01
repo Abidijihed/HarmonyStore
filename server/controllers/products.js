@@ -48,7 +48,7 @@ module.exports = {
     const orderItems = req.body.data;
     const paymentType = req.body.paymenttype;
     const user_id = req.body.id;
-    const total_amount=req.body.amount
+    const liverison=req.body.liverison
   
     if (!orderItems || !Array.isArray(orderItems) || orderItems.length === 0) {
       return res.status(400).json({ error: 'Invalid order items data' });
@@ -56,7 +56,7 @@ module.exports = {
   
     const insertQuery = 'INSERT INTO order_items (total_amount, product_id, quantity, price_per_unit, total_price) VALUES ?';
     const values = orderItems.map((item) => [
-      total_amount,
+      item.total_amount+liverison,
       item.id,
       item.quantity,
       item.price,
