@@ -67,7 +67,7 @@ const Navbar = ({ productItemslen, handelsearch }) => {
           HarmonyStore
         </Typography>
         <Divider style={{ backgroundColor: "black", marginTop: "10px" }} />
-        {token? (
+        {token && user.role !== "admin"? (
           <ListItem component={Link} to="/monorder">
             <ListItemText primary="Mes commandes" />
           </ListItem>
