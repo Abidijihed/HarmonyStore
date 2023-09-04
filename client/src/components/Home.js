@@ -121,15 +121,28 @@ const hadelsuscribe=()=>{
         >
           <h1>Bienvenue à HarmonyStore</h1>
         </div>
+        <div className="productpromotion">
+          <h3 id="pep" style={{fontFamily: "fantasy",color:'red'}}>PRODUIT EN PROMOTION</h3>
+        
+        <div className="mycardshome">
+          {products.filter((el)=>el.product_name.toUpperCase().includes(search.toUpperCase())||el.Product_material.toUpperCase().includes(search.toUpperCase())||el.category.toUpperCase().includes(search.toUpperCase())).map((el) => {
+            return (
+              <ChakraProvider theme={theme}>
+                <HomeCard key={el.id} product={el}getlen={getlen} />
+              </ChakraProvider>
+            );
+          })}
+        </div>
+        </div>
         <div style={{marginTop:'30px',justifyContent:'center',display:"flex"}}>
         <Row >
   <Col xs={12} sm={6}>
-    <h2 style={{fontFamily: "fantasy",color:'red'}} >Livraison à domicile</h2>
+    <h6 style={{fontFamily: "fantasy"}}>Livraison à domicile</h6>
     <div>Achat plus de 200 TND 100% Gratuites<span><GrDeliver style={{fontSize: '50px',marginLeft: '34%'}}  /></span></div>
   </Col>
   <Col xs={12} sm={12} md={6}>
-  <h2 style={{display:'flex',fontFamily: "fantasy",color:'red'}}>Payment Secure <RiSecurePaymentLine/></h2>
-          <div className="payment-methods">
+  <h6 style={{display:'flex',fontFamily: "fantasy"}}>Payment Secure <RiSecurePaymentLine/></h6>
+          {/* <div className="payment-methods">
             <div>
             <img className='imagepay' src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/1280px-MasterCard_Logo.svg.png' alt='mastercard'/>
             </div>
@@ -139,15 +152,15 @@ const hadelsuscribe=()=>{
             <div>
             <img   src='https://kapitalis.com/tunisie/wp-content/uploads/2022/10/La-Poste-MasterCard.jpg' alt='e-dinar' />
             </div>
-            {/* Payment method icons and secure payment text go here */}
-          </div>
+            
+          </div> */}
   </Col>
 </Row>
         </div>
         <div style={{ marginTop: "30px" }}>
           <Row id="thisRow">
             <Col sm={4} id="category">
-              <div>
+              {/* <div>
               <Accordion
                   expanded={expanded === "panel9"}
                   onChange={handleChange("panel9")}
@@ -436,9 +449,9 @@ const hadelsuscribe=()=>{
                     </Typography>
                   </AccordionDetails>
                 </Accordion>
-              </div>
+              </div> */}
             </Col>
-            <Col sm={5}>
+            {/* <Col sm={5}>
             <Carousel>
       {images.map((imageUrl, index) => (
         <div key={index}>
@@ -450,7 +463,7 @@ const hadelsuscribe=()=>{
         </div>
       ))}
     </Carousel>
-            </Col>
+            </Col> */}
             {/* <Col>
       <img src="https://im2.ezgif.com/tmp/ezgif-2-b07d620f05.gif" alt="GIF" style={{width:'100%',height:'342px',padding:"10px"}} />
     </Col> */}
@@ -578,19 +591,7 @@ const hadelsuscribe=()=>{
             </div>
           </div>
         </div>
-        <div className="productpromotion">
-          <h3 id="pep">PRODUIT EN PROMOTION</h3>
-        
-        <div className="mycardshome">
-          {products.filter((el)=>el.product_name.toUpperCase().includes(search.toUpperCase())||el.Product_material.toUpperCase().includes(search.toUpperCase())||el.category.toUpperCase().includes(search.toUpperCase())).map((el) => {
-            return (
-              <ChakraProvider theme={theme}>
-                <HomeCard key={el.id} product={el}getlen={getlen} />
-              </ChakraProvider>
-            );
-          })}
-        </div>
-        </div>
+      
       </div>
 
       <div className="card1">

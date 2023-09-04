@@ -74,7 +74,7 @@ export default function StepThreeMakePayment() {
     }
   })
  }
-  const makepayment = async (paymenttype) => {
+  const makepayment = async () => {
     try {
       await axios
         .post('https://www.harmonystore01.com/payments/payment', {
@@ -89,7 +89,7 @@ export default function StepThreeMakePayment() {
         .then((response) => {
           window.location.href = response.data.payUrl;
         });
-        handelorder(paymenttype)
+        // handelorder(paymenttype)
     } catch (error) {
       console.error('Error initiating payment:', error);
     }

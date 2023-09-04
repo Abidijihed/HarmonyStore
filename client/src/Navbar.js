@@ -16,6 +16,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PersonIcon from "@mui/icons-material/Person";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
+
 import "./Navbar.css";
 import { Badge, Divider } from "@material-ui/core";
 import { Link } from "react-router-dom";
@@ -23,6 +24,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { get_current } from "./redux/action/UserAction";
 import { useDispatch, useSelector } from "react-redux";
+import FilterComponent from "./components/FiltreComponents/FilterComponent";
 const Navbar = ({ productItemslen, handelsearch }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -52,9 +54,11 @@ const Navbar = ({ productItemslen, handelsearch }) => {
   const closeDropdown = () => {
     setDropdownAnchor(null);
   };
+  // const navigate=useNavigate()
 
+  
   const renderDrawer = () => (
-    <div style={{ width: "200px" }}>
+    <div style={{ width: "350px" }}>
       <List>
         <Typography
           variant="h6"
@@ -78,8 +82,8 @@ const Navbar = ({ productItemslen, handelsearch }) => {
           </ListItem>
         ) : null}
         <Divider style={{ backgroundColor: "black", marginTop: "10px" }} />
-
-        <ListItem
+       <FilterComponent />
+              <ListItem
           button
           component={Link}
           to="/products"

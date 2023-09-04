@@ -77,21 +77,21 @@ export default function CombinedComponent() {
           <div>
             {getStepContent(activeStep)}
             <Box mt={2}>
+            
+         {   activeStep === 0 ? <Button
+                
+                onClick={()=>navigate('/products')}
+                className={classes.button}
+              >
+                Back
+              </Button>:
               <Button
-                disabled={activeStep === 0}
+                
                 onClick={handleBack}
                 className={classes.button}
               >
                 Back
-              </Button>
-              {/* <Button
-                variant="contained"
-                color="primary"
-                onClick={handleNext}
-                className={classes.button}
-              >
-                {activeStep === steps.length - 1 ? "Place Order" : "Next"}
-              </Button> */}
+              </Button>}
             </Box>
           </div>
         )}
