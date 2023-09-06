@@ -203,21 +203,6 @@ export default function ProductsFiltrer({ products }) {
                 </>:null}
             <FormControlLabel
               control={
-                <Checkbox
-                  value="Boucles d'oreilles"
-                  onChange={handleCheckboxChange}
-                />
-              }
-              label="Boucles d'oreilles"
-            />
-            <FormControlLabel
-              control={
-                <Checkbox value="Bague" onChange={handleCheckboxChange} />
-              }
-              label="Bague"
-            />
-            <FormControlLabel
-              control={
                 <Checkbox value="Montres" onChange={handleCheckboxChange} />
               }
               label="Montres"
@@ -320,18 +305,7 @@ export default function ProductsFiltrer({ products }) {
                   </AccordionDetails>
                 </Accordion>
                 </>:null}
-            <FormControlLabel
-              control={
-                <Checkbox value="Colliers" onChange={handleCheckboxChange} />
-              }
-              label="Colliers"
-            />
-            <FormControlLabel
-              control={
-                <Checkbox value="Bracelets" onChange={handleCheckboxChange} />
-              }
-              label="Bracelets"
-            />
+          
             <FormControlLabel
               control={
                 <Checkbox value="Parures" onChange={handleCheckboxChange} />

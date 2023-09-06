@@ -174,9 +174,9 @@ body {
 @media (min-width: 600px) {
 
   /* web */
-  .productpromotion{
+  /* .productpromotion{
     margin-top: 33%;
-  }
+  } */
   #productinfoo{
     display: flex;
     flex-wrap: wrap;

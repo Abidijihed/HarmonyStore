@@ -140,7 +140,7 @@ const Navbar = ({ productItemslen, handelsearch }) => {
     <div className="navbar">
       <AppBar elevation={4} style={{ background: "#FFFFFF" }}>
         <Toolbar style={{ display: "flex", justifyContent: "space-around" }}>
-          {isMobile && (
+        
             <IconButton
               edge="start"
               style={{ color: "#000000" }}
@@ -149,7 +149,7 @@ const Navbar = ({ productItemslen, handelsearch }) => {
             >
               <MenuIcon />
             </IconButton>
-          )}
+         
           {!isMobile && (
             <Button
               style={{ color: "#000000", fontWeight: 900 }}
@@ -252,7 +252,11 @@ const Navbar = ({ productItemslen, handelsearch }) => {
             </Button>
           ) : null}
         </Toolbar>
+        <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)}>
+          {renderDrawer()}
+        </Drawer>
       </AppBar>
+     
       {isMobile /* Show drawer only on mobile */ && (
         <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)}>
           {renderDrawer()}

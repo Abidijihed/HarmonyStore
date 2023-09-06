@@ -1,6 +1,7 @@
 const API_KEY = '64ccc6d74760b71467c919e6:zX5KfpZ9hQkcncL4SWU';
 const axios=require("axios");
 const {connection} = require("../dataBaseConfig/config");
+const produtController=require('./products')
 const crypto = require('crypto');
 const middleware = require('../midelwar/auth.js');
 const utils=require('../midelwar/utils.js')
@@ -17,7 +18,7 @@ CreatePayment:(async (req,res)=>{
       }
     )
     res.json(response.data);
-    console.log(response)
+    
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'An error occurred while initiating payment.' });
