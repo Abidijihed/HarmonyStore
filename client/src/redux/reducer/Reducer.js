@@ -20,6 +20,7 @@ const UserReducer = (state = initialState, { type, payload }) => {
       localStorage.setItem("id", payload.id);
       return { ...state, users: payload };
     case LOGIN:
+      console.log(payload)
       localStorage.setItem("token", payload.token);
       localStorage.setItem("id", payload.id);
       return { ...state, users: payload.utilisateur };

@@ -48,6 +48,7 @@ export const login = (data, navigate) => async (dispatch) => {
     try {
         await axios.post('https://www.harmonystore01.com/api/login', data).then((res)=>{
             dispatch({ type: LOGIN, payload: res.data })
+            console.log(res.data)
         })
         
         navigate("/profile")
