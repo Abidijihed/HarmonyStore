@@ -47,20 +47,20 @@ export const register = (data,handleNext,navigate) => async (dispatch) => {
 export const login = (data, navigate) => async (dispatch) => {
     try {
         await axios.post('https://www.harmonystore01.com/api/login', data).then((res)=>{
+           if(res.data.msg==="secsuss"){
             dispatch({ type: LOGIN, payload: res.data })
             console.log(res.data)
+            navigate("/profile")
+           }
+       
         })
         
-        navigate("/profile")
-        setTimeout(() => {
-            window.location.reload()
-        }, 1500);
+        
+        // setTimeout(() => {
+        //     window.location.reload()
+        // }, 1500);
     } catch (error) {
-        if (error.response.data) {
-            (error.response.data.errors.forEach(element => {
-                dispatch(alertError(element.msg))
-            }))
-        }
+       console.log(error)
 
 
     }
