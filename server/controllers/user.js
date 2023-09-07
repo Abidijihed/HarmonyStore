@@ -73,6 +73,7 @@ getoneuser:((req,res)=>{
   })
 }),
 updateUser : (req, res) => {
+  console.log(req.body,req.params.id)
   const {FirstName, LastName, Email, Address, phoneNumber, country, Zip, City } = req.body;
  const {id} =req.params.id
   // Construct the SQL query to update user information

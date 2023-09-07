@@ -81,7 +81,7 @@ function StepTowSaveInformation({handleNext}) {
 
   return (
     <div className='steptow' >
-    <Form noValidate validated={validated} onSubmit={handleSubmit}>
+    <Form noValidate validated={validated}>
       <Row className="mb-3">
         <Form.Group as={Col} md="4" controlId="validationCustom01">
           <Form.Label>First name</Form.Label>
@@ -89,7 +89,7 @@ function StepTowSaveInformation({handleNext}) {
             required
             type="text"
             placeholder="First name"
-            value={FirstName!==undefined?FirstName:""}
+            value={FirstName!=="undefined"?FirstName:""}
             onChange={(e)=>setFirstName(e.target.value)}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -100,7 +100,7 @@ function StepTowSaveInformation({handleNext}) {
             required
             type="text"
             placeholder="Last name"
-            value={LastName!==undefined?LastName:""}
+            value={LastName!=="undefined"?LastName:""}
             onChange={(e)=>setLastName(e.target.value)}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -113,7 +113,7 @@ function StepTowSaveInformation({handleNext}) {
               placeholder="Email"
               aria-describedby="inputGroupPrepend"
               required
-              value={Email!==undefined?Email:""}
+              value={Email!=="undefined"?Email:""}
               onChange={(e)=>setEmail(e.target.value)}
             />
             <Form.Control.Feedback type="invalid">
@@ -127,7 +127,7 @@ function StepTowSaveInformation({handleNext}) {
             required
             type="text"
             placeholder="Votre Adress"
-            value={Address!==undefined?Address:""}
+            value={Address!=="undefined"?Address:""}
             onChange={(e)=>setAddress(e.target.value)}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -151,7 +151,7 @@ function StepTowSaveInformation({handleNext}) {
            type="text"
             placeholder="Country"
              required  
-             value={country!==undefined?country:""}
+             value={country!=="undefined"?country:""}
              onChange={(e)=>setCountry(e.target.value)}
              />
           <Form.Control.Feedback type="invalid">
@@ -164,7 +164,7 @@ function StepTowSaveInformation({handleNext}) {
            type="text"
             placeholder="City"
              required 
-             value={City!==undefined?City:""}
+             value={City!=="undefined"?City:""}
              onChange={(e)=>setCity(e.target.value)}
              />
           <Form.Control.Feedback type="invalid">
@@ -177,7 +177,7 @@ function StepTowSaveInformation({handleNext}) {
           type="text"
            placeholder="Code postal"
             required 
-            value={Zip!==undefined?Zip:""}
+            value={Zip!=="undefined"?Zip:""}
             onChange={(e)=>setZip(e.target.value)}
             />
           <Form.Control.Feedback type="invalid">
@@ -188,7 +188,7 @@ function StepTowSaveInformation({handleNext}) {
           <Form.Label>Phone Number</Form.Label>
           <PhoneInput
             placeholder="Enter phone number"
-            value={phoneNumber!==undefined?phoneNumber:""}
+            value={phoneNumber!=="undefined"?phoneNumber:""}
             onChange={setPhoneNumber}
             required
           />
@@ -197,7 +197,7 @@ function StepTowSaveInformation({handleNext}) {
           </Form.Control.Feedback>
         </Form.Group>
       </Row>
-      <Button type='submit' style={{backgroundColor:"#708090"}}>confirmer</Button>
+      <Button type='button' style={{backgroundColor:"#708090"}} onClick={handleSubmit}>confirmer</Button>
     </Form>
     </div>
   );
