@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS orders (
   user_id INT NOT NULL,
   order_items_id INT NOT NULL,
   order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
-  payement_done BOOLEAN NOT NULL,
+  payement_done BOOLEAN ,
   status ENUM('pending', 'processing', 'shipped', 'delivered', 'canceled') NOT NULL DEFAULT 'pending',
   FOREIGN KEY (order_items_id) REFERENCES order_items (id),
   FOREIGN KEY (user_id) REFERENCES users (id),

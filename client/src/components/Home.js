@@ -135,7 +135,7 @@ const hadelsuscribe=()=>{
         </div>
         </div>
         <div style={{marginTop:'30px',justifyContent:'center',display:"flex"}}>
-        <Row >
+        <Row style={{display:"flex",justifyContent:"center"}} >
   <Col xs={12} sm={6}>
   <span><GrDeliver style={{fontSize: '50px'}}  /></span>
     <h6 style={{fontFamily: "fantasy"}}>Livraison à domicile</h6>

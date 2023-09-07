@@ -3,9 +3,23 @@ import { REGISTER, LOGIN, GET_CURRENT } from '../actionType/ActionType'
 import { alertError } from './AlertAction'
 import Swal from 'sweetalert2'
 
-export const register = (data,handleNext) => async (dispatch) => {
+export const register = (data,handleNext,navigate) => async (dispatch) => {
     try {
-        await axios.post('https://www.harmonystore01.com/api/Create_user', data).then((res)=>{
+        if(handleNext){
+            await axios.post('https://www.harmonystore01.com/api/Create_user', data).then((res)=>{
+                if (res.data === "user exist") {
+                      Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Something went wrong! USER Exists",
+                      });
+                    }else {
+                       dispatch({ type: REGISTER, payload: res.data },handleNext())
+                       
+                    }
+            })
+        }else if (navigate){
+            await axios.post('https://www.harmonystore01.com/api/Create_user', data).then((res)=>{
             if (res.data === "user exist") {
                   Swal.fire({
                     icon: "error",
@@ -13,10 +27,12 @@ export const register = (data,handleNext) => async (dispatch) => {
                     text: "Something went wrong! USER Exists",
                   });
                 }else {
-                   dispatch({ type: REGISTER, payload: res.data },handleNext())
+                   dispatch({ type: REGISTER, payload: res.data },navigate("/profile"))
                    
                 }
         })
+        }
+        
         
 
     } catch (error) {

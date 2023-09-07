@@ -77,7 +77,7 @@ function SignupPage() {
           Email: Email,
           PhoneNumber: PhoneNumber,
           Password: Password,
-        }),navigate("/profile"))
+        }),navigate)
        
     }
   };

@@ -96,30 +96,6 @@ export default function FilterComponent() {
         </AccordionDetails>
       </Accordion>
       <Accordion
-        expanded={expanded === "panel7"}
-        onChange={handleChange("panel7")}
-      >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel7bh-content"
-          id="panel7bh-header"
-        >
-           <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
-           Bijoux Enfant 
-          </Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Divider />
-          <Typography onClick={() =>
-            navigate(
-              `/product/${encodeURIComponent("Serie")}`
-            )
-          } style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
-          Serie
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion
         expanded={expanded === "panel8"}
         onChange={handleChange("panel8")}
       >

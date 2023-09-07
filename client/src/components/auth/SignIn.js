@@ -53,30 +53,7 @@ function LoginPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  /*const handelLoginUser = () => {
-    axios
-      .post("https://www.harmonystore01.com/api/login", {
-        Email: Email,
-        Password: Password,
-      })
-      .then((res) => {
-        if (res.data === "somthing went wrong") {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Something went wrong! Check your Email Or Password",
-          });
-        } else if (res.data[1] === "secsuss") {
-          localStorage.setItem("token", res.data[0]);
-          localStorage.setItem("id", res.data[2]);
-          
-          navigate("/profile");
-          setTimeout(() => {
-            window.location.reload()
-          }, 1000);
-        }
-      });
-  }; */
+ 
   return (
     <Card className={classes.root}>
       <CardHeader

@@ -73,8 +73,8 @@ getoneuser:((req,res)=>{
   })
 }),
 updateUser : (req, res) => {
-  const { id, FirstName, LastName, Email, Address, phoneNumber, country, Zip, City } = req.body;
- 
+  const {FirstName, LastName, Email, Address, phoneNumber, country, Zip, City } = req.body;
+ const {id} =req.params.id
   // Construct the SQL query to update user information
   const query = `UPDATE users SET FirstName=?, LastName=?, Email=?, Address=?, PhoneNumber=?, country=?, Zip=?, City=? WHERE id=?`;
 

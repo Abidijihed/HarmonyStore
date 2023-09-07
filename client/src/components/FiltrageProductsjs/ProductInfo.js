@@ -154,7 +154,7 @@ export default function ProductInfo({ getlen }) {
   return (
     <div style={{ margin: "10% 5% 5% 5%" }}>
       <Row>
-        <Col sm={8} style={{ boxShadow: "2px 4px 4px", padding: "5px" }}>
+        <Col sm={4} style={{ boxShadow: "2px 4px 4px", padding: "5px" }}>
           <img
             src={selectedThumbnail?selectedThumbnail:oneproduct.image_url}
             alt={oneproduct.product_name}

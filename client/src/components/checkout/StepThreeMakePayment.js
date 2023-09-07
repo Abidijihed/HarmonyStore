@@ -37,7 +37,7 @@ export default function StepThreeMakePayment() {
     const selectedRate = rates[cartToken];
     setExchangeRate(selectedRate);
       
-      let convertedAmount = data[0]?.total_amount+(delevrycharge*selectedRate);
+      let convertedAmount = data[0]?.total_amount>200?data[0]?.total_amount:data[0]?.total_amount+(delevrycharge*selectedRate);
 
       if (cartToken === 'EUR' || cartToken === 'USD') {
         // charge=charge*100
@@ -75,6 +75,8 @@ export default function StepThreeMakePayment() {
   })
  }
   const makepayment = async () => {
+    const id=localStorage.getItem('id')
+  const data=JSON.parse(localStorage.getItem('cart'))
     try {
       await axios
         .post('https://www.harmonystore01.com/payments/payment', {
@@ -85,7 +87,7 @@ export default function StepThreeMakePayment() {
           firstname: user?.FirstName,
           lastname: user?.LastName,
           email: user?.Email,
-        })
+        },{data,liverison:delevrycharge*exchangeRate,id})
         .then((response) => {
           window.location.href = response.data.payUrl;
         });
@@ -127,11 +129,11 @@ export default function StepThreeMakePayment() {
           </tr>
           <tr>
             <td colSpan="3">Delivery Charge :</td>
-            <td>{delevrycharge*exchangeRate}{" "}{token}</td>
+            <td>{datacart[0]?.total_amount>200?"Livraison gratuite":delevrycharge*exchangeRate}{" "}{token}</td>
           </tr>
           <tr>
             <td colSpan="3">Total Payment:</td>
-            <td>{datacart[0]?.total_amount+(delevrycharge*exchangeRate)} {" "}{token} </td>
+            <td>{datacart[0]?.total_amount>200?datacart[0]?.total_amount:datacart[0]?.total_amount+(delevrycharge*exchangeRate)} {" "}{token} </td>
           </tr>
         </tbody>
       </table>

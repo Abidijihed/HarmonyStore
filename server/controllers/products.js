@@ -43,12 +43,12 @@ module.exports = {
       err ? res.status(500).send(err) : res.status(200).send("product deleted");
     });
   },
-  CreateOrderItems: async (req, res) => {
+  CreateOrderItems: async (req, res,infoorder) => {
     console.log(req.body);
-    const orderItems = req.body.data;
-    const paymentType = req.body.paymenttype;
-    const user_id = req.body.id;
-    const liverison=req.body.liverison
+    const orderItems = req.body.data?req.body.data:infoorder.data;
+    const paymentType = req.body.paymenttype?req.body.paymenttype:infoorder.paymentType;
+    const user_id = req.body.id?req.body.id:infoorder.id;
+    const liverison=req.body.liverison?req.body.liverison:infoorder.liverison
   
     if (!orderItems || !Array.isArray(orderItems) || orderItems.length === 0) {
       return res.status(400).json({ error: 'Invalid order items data' });
@@ -56,7 +56,7 @@ module.exports = {
   
     const insertQuery = 'INSERT INTO order_items (total_amount, product_id, quantity, price_per_unit, total_price) VALUES ?';
     const values = orderItems.map((item) => [
-      item.total_amount+liverison,
+      item.total_amount>200?item.total_amount:item.total_amount+liverison,
       item.id,
       item.quantity,
       item.price,

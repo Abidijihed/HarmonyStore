@@ -89,7 +89,7 @@ function StepTowSaveInformation({handleNext}) {
             required
             type="text"
             placeholder="First name"
-            value={FirstName}
+            value={FirstName!==undefined?FirstName:""}
             onChange={(e)=>setFirstName(e.target.value)}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -100,7 +100,7 @@ function StepTowSaveInformation({handleNext}) {
             required
             type="text"
             placeholder="Last name"
-            value={LastName}
+            value={LastName!==undefined?LastName:""}
             onChange={(e)=>setLastName(e.target.value)}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -113,7 +113,7 @@ function StepTowSaveInformation({handleNext}) {
               placeholder="Email"
               aria-describedby="inputGroupPrepend"
               required
-              value={Email}
+              value={Email!==undefined?Email:""}
               onChange={(e)=>setEmail(e.target.value)}
             />
             <Form.Control.Feedback type="invalid">
@@ -127,7 +127,7 @@ function StepTowSaveInformation({handleNext}) {
             required
             type="text"
             placeholder="Votre Adress"
-            value={Address}
+            value={Address!==undefined?Address:""}
             onChange={(e)=>setAddress(e.target.value)}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -151,7 +151,7 @@ function StepTowSaveInformation({handleNext}) {
            type="text"
             placeholder="Country"
              required  
-             value={country}
+             value={country!==undefined?country:""}
              onChange={(e)=>setCountry(e.target.value)}
              />
           <Form.Control.Feedback type="invalid">
@@ -164,7 +164,7 @@ function StepTowSaveInformation({handleNext}) {
            type="text"
             placeholder="City"
              required 
-             value={City}
+             value={City!==undefined?City:""}
              onChange={(e)=>setCity(e.target.value)}
              />
           <Form.Control.Feedback type="invalid">
@@ -177,7 +177,7 @@ function StepTowSaveInformation({handleNext}) {
           type="text"
            placeholder="Code postal"
             required 
-            value={Zip}
+            value={Zip!==undefined?Zip:""}
             onChange={(e)=>setZip(e.target.value)}
             />
           <Form.Control.Feedback type="invalid">
@@ -188,7 +188,7 @@ function StepTowSaveInformation({handleNext}) {
           <Form.Label>Phone Number</Form.Label>
           <PhoneInput
             placeholder="Enter phone number"
-            value={phoneNumber}
+            value={phoneNumber!==undefined?phoneNumber:""}
             onChange={setPhoneNumber}
             required
           />
