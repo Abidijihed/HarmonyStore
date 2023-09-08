@@ -7,9 +7,6 @@ import Typography  from "@mui/material/Typography";
    FaFacebook,
    FaInstagram,
    FaTiktok,
-   FaCcMastercard,
-   FaCcVisa,
-   FaCcStripe
  } from 'react-icons/fa';
 import {RiSecurePaymentLine} from 'react-icons/ri'
  import {BsFillTelephoneFill}from 'react-icons/bs'
@@ -21,7 +18,6 @@ export default function Footer() {
     <div className="footer">
          <Row className="justify-content-center">
         <Col xs="auto">
-          {/* Social media icons go here */}
           <h1>Social media</h1>
         <div className='socialmedia'>
         <a

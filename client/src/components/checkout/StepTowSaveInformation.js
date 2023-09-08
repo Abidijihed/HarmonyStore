@@ -30,7 +30,7 @@ function StepTowSaveInformation({handleNext}) {
   useEffect(() => {
     if (user) {
       setFirstName(user.FirstName || '');
-      setPhoneNumber(user.phoneNumber || '');
+      setPhoneNumber(user.PhoneNumber || '');
       setLastName(user.LastName || '');
       setEmail(user.Email || "");
       setAddress(user.Address || "");
@@ -75,7 +75,7 @@ function StepTowSaveInformation({handleNext}) {
           Zip:Zip,
           phoneNumber:phoneNumber,
           Password:Password
-        },handleNext))
+        },handleNext,null))
     }
   };
 

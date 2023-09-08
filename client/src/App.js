@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { BrowserRouter,Route, Routes } from "react-router-dom";
 import SignupPage from "./components/auth/SignUp";
 import SignInPge from "./components/auth/SignIn";
 import Home from "./components/Home";
@@ -20,8 +20,11 @@ import ProductInfo from "./components/FiltrageProductsjs/ProductInfo";
 import PrivetOrder from "./components/user/PrivetOrder";
 import UserOrder from "./components/information/UserOrder";
 import MyOrder from "./components/user/MyOrder";
+import axios from "axios";
 function App() {
 const [productItemslen,setproductItemslen]=useState([])
+const [searchResults, setSearchResults] = useState([]);
+
 const [search,setSearch]=useState("")
    const dispatch=useDispatch()
    const getlen=()=>{
@@ -35,13 +38,23 @@ const [search,setSearch]=useState("")
    },[dispatch])
    const products=useSelector((state)=>state.UserReducer.data)
  const handelsearch=(e)=>{
-  setSearch(e.target.value)
+  const search = e.target.value;
+  setSearch(search);
+
+  axios.get(`http://localhost:5700/api/search?q=${search}`)
+  .then((response) => {
+
+    setSearchResults(response.data);
+  })
+  .catch((error) => {
+    console.error("Error searching for products: " + error);
+  });
  }
   
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar productItemslen={productItemslen} handelsearch={handelsearch} />
+        <Navbar productItemslen={productItemslen} handelsearch={handelsearch} searchResults={searchResults} />
        
         <br />
         <Routes>

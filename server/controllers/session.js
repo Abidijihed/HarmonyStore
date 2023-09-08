@@ -4,7 +4,6 @@ module.exports={
         return new Promise((resolve,reject)=>{
       connection.query('SELECT * FROM sessions WHERE session=?',[session],
       (err,results)=>{
-        // console.log(results,'sesssionss')
           err ? reject(err):resolve(results)
       } )
      

@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, {useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Spinner from 'react-bootstrap/Spinner';
 
@@ -74,9 +74,7 @@ function ProfilePage() {
     });
   };
   return (
-    <>
-      {console.log(user)}
-      
+    <>   
      { !user ?
      <Spinner animation="border" role="status">
       <span className="visually-hidden">Loading...</span>
@@ -116,7 +114,7 @@ function ProfilePage() {
               <Typography variant="h6" gutterBottom>
                 Phone Number:
               </Typography>
-              <Typography variant="body1">{user?.phoneNumber}</Typography>
+              <Typography variant="body1">{user?.PhoneNumber}</Typography>
             </div>
             <Divider />
             <div className={classes.section}>

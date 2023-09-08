@@ -138,7 +138,6 @@ export const Add_images = (data,id) => async (dispatch) => {
 export const update_images = (data,p_id,id) => async (dispatch) => {
     try {
        await axios.put(`https://www.harmonystore01.com/api/update_images/${id}`,data).then((res)=>{
-        console.log(res)
         dispatch(get_images(p_id))
        })
     } catch (error) {

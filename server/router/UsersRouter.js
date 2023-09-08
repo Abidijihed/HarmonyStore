@@ -6,5 +6,5 @@ router.post('/api/login',controllerUser.LoginUser)
 router.get('/api/getone_user/:id',controllerUser.getoneuser)
 router.put('/api/update_user/:id',controllerUser.updateUser)
 router.get('/api/logout',controllerUser.logout)
-
+router.post("/api/newsletter",controllerUser.newsletterUser)
 module.exports={userRoter:router}

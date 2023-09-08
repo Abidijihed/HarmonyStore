@@ -14,3 +14,23 @@
 #stepone1{
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
+.search-suggestions {
+  position: absolute;
+  background-color: white;
+  color: black;
+  border: 1px solid #555;
+  border-radius: 4px;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 1;
+  padding: 5px;
+}
+
+.search-suggestion-item {
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.search-suggestion-item:hover {
+  background-color: #555;
+}

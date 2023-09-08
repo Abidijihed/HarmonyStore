@@ -25,7 +25,7 @@ import { useNavigate } from "react-router-dom";
 import { get_current } from "./redux/action/UserAction";
 import { useDispatch, useSelector } from "react-redux";
 import FilterComponent from "./components/FiltreComponents/FilterComponent";
-const Navbar = ({ productItemslen, handelsearch }) => {
+const Navbar = ({ productItemslen, handelsearch,searchResults }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [token, setToken] = useState(null);
@@ -57,6 +57,28 @@ const Navbar = ({ productItemslen, handelsearch }) => {
   // const navigate=useNavigate()
 
   
+  const renderSearchSuggestions = () => {
+    if (searchResults.length === 0) {
+      return null; // Don't render anything if there are no suggestions
+    }
+
+    return (
+      <div className="search-suggestions">
+        <ul>
+        {searchResults.map((product) => (
+  <li style={{cursor:"pointer"}} key={product.id}
+  onClick={() =>
+            navigate(
+              `/product/${encodeURIComponent(product.product_name)}`
+            )
+          }
+  
+   >{product.product_name}</li>
+))}
+        </ul>
+      </div>
+    );
+  };
   const renderDrawer = () => (
     <div style={{ width: "350px" }}>
       <List>
@@ -167,6 +189,7 @@ const Navbar = ({ productItemslen, handelsearch }) => {
               startAdornment={<SearchIcon style={{ color: "#B76E79" }} />}
               style={{ marginRight: "10px", color: "#000000" }}
             />
+            {renderSearchSuggestions()}
           </div>
           {!isMobile && (
             <div style={{ display: "flex", alignItems: "center" }}>

@@ -11,8 +11,6 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { Link, useNavigate } from "react-router-dom";
 // import { Loginuser } from '../redux/action/userAction';
 import { useDispatch } from "react-redux";
-import axios from "axios";
-import Swal from "sweetalert2";
 import { login } from "../../redux/action/UserAction";
 
 const useStyles = makeStyles((theme) => ({

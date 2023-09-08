@@ -66,26 +66,37 @@ res.status(200).send('user loged out')
 
 },
 getoneuser:((req,res)=>{
-  console.log(req.params.id)
   const query=`select * from users where id=${req.params.id}`
   connection.query(query,(err,result)=>{
     err ?res.status(500).send(err):res.status(200).send(result)
   })
 }),
-updateUser : (req, res) => {
-  console.log(req.body,req.params.id)
-  const {FirstName, LastName, Email, Address, phoneNumber, country, Zip, City } = req.body;
- const {id} =req.params.id
+updateUser: (req, res) => {
+  const { FirstName, LastName, Email, Address, phoneNumber, country, Zip, City } = req.body;
+
   // Construct the SQL query to update user information
-  const query = `UPDATE users SET FirstName=?, LastName=?, Email=?, Address=?, PhoneNumber=?, country=?, Zip=?, City=? WHERE id=?`;
+  const query = `UPDATE users SET FirstName="${FirstName}", LastName="${LastName}", Email="${Email}", Address="${Address}", PhoneNumber="${phoneNumber}", country="${country}", Zip="${Zip}", City="${City}" WHERE id=${req.params.id}`;
 
   // Execute the query with user data
-  connection.query(query, [FirstName, LastName, Email, Address, phoneNumber, country, Zip,City, id], (error, results) => {
+  connection.query(query, (error, results) => {
     if (error) {
-      res.status(500).json({ error: 'An error occurred while updating the user.' });
+      res.status(500).json({ error: error });
     } else {
       res.status(200).json({ message: 'User updated successfully.' });
     }
-  })
+  });
+},
+
+newsletterUser:((req,res)=>{
+  const query=`insert into newsletter(email) values("${req.body.email}")` 
+  connection.query(query,(err,result)=>{
+   err ? res.status(500).send(err):res.status(200).send("user subscribe")
+  }) 
+})
 }
-}
+
+
+
+
+
+

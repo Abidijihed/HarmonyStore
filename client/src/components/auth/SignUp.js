@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { Typography, makeStyles, TextField, Button } from "@material-ui/core";
+import {
+  Typography,
+  makeStyles,
+  TextField,
+  Button,
+} from "@material-ui/core";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-
 import { Link, useNavigate } from "react-router-dom";
-
-import axios from "axios";
-import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/action/UserAction";
-// const token=localStorage.getItem("token")
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -41,44 +42,58 @@ function SignupPage() {
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [phoneError, setPhoneError] = useState(false);
-  const dispatch= useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleSignup = (e) => {
-    // e.preventDefault();
+
+  const isFormValid = () => {
+    let isValid = true;
+
     if (FirstName === "") {
       setFirstNameError(true);
+      isValid = false;
     } else {
       setFirstNameError(false);
     }
+
     if (!/\S+@\S+\.\S+/.test(Email)) {
       setEmailError(true);
+      isValid = false;
     } else {
       setEmailError(false);
     }
+
     if (Password.length < 8) {
       setPasswordError(true);
+      isValid = false;
     } else {
       setPasswordError(false);
     }
+
     if (!PhoneNumber) {
       setPhoneError(true);
+      isValid = false;
     } else {
       setPhoneError(false);
     }
-    if (
-      FirstName &&
-      /\S+@\S+\.\S+/.test(Email) &&
-      Password.length >= 8 &&
-      PhoneNumber
-    ) {
- 
-      dispatch(register({
-          FirstName: FirstName,
-          Email: Email,
-          PhoneNumber: PhoneNumber,
-          Password: Password,
-        }),navigate)
-       
+
+    return isValid;
+  };
+
+  const handleSignup = () => {
+    if (isFormValid()) {
+      dispatch(
+        register(
+          {
+            FirstName: FirstName,
+            Email: Email,
+            PhoneNumber: PhoneNumber,
+            Password: Password,
+            next: false,
+          },
+          null,
+          navigate
+        )
+      );
     }
   };
 
@@ -91,7 +106,6 @@ function SignupPage() {
         className={classes.form}
         noValidate
         autoComplete="off"
-        // onSubmit={()=>dispatch(register({FirstName,Email,Password,PhoneNumber}))}
       >
         <TextField
           label="First Name"
@@ -123,7 +137,7 @@ function SignupPage() {
           value={PhoneNumber}
           onChange={(PhoneNumber) => setPhone(PhoneNumber)}
         />
-        <Button variant="contained" color="primary" onClick={handleSignup} >
+        <Button variant="contained" color="primary" onClick={handleSignup}>
           Sign Up
         </Button>
       </div>

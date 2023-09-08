@@ -5,7 +5,7 @@ import Swal from 'sweetalert2'
 
 export const register = (data,handleNext,navigate) => async (dispatch) => {
     try {
-        if(handleNext){
+        if(data.next===false){
             await axios.post('https://www.harmonystore01.com/api/Create_user', data).then((res)=>{
                 if (res.data === "user exist") {
                       Swal.fire({
@@ -14,52 +14,49 @@ export const register = (data,handleNext,navigate) => async (dispatch) => {
                         text: "Something went wrong! USER Exists",
                       });
                     }else {
-                       dispatch({ type: REGISTER, payload: res.data },handleNext())
+                       dispatch({ type: REGISTER, payload: res.data })
+                       navigate("/profile")
                        
                     }
             })
-        }else if (navigate){
+        }else{
             await axios.post('https://www.harmonystore01.com/api/Create_user', data).then((res)=>{
             if (res.data === "user exist") {
                   Swal.fire({
                     icon: "error",
                     title: "Oops...",
                     text: "Something went wrong! USER Exists",
-                  });
+                  })
                 }else {
-                   dispatch({ type: REGISTER, payload: res.data },navigate("/profile"))
-                   
+                   dispatch({ type: REGISTER, payload: res.data })
+                   handleNext()
                 }
         })
         }
-        
-        
-
     } catch (error) {
-        if (error.response.data) {
-            (error.response.data.errors.forEach(element => {
-                dispatch(alertError(element.msg))
-            }))
-        }
+       console.log(error)
 
     }
 }
 export const login = (data, navigate) => async (dispatch) => {
     try {
         await axios.post('https://www.harmonystore01.com/api/login', data).then((res)=>{
-            console.log(res.data)
         if(res.data.msg==="secsuss"){
             dispatch({ type: LOGIN, payload: res.data })
            
             navigate("/profile")
+            setTimeout(() => {
+                window.location.reload()
+            }, 1500);
+           }else {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong! Verifer Votre donner",
+              })
            }
        
-        })
-        
-        
-        // setTimeout(() => {
-        //     window.location.reload()
-        // }, 1500);
+        })     
     } catch (error) {
        console.log(error)
 
@@ -79,10 +76,8 @@ export const get_current = (id) => async (dispatch) => {
 }
 export const update_current_user = (id,data,handleNext) => async (dispatch) => {
     // const config = { headers: { token: localStorage.getItem("token") } }
-    console.log(data,id)
     try {
         await axios.put('https://www.harmonystore01.com/api/update_user/'+id,data).then((res)=>{
-      console.log(res)
         if(res.data.message=="User updated successfully."){
         dispatch(get_current(id),handleNext())
        }else{

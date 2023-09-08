@@ -44,7 +44,6 @@ module.exports = {
     });
   },
   CreateOrderItems: async (req, res,infoorder) => {
-    console.log(req.body);
     const orderItems = req.body.data?req.body.data:infoorder.data;
     const paymentType = req.body.paymenttype?req.body.paymenttype:infoorder.paymentType;
     const user_id = req.body.id?req.body.id:infoorder.id;
@@ -124,7 +123,6 @@ module.exports = {
                        res.status(500).json({ error: 'An error occurred while processing the request' });
                     });
                   }
-                  console.log('Order items and orders created successfully');
                    res.status(200).send({ message: 'Order items and orders created successfully' });
                 });
               })
@@ -177,7 +175,6 @@ module.exports = {
         console.error(err);
         res.status(500).send(err);
       } else {
-        console.log(result);
         res.status(200).send(result);
       }
     });
@@ -244,6 +241,23 @@ JOIN
     const query=`update product_images set product_images="${req.body.product_image}" where id=${req.params.id}`
     connection.query(query,(err,result)=>{
       err ? res.status(500).send(err) : res.status(200).send('image updated')
+    })
+  }),
+  SEARCHSEG:((req, res) => {
+    const searchTerm = req.query.q; // Get the search query from the request query parameters
+  
+    // Construct the SQL query to search for products by name or description
+    const query = `SELECT * FROM products WHERE product_name LIKE ? OR description LIKE ?`;
+    const searchValue = `%${searchTerm}%`;
+  
+    // Execute the query with the search term
+    connection.query(query, [searchValue, searchValue], (error, results) => {
+      if (error) {
+        console.error('Error searching for products: ' + error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      } else {
+        res.status(200).json(results);
+      }
     })
   })
   

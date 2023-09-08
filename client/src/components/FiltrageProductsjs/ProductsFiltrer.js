@@ -6,26 +6,36 @@ import { Accordion, AccordionDetails, AccordionSummary, Checkbox, Divider, FormC
 import { Pagination } from "@mui/material";
 import HomeCard from "../card/HomeCard";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { useNavigate } from "react-router-dom";
 
 export default function ProductsFiltrer({ products }) {
-  const navigate=useNavigate()
   const { category } = useParams();
   const [selectedProducts, setSelectedProducts] = useState("");
   const [expanded, setExpanded] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 5; // Number of products to display per page
 
   const handleCheckboxChange = (event) => {
     const value = event.target.value;
     if (event.target.checked) {
-     setSelectedProducts(value)
-  }else{
-    setSelectedProducts('')
+      setSelectedProducts(value);
+    } else {
+      setSelectedProducts("");
+    }
+  };
 
-  }
-  }
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+
+  // Calculate the index range for the current page
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <div style={{ margin: "10% 5% 5% 5%" }}>
       <Row>
@@ -345,16 +355,31 @@ export default function ProductsFiltrer({ products }) {
           </FormGroup>
         </Col>
         <Col sm={8} id="productinfoo">
-          {products.filter((el)=>
-          el.category.toUpperCase() === category.toUpperCase() ||
-         el.category.toUpperCase() === category.toUpperCase().slice(0, category.indexOf(" ")) ||
-          selectedProducts.toUpperCase()===el.category.toUpperCase()).map((el) => (
-            <React.Fragment key={el.id}>
-              <HomeCard product={el} />
-            </React.Fragment>
-          ))}
+          {currentProducts
+            .filter(
+              (el) =>
+                el.product_name.toUpperCase() === category.toUpperCase() ||
+                el.category.toUpperCase() === category.toUpperCase() ||
+                el.category.toUpperCase() ===
+                  category.toUpperCase().slice(0, category.indexOf(" ")) ||
+                selectedProducts.toUpperCase() === el.category.toUpperCase()
+            )
+            .map((el) => (
+              <React.Fragment key={el.id}>
+                <HomeCard product={el} />
+              </React.Fragment>
+            ))}
+          <Pagination
+            count={Math.ceil(products.length / productsPerPage)}
+            color="secondary"
+            style={{
+              marginTop: "10px",
+              display: "flex",
+              justifyContent: "center",
+            }}
+            onChange={(event, page) => paginate(page)}
+          />
         </Col>
-        <Pagination count={10} color="secondary" style={{marginTop:"10px",display:'flex',justifyContent:'center'}}/>
       </Row>
     </div>
   );

@@ -6,7 +6,7 @@ const ProductController=require("../controllers/products")
  router.put("/api/update_product/:id",ProductController.UpdateProduct)
  router.delete("/api/delete_product/:id",ProductController.DeleteProduct)
  router.get('/api/get_one_product/:id',ProductController.GetoneProduct)
-
+ router.get('/api/search',ProductController.SEARCHSEG)
 
  router.post("/api/createOrderItems",ProductController.CreateOrderItems)
 router.get('/api/get_user_order/:id',ProductController.GetUserOrder)
