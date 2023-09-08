@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
@@ -30,16 +29,17 @@ export default function Home({ products, getlen, search }) {
       .then((res) => {
         if (res.data === "user subscribe") {
           Swal.fire({
-            position: "top-end",
-            icon: "center",
+            position: "center",
+            icon: "success",
             title:
               "Bienvenue à notre service d'abonnement ! Nous vous tiendrons informé prochainement avec les dernières actualités.",
             showConfirmButton: false,
             timer: 1500,
           });
+          setEmail("");
         }
       });
-    setEmail("");
+   
   };
   return (
     <>

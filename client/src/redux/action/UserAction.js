@@ -16,6 +16,9 @@ export const register = (data,handleNext,navigate) => async (dispatch) => {
                     }else {
                        dispatch({ type: REGISTER, payload: res.data })
                        navigate("/profile")
+                       setTimeout(() => {
+                        window.location.reload()
+                    }, 1500);
                        
                     }
             })
