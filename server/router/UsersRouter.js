@@ -9,7 +9,7 @@ router.get('/api/logout',controllerUser.logout)
 router.post("/api/newsletter",controllerUser.newsletterUser)
 
 
-router.post('/api/request-password-reset',session.requestPasswordReset)
+router.post('/request-password-reset',session.requestPasswordReset)
 router.put('/api/password/reset/:token',session.resetPassword)
 
 module.exports={userRoter:router}
