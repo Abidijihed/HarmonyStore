@@ -2,7 +2,7 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Typography  from "@mui/material/Typography";
-
+import logoF from './logoF.jpg'
  import {
    FaFacebook,
    FaInstagram,
@@ -91,6 +91,9 @@ export default function Footer() {
             {/* Payment method icons and secure payment text go here */}
           </div>
         </Col>
+      </Row>
+      <Row style={{display:"flex",justifyContent:"center"}}>
+        <img src={logoF} alt='logo Footer' style={{width:"400px",height:"200px"}} />
       </Row>
     </div>
   );
