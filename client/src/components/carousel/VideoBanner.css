@@ -35,7 +35,6 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     z-index: -1;
@@ -59,4 +58,9 @@
   .content p {
     font-size: 1.5rem;
   }
+  @media screen and (min-width: 900px) {
+    .video-banner {
+      margin-top: -67px; /* Font size for PC screens (adjust as needed) */
+    }
   
+  }
