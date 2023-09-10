@@ -8,7 +8,7 @@ function ResetPassword() {
 
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-const resetToken=useParams()
+const {resetToken}=useParams()
   const handleResetPassword = () => {
     // Check if the newPassword and confirmPassword match
     if (newPassword !== confirmPassword) {
