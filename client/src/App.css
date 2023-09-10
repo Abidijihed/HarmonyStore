@@ -398,3 +398,12 @@ cursor: pointer;
   display: flex;
   justify-content: space-around;
 }
+#harmony{
+  display: flex;
+    justify-content: center;
+    font-size: xxx-large;
+    font-family: auto;
+}
+.harmmonystyle{
+  margin: 15px;
+}

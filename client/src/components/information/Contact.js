@@ -5,56 +5,111 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
+import axios from "axios"; // Import Axios
 
 function Contact() {
+  // Define state variables for the form inputs
   const [validated, setValidated] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
 
-  const handleSubmit = (event) => {
+  // Handle input changes
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     const form = event.currentTarget;
+
     if (form.checkValidity() === false) {
-      event.preventDefault();
       event.stopPropagation();
+      setValidated(true);
+      return;
     }
 
-    setValidated(true);
+    try {
+      // Send the form data to your API endpoint using Axios
+      await axios.post("https://www.harmonystore01.com/api/send/email", formData);
+
+      // Reset the form and state
+      form.reset();
+      setFormData({
+        firstName: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+
+      // You can add a success message or redirect to a thank you page here
+    } catch (error) {
+      // Handle any errors here (e.g., show an error message)
+      console.error("Error sending email:", error);
+    }
   };
+
   return (
-    <Container style={{marginTop:"30px"}}>
+    <Container style={{ marginTop: "30px" }}>
       <Row>
         <Col xs={12} md={6}>
           <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <Row className="mb-3">
               <Form.Group as={Col} md="4" controlId="validationCustom01">
-                <Form.Label>First name</Form.Label>
+                <Form.Label>Votre Nom</Form.Label>
                 <Form.Control
                   required
                   type="text"
-                  placeholder="First name"
-                  defaultValue="Mark"
+                  placeholder="Votre Nom"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
                 />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
-              <Form.Group as={Col} md="4" controlId="validationCustom01">
+              <Form.Group as={Col} md="4" controlId="validationCustom02">
                 <Form.Label>Email</Form.Label>
-                <Form.Control required type="email" placeholder="Your Email" />
+                <Form.Control
+                  required
+                  type="email"
+                  placeholder="Your Email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
             </Row>
             <Row className="mb-3">
-              <Form.Group as={Col} md="4" controlId="validationCustom01">
-                <Form.Label>Subject</Form.Label>
-                <Form.Control required type="text" placeholder="Subject" />
+              <Form.Group as={Col} md="4" controlId="validationCustom03">
+                <Form.Label>Sujet</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="Sujet"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
             </Row>
             <Row className="mb-3">
-              <Form.Group as={Col} md="4" controlId="validationCustom01">
+              <Form.Group as={Col} md="4" controlId="validationCustom04">
                 <Form.Label>Message</Form.Label>
                 <Form.Control
                   required
                   type="text"
-                  placeholder="Your Message"
+                  placeholder="Votre Message"
                   as="textarea"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                 />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
@@ -76,16 +131,16 @@ function Contact() {
       </Row>
       <Row>
         <Col>
-          <span>Address:</span> Impasse bir sidi tayeb sidi bou said 2026
+          <span>Adresse:</span> Impasse bir sidi tayeb sidi bou said 2026
         </Col>
         <Col>
-          <span>Phone:</span> +216 54 154 220
+          <span>Telephone:</span> +216 54 154 220
         </Col>
         <Col>
           <span>Email:</span> Malek2013malek@hotmail.fr
         </Col>
         <Col>
-          <span>Website:</span>{" "}
+          <span>SitWeb:</span>{" "}
           <a href="https://www.harmonystore01.com/">www.harmonystore01.com</a>
         </Col>
       </Row>

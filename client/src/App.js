@@ -28,7 +28,7 @@ import ResetPsswordSeccuss from "./components/auth/ResetPsswordSeccuss";
 function App() {
 const [productItemslen,setproductItemslen]=useState([])
 const [searchResults, setSearchResults] = useState([]);
-
+const [navbarprice,setnavbarprice]=useState(0)
 const [search,setSearch]=useState("")
    const dispatch=useDispatch()
    const getlen=()=>{
@@ -54,11 +54,20 @@ const [search,setSearch]=useState("")
     console.error("Error searching for products: " + error);
   });
  }
-  
+  const gettotalprice=()=>{
+    var totalPrice=JSON.parse(localStorage.getItem('cart'))
+    for (let i=0;totalPrice.length>i;i++) {
+     totalPrice=Number(totalPrice[i].price)* Number(totalPrice[i].quantity)
+    }
+    localStorage.setItem('totalPrice',totalPrice)
+    var totalget=localStorage.getItem('totalPrice')
+    setnavbarprice(totalget)
+    
+  }
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar productItemslen={productItemslen} handelsearch={handelsearch} searchResults={searchResults} search={search} />
+        <Navbar navbarprice={navbarprice} productItemslen={productItemslen} handelsearch={handelsearch} searchResults={searchResults} search={search} />
        
         <br />
         <Routes>
@@ -73,7 +82,7 @@ const [search,setSearch]=useState("")
               </PrivateRoute>
             }
           />
-           <Route path="/productinfo/:id" element={<ProductInfo getlen={getlen}  />} />
+           <Route path="/productinfo/:id" element={<ProductInfo getlen={getlen} gettotalprice={gettotalprice}  />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path='/products' element={<ListProducts data={products}  getlen={getlen} search={search}/>} />

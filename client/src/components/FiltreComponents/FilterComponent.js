@@ -107,6 +107,13 @@ export default function FilterComponent() {
                     </Typography>
                     <Typography
                     onClick={() =>
+                  navigate(`/product/${encodeURIComponent("Solitaire et alliance")}`)
+                }
+                     style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
+                   Solitaire et Alliance
+                    </Typography>
+                    <Typography
+                    onClick={() =>
                   navigate(`/product/${encodeURIComponent("Pendentif")}`)
                 }
                      style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
@@ -272,6 +279,13 @@ export default function FilterComponent() {
                 }
                     style={{cursor: "pointer",marginTop:"3px",padding:"10px"}}className="category">
                    Boucle
+                    </Typography>
+                    <Typography
+                    onClick={() =>
+                  navigate(`/product/${encodeURIComponent("Série")}`)
+                }
+                      style={{cursor: "pointer",marginBottom:"3px",padding:"10px"}} className="category">
+                    Série
                     </Typography>
                   </AccordionDetails>
                   </Accordion>

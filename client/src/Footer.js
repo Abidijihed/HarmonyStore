@@ -93,7 +93,7 @@ export default function Footer() {
         </Col>
       </Row>
       <Row style={{display:"flex",justifyContent:"center"}}>
-        <img src={logoF} alt='logo Footer' style={{width:"470px",height:"177px"}} />
+        <h1 id='harmony'><span className='harmmonystyle'>H</span><span className='harmmonystyle'>A</span><span className='harmmonystyle'>R</span><span className='harmmonystyle'>M</span><span className='harmmonystyle'>O</span><span className='harmmonystyle'>N</span><span className='harmmonystyle'>Y</span></h1>
       </Row>
     </div>
   );

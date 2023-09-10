@@ -16,7 +16,7 @@ import { get_current } from "../../redux/action/UserAction";
 import {TiDelete} from 'react-icons/ti'
 import {FcEditImage} from 'react-icons/fc'
 import Swal from "sweetalert2";
-export default function ProductInfo({ getlen }) {
+export default function ProductInfo({ getlen,gettotalprice }) {
   const [productImage, setProductImage] = useState([]);
 
   const { id } = useParams();
@@ -108,6 +108,7 @@ export default function ProductInfo({ getlen }) {
 
     // Dispatch an action to update the cart in Redux state if needed
     getlen();
+    gettotalprice()
     Swal.fire({
       position: 'center',
       icon: 'success',

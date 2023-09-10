@@ -84,22 +84,22 @@ function StepTowSaveInformation({handleNext}) {
     <Form noValidate validated={validated}>
       <Row className="mb-3">
         <Form.Group as={Col} md="4" controlId="validationCustom01">
-          <Form.Label>First name</Form.Label>
+          <Form.Label>Prénom</Form.Label>
           <Form.Control
             required
             type="text"
-            placeholder="First name"
+            placeholder="Prénom"
             value={FirstName!=="undefined"?FirstName:""}
             onChange={(e)=>setFirstName(e.target.value)}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>
         <Form.Group as={Col} md="4" controlId="validationCustom02">
-          <Form.Label>Last name</Form.Label>
+          <Form.Label>Nom</Form.Label>
           <Form.Control
             required
             type="text"
-            placeholder="Last name"
+            placeholder="Nom"
             value={LastName!=="undefined"?LastName:""}
             onChange={(e)=>setLastName(e.target.value)}
           />
@@ -117,27 +117,27 @@ function StepTowSaveInformation({handleNext}) {
               onChange={(e)=>setEmail(e.target.value)}
             />
             <Form.Control.Feedback type="invalid">
-              Please choose a Email.
+              Verifer votre  Email.
             </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>
         <Form.Group as={Col} md="4" controlId="validationCustom02">
-          <Form.Label>Votre Adress</Form.Label>
+          <Form.Label>Votre Adresse</Form.Label>
           <Form.Control
             required
             type="text"
-            placeholder="Votre Adress"
+            placeholder="votre Adresse"
             value={Address!=="undefined"?Address:""}
             onChange={(e)=>setAddress(e.target.value)}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>
         {!user ?<Form.Group as={Col} md="4" controlId="validationCustom02">
-          <Form.Label>Password</Form.Label>
+          <Form.Label>Mot de passe</Form.Label>
           <Form.Control
             required
             type="password"
-            placeholder="Votre Adress"
+            placeholder="Mot de passe"
             value={Password}
             onChange={(e)=>setPassword(e.target.value)}
           />
@@ -146,10 +146,10 @@ function StepTowSaveInformation({handleNext}) {
       </Row>
       <Row className="mb-3">
         <Form.Group as={Col} md="4" controlId="validationCustom03">
-          <Form.Label>Country</Form.Label>
+          <Form.Label>Pays</Form.Label>
           <Form.Control
            type="text"
-            placeholder="Country"
+            placeholder="Pays"
              required  
              value={country!=="undefined"?country:""}
              onChange={(e)=>setCountry(e.target.value)}
@@ -159,10 +159,10 @@ function StepTowSaveInformation({handleNext}) {
           </Form.Control.Feedback>
         </Form.Group>
         <Form.Group as={Col} md="3" controlId="validationCustom04">
-          <Form.Label>City</Form.Label>
+          <Form.Label>Ville</Form.Label>
           <Form.Control
            type="text"
-            placeholder="City"
+            placeholder="Ville"
              required 
              value={City!=="undefined"?City:""}
              onChange={(e)=>setCity(e.target.value)}
@@ -185,9 +185,9 @@ function StepTowSaveInformation({handleNext}) {
           </Form.Control.Feedback>
         </Form.Group>
            <Form.Group as={Col} md="4" controlId="validationCustomPhoneNumber">
-          <Form.Label>Phone Number</Form.Label>
+          <Form.Label>Numero de Telephone</Form.Label>
           <PhoneInput
-            placeholder="Enter phone number"
+            placeholder="Enter Numero de Telephone"
             value={phoneNumber!=="undefined"?phoneNumber:""}
             onChange={setPhoneNumber}
             required

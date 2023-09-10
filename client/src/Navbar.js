@@ -26,7 +26,7 @@ import { get_current } from "./redux/action/UserAction";
 import { useDispatch, useSelector } from "react-redux";
 import FilterComponent from "./components/FiltreComponents/FilterComponent";
 import { FaLocationDot } from 'react-icons/fa6'
-const Navbar = ({ productItemslen, handelsearch,searchResults,search }) => {
+const Navbar = ({ productItemslen, handelsearch,searchResults,search,navbarprice }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [token, setToken] = useState(null);
@@ -34,6 +34,7 @@ const Navbar = ({ productItemslen, handelsearch,searchResults,search }) => {
   const isMobile = useMediaQuery("(max-width: 768px)"); // Define the breakpoint
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [dropdownAnchor, setDropdownAnchor] = useState(null);
+  
   useEffect(() => {
     const token = localStorage.getItem("token");
     setToken(token);
@@ -162,7 +163,7 @@ const Navbar = ({ productItemslen, handelsearch,searchResults,search }) => {
           onClick={() => setIsDrawerOpen(false)}
           style={{ marginLeft: "20px" }}
         >
-          <ListItemText primary="Service Client" />
+          <ListItemText primary="Service" />
         </ListItem>
       </List>
     </div>
@@ -277,7 +278,9 @@ const Navbar = ({ productItemslen, handelsearch,searchResults,search }) => {
           >
             <Badge badgeContent={productItemslen?.length} color="#B76E79">
               <LocalMallIcon style={{ color: "#000000", fontSize: "35px" }} />
-            </Badge>
+              </Badge>
+              <h6 style={{marginLeft:"3px"}}>{navbarprice?navbarprice:null}</h6>{' '} TND
+            
           </Button>
           {!token ? (
             <Button component={Link} to="/login" style={{ color: "#000000" }}>
