@@ -301,7 +301,7 @@ const Navbar = ({ productItemslen, handelsearch,searchResults,search,navbarprice
           {renderDrawer()}
         </Drawer>
       )}
-      <Row>
+      <Row className="contact-row">
         <Col md={12}>
           <h5><img className='socialimage' src="https://static.vecteezy.com/system/resources/previews/022/101/124/original/whatsapp-logo-transparent-free-png.png"/>+216 54 154 220 </h5>
         </Col>

@@ -34,3 +34,9 @@
 .search-suggestion-item:hover {
   background-color: #555;
 }
+.contact-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0; /* Adjust the padding as needed */
+}
