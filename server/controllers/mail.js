@@ -65,3 +65,6 @@ async function nodmail(req, res) {
   }
 }
 
+module.exports={
+  nodmail
+}
