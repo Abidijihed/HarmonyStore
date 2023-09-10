@@ -1,6 +1,7 @@
 const {connection}=require('../dataBaseConfig/config')
 const nodemailer=require('nodemailer')
 const utils=require('../midelwar/utils.js')
+const crypto = require('crypto');
 
 module.exports={
     Get:(session)=>{
@@ -94,7 +95,7 @@ module.exports={
         const newPasswordHashed = crypto.createHash('sha256').update(newPassword).digest('hex');
     
         // Update the user's password using the resetToken
-        const updatePasswordQuery = `UPDATE user SET Password = "${newPasswordHashed}", resetToken = NULL WHERE resetToken = "${token}"`;
+        const updatePasswordQuery = `UPDATE users SET Password = "${newPasswordHashed}", resetToken = NULL WHERE resetToken = "${token}"`;
         connection.query(updatePasswordQuery, (err, result) => {
             if (err) {
                 res.status(500).send(err);

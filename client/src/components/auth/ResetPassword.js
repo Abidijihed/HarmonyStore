@@ -18,7 +18,7 @@ const {resetToken}=useParams()
     }
 
     // Make an API call to reset the password
-    axios.put(`https://www.harmonystore01.com/api/password/reset/${resetToken}`, { newPassword }) // Adjust the API endpoint and token accordingly
+    axios.put(`https://www.harmonystore01.com/api/password/reset/${resetToken}`, { newPassword,confirmPassword }) // Adjust the API endpoint and token accordingly
       .then((response) => {
         // Assuming your server returns a success message
         if (response.status === 200) {
