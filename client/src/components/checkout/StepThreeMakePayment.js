@@ -67,9 +67,10 @@ export default function StepThreeMakePayment() {
       })
       
       localStorage.removeItem('cart')
-      window.location.reload()
+      
+      navigate("/monorder")
       setTimeout(() => {
-        navigate("/monorder")
+        window.location.reload()
       }, 2000);
     }
   })

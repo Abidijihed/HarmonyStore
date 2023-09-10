@@ -188,7 +188,7 @@ function StepTowSaveInformation({handleNext}) {
           <Form.Label>Numero de Telephone</Form.Label>
           <PhoneInput
             placeholder="Enter Numero de Telephone"
-            value={phoneNumber!=="undefined"?phoneNumber:"+216"}
+            value={phoneNumber === "undefined"?"+216":phoneNumber===""?"+216":phoneNumber}
             onChange={setPhoneNumber}
             required
           />

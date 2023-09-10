@@ -375,9 +375,7 @@ cursor: pointer;
 .payment-buttons button:hover {
   background-color: #0056b3;
 }
-.App .navbar {
-  margin: 0;
-}
+
 .category:hover{
   color: #B76E79 !important;
   
@@ -414,4 +412,7 @@ cursor: pointer;
 }
 img.socialimage {
   width: 70px;
+}
+.row {
+  --bs-gutter-x: none !important;
 }
