@@ -59,7 +59,7 @@ function Contact() {
           attachment: null,
         });
         // Handle success, e.g., show a success message or redirect
-        console.log("Email sent successfully!");
+       
       } else {
         // Handle failure, e.g., show an error message
         console.error("Error sending email:", response.data.error);
@@ -71,7 +71,8 @@ function Contact() {
 
 
   return (
-    <Container style={{ marginTop: "30px" }}>
+    <Container style={{ marginTop: "50px" }}>
+    <h1>Contacter Nous</h1>
       <Row>
         <Col xs={12} md={6}>
           <Form noValidate validated={validated} onSubmit={handleSubmit}  encType="multipart/form-data">

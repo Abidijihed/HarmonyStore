@@ -31,10 +31,10 @@ async function nodmail(req, res) {
     const htmlContent = `
       <html>
         <head>
-          <title>Harmony Store</title>
+          <h1>Harmony Store</h1>
         </head>
         <body>
-          <h1>Contact Information</h1>
+          <h3>Contact Information</h3>
           <p><strong>First Name:</strong> ${firstName}</p>
           <p><strong>Email:</strong> ${email}</p>
           <p><strong>Subject:</strong> ${subject}</p>

@@ -173,6 +173,7 @@ const Navbar = ({ productItemslen, handelsearch,searchResults,search,navbarprice
   );
 
   return (
+    <div>
     <div className="navbar">
       <AppBar elevation={4} style={{ background: "#FFFFFF" }}>
         <Toolbar style={{ display: "flex", justifyContent: "space-around" }}>
@@ -290,11 +291,7 @@ const Navbar = ({ productItemslen, handelsearch,searchResults,search,navbarprice
               Connexion
             </Button>
           ) : null}
-          <Row className="contact-row">
-        <Col md={12}>
-          <h5><img className='socialimage' src="https://static.vecteezy.com/system/resources/previews/022/101/124/original/whatsapp-logo-transparent-free-png.png"/>+216 54 154 220 </h5>
-        </Col>
-      </Row>
+          
         </Toolbar>
         <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)}>
           {renderDrawer()}
@@ -307,6 +304,12 @@ const Navbar = ({ productItemslen, handelsearch,searchResults,search,navbarprice
         </Drawer>
       )}
       
+    </div>
+    <Row className="contact-row">
+        <Col md={12}>
+          <h5><img className='socialimage' src="https://static.vecteezy.com/system/resources/previews/022/101/124/original/whatsapp-logo-transparent-free-png.png"/>+216 54 154 220 </h5>
+        </Col>
+      </Row>
     </div>
   );
 };
