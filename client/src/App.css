@@ -123,8 +123,7 @@ body {
     box-shadow: 0 2px 4px rgb(139 31 31 / 36%);
     display: flex;
     justify-content: space-around;
-    margin: 22px;
-    width: 500px;
+    width: 370px !important;
     background: #70809038;
     padding: 26px;
 }

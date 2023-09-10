@@ -13,7 +13,7 @@ import { get_current, register, update_current_user } from '../../redux/action/U
 function StepTowSaveInformation({handleNext}) {
   const dispatch=useDispatch()
   const [validated, setValidated] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('+216');
   const [FirstName,setFirstName]=useState('')
   const [LastName,setLastName]=useState('')
   const [Email,setEmail]=useState('')
@@ -30,7 +30,7 @@ function StepTowSaveInformation({handleNext}) {
   useEffect(() => {
     if (user) {
       setFirstName(user.FirstName || '');
-      setPhoneNumber(user.PhoneNumber || '');
+      setPhoneNumber(user.PhoneNumber || '+216');
       setLastName(user.LastName || '');
       setEmail(user.Email || "");
       setAddress(user.Address || "");
@@ -60,7 +60,7 @@ function StepTowSaveInformation({handleNext}) {
           country:country,
           City:City,
           Zip:Zip,
-          phoneNumber:phoneNumber
+          PhoneNumber:phoneNumber
         },handleNext))
     }else if(validated && !user){
       event.preventDefault();
@@ -73,7 +73,7 @@ function StepTowSaveInformation({handleNext}) {
           country:country,
           City:City,
           Zip:Zip,
-          phoneNumber:phoneNumber,
+          PhoneNumber:phoneNumber,
           Password:Password
         },handleNext,null))
     }
@@ -188,7 +188,7 @@ function StepTowSaveInformation({handleNext}) {
           <Form.Label>Numero de Telephone</Form.Label>
           <PhoneInput
             placeholder="Enter Numero de Telephone"
-            value={phoneNumber!=="undefined"?phoneNumber:""}
+            value={phoneNumber!=="undefined"?phoneNumber:"+216"}
             onChange={setPhoneNumber}
             required
           />
