@@ -4,7 +4,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
 import axios from "axios"; // Import Axios
 
 function Contact() {
@@ -15,12 +14,19 @@ function Contact() {
     email: "",
     subject: "",
     message: "",
+    attachment: null, // Add a new field for the file input
   });
 
   // Handle input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  // Handle file input change
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setFormData({ ...formData, attachment: file });
   };
 
   // Handle form submission
@@ -35,8 +41,15 @@ function Contact() {
     }
 
     try {
+      const formDataWithFile = new FormData();
+      formDataWithFile.append("firstName", formData.firstName);
+      formDataWithFile.append("email", formData.email);
+      formDataWithFile.append("subject", formData.subject);
+      formDataWithFile.append("message", formData.message);
+      formDataWithFile.append("attachment", formData.attachment); // Append the file
+
       // Send the form data to your API endpoint using Axios
-      await axios.post("https://www.harmonystore01.com/api/send/email", formData);
+      await axios.post("https://www.harmonystore01.com/api/send/email", formDataWithFile);
 
       // Reset the form and state
       form.reset();
@@ -45,6 +58,7 @@ function Contact() {
         email: "",
         subject: "",
         message: "",
+        attachment: null,
       });
 
       // You can add a success message or redirect to a thank you page here
@@ -114,6 +128,17 @@ function Contact() {
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
             </Row>
+            <Row className="mb-3">
+              <Form.Group as={Col} md="4" controlId="validationCustom05">
+                <Form.Label>Attachment</Form.Label>
+                <Form.Control
+                  type="file"
+                  accept=".pdf,.doc,.docx,.jpg,.png" // Define accepted file types
+                  onChange={handleFileChange}
+                />
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              </Form.Group>
+            </Row>
             <Button type="submit">Send Email</Button>
           </Form>
         </Col>
@@ -144,7 +169,7 @@ function Contact() {
           <a href="https://www.harmonystore01.com/">www.harmonystore01.com</a>
         </Col>
       </Row>
-    </Container >
+    </Container>
   );
 }
 

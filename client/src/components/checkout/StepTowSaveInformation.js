@@ -197,7 +197,7 @@ function StepTowSaveInformation({handleNext}) {
           </Form.Control.Feedback>
         </Form.Group>
       </Row>
-      <Button type='button' style={{backgroundColor:"#708090"}} onClick={handleSubmit}>confirmer</Button>
+      <Button type='button' style={{backgroundColor:"green"}} onClick={handleSubmit}>confirmer</Button>
     </Form>
     </div>
   );

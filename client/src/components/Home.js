@@ -102,7 +102,7 @@ export default function Home({ products, getlen, search }) {
             <Col xs={12} sm={12} md={6}>
               <RiSecurePaymentLine style={{ fontSize: "50px" }} />
               <h6 style={{ display: "flex", fontFamily: "fantasy" }}>
-                Payment Secure{" "}
+              paiement sécurisé{" "}
               </h6>
             </Col>
           </Row>

@@ -26,7 +26,7 @@ export default function Footer() {
              target="_blank"
              rel="noopener noreferrer"
            >
-             <FaFacebook fontSize="24px" />
+             <img className='socialimage' src='https://www.edigitalagency.com.au/wp-content/uploads/Facebook-logo-blue-circle-large-transparent-png.png' />
            </a>
            <a
            className='socialmmmm'
@@ -34,7 +34,7 @@ export default function Footer() {
              target="_blank"
              rel="noopener noreferrer"
            >
-             <FaInstagram fontSize="24px" />
+             <img className='socialimage' src='https://static.vecteezy.com/system/resources/previews/023/986/555/original/instagram-logo-instagram-logo-transparent-instagram-icon-transparent-free-free-png.png' />
            </a>
            <a
            className='socialmmmm'
@@ -42,7 +42,7 @@ export default function Footer() {
              target="_blank"
              rel="noopener noreferrer"
            >
-             <FaTiktok fontSize="24px" />
+             <img className='socialimage' src='https://seeklogo.com/images/T/tiktok-logo-1F4A5DCD45-seeklogo.com.png'/>
            </a>
         </div>
         </Col>

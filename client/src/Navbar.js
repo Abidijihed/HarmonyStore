@@ -26,6 +26,9 @@ import { get_current } from "./redux/action/UserAction";
 import { useDispatch, useSelector } from "react-redux";
 import FilterComponent from "./components/FiltreComponents/FilterComponent";
 import { FaLocationDot } from 'react-icons/fa6'
+import { FaShopify } from "react-icons/fa";
+import Row from "react-bootstrap/esm/Row";
+import Col from "react-bootstrap/esm/Col";
 const Navbar = ({ productItemslen, handelsearch,searchResults,search,navbarprice }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -277,7 +280,7 @@ const Navbar = ({ productItemslen, handelsearch,searchResults,search,navbarprice
             }
           >
             <Badge badgeContent={productItemslen?.length} color="#B76E79">
-              <LocalMallIcon style={{ color: "#000000", fontSize: "35px" }} />
+              <FaShopify style={{ color: "#000000", fontSize: "35px" }} />
               </Badge>
               <h6 style={{marginLeft:"3px"}}>{navbarprice?navbarprice:null}</h6>{' '} TND
             
@@ -298,6 +301,11 @@ const Navbar = ({ productItemslen, handelsearch,searchResults,search,navbarprice
           {renderDrawer()}
         </Drawer>
       )}
+      <Row>
+        <Col md={12}>
+          <h5><img className='socialimage' src="https://static.vecteezy.com/system/resources/previews/022/101/124/original/whatsapp-logo-transparent-free-png.png"/>+216 54 154 220 </h5>
+        </Col>
+      </Row>
     </div>
   );
 };

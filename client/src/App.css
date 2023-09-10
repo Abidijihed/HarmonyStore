@@ -187,6 +187,7 @@ body {
   /* .productpromotion{
     margin-top: 33%;
   } */
+ 
   #productinfoo{
     display: flex;
     flex-wrap: wrap;
@@ -406,4 +407,16 @@ cursor: pointer;
 }
 .harmmonystyle{
   margin: 8px;
+}
+@media screen and (min-width: 1024px) {
+  #harmony {
+    font-size: 150px; /* Font size for PC screens (adjust as needed) */
+  }
+
+  .harmmonystyle {
+    margin: 30px; /* Margin for PC screens (adjust as needed) */
+  }
+}
+img.socialimage {
+  width: 70px;
 }
