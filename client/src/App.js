@@ -22,6 +22,9 @@ import UserOrder from "./components/information/UserOrder";
 import MyOrder from "./components/user/MyOrder";
 import axios from "axios";
 import Service from "./components/information/Service";
+import ForgetPassword from "./components/auth/ForgetPassword";
+import ResetPassword from "./components/auth/ResetPassword";
+import ResetPsswordSeccuss from "./components/auth/ResetPsswordSeccuss";
 function App() {
 const [productItemslen,setproductItemslen]=useState([])
 const [searchResults, setSearchResults] = useState([]);
@@ -83,7 +86,11 @@ const [search,setSearch]=useState("")
           } />
          <Route path="/monorder" element={<MyOrder />} />
          <Route path="/service" element={<Service />} />
+         <Route path="/forgetPassword" element={<ForgetPassword />} />
+          <Route path="/password/reset/:resetToken" element={<ResetPassword />} />
+          <Route path="/password-reset/seccess" element={<ResetPsswordSeccuss />} />
 
+          
         </Routes>
         <Footer />
       </BrowserRouter>

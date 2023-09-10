@@ -80,11 +80,14 @@ function LoginPage() {
             color="primary"
             onClick={() => dispatch(login({Email,Password},navigate))}
           >
-            Log in
+            Connexion
           </Button>
         </form>
         <p style={{ textAlign: "center", marginTop: "10px" }}>
-          Don't have an account yet? <Link to="/signup">Sign up</Link>
+        Vous n'avez pas encore de compte ? <Link to="/signup">Sign up</Link>
+        </p>
+        <p style={{ textAlign: "center", marginTop: "10px" }}>
+        Mot de passe oublié ? <Link to="/forgetPassword">Réinitialiser le mot de passe</Link>
         </p>
       </CardContent>
     </Card>

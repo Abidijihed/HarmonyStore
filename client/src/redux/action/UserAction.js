@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { REGISTER, LOGIN, GET_CURRENT } from '../actionType/ActionType'
+import { REGISTER, LOGIN, GET_CURRENT, FORGOT_PASSWORD_REQUEST, FORGOT_PASSWORD_SUCCESS, FORGOT_PASSWORD_FAIL, RESET_PASSWORD_REQUEST, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_FAIL } from '../actionType/ActionType'
 import { alertError } from './AlertAction'
 import Swal from 'sweetalert2'
 
@@ -96,3 +96,63 @@ export const update_current_user = (id,data,handleNext) => async (dispatch) => {
         console.log(error)
     }
 }
+export const forgotPassword = (email) => async (dispatch) => {
+    try {
+
+        dispatch({ type: FORGOT_PASSWORD_REQUEST });
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }
+
+        const { data } = await axios.post(
+            'https://www.harmonystore01.com/request-password-reset',
+            email,
+            config
+        );
+
+        dispatch({
+            type: FORGOT_PASSWORD_SUCCESS,
+            payload: data,
+        });
+
+    } catch (error) {
+        dispatch({
+            type: FORGOT_PASSWORD_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+};
+
+// Reset Password
+export const resetPassword = (token, newPassword, confirmPassword) => async (dispatch) => {
+    try {
+
+        dispatch({ type: RESET_PASSWORD_REQUEST });
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }
+
+        const { data } = await axios.put(
+            `https://www.harmonystore01.com/api/password/reset/${token}`,
+            {newPassword, confirmPassword},
+            config
+        );
+
+        dispatch({
+            type: RESET_PASSWORD_SUCCESS,
+            payload: data,
+        });
+
+    } catch (error) {
+        dispatch({
+            type: RESET_PASSWORD_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+};
