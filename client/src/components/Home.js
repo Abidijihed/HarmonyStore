@@ -232,6 +232,7 @@ export default function Home({ products, getlen, search }) {
                 20% OFF
               </span>
               <button
+              onClick={()=>navigate('/products')}
                 id="shopbutt"
                 className="position-absolute bottom-0 start-50 translate-middle-x"
               >
