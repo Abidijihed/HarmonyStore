@@ -93,7 +93,7 @@ export default function Footer() {
         </Col>
       </Row>
       <Row style={{display:"flex",justifyContent:"center"}}>
-        <img src={logoF} alt='logo Footer' style={{width:"400px",height:"200px"}} />
+        <img src={logoF} alt='logo Footer' style={{width:"470px",height:"177px"}} />
       </Row>
     </div>
   );
