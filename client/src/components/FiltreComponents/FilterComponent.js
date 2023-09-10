@@ -276,13 +276,13 @@ export default function FilterComponent() {
                   </AccordionDetails>
                   </Accordion>
                   <Accordion
-                  expanded={expanded === "panel1"}
-                  onChange={handleChange("panel1")}
+                  expanded={expanded === "panel8"}
+                  onChange={handleChange("panel8")}
                 >
                   <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1bh-content"
-                    id="panel1bh-header"
+                    aria-controls="panel8bh-content"
+                    id="panel8bh-header"
                   >
                     <Typography sx={{ width: "33%", flexShrink: 0 }} className="categorytitle">
                     Montres Homme

@@ -91,7 +91,7 @@ export default function Home({ products, getlen, search }) {
             display: "flex",
           }}
         >
-          <Row style={{ display: "flex", justifyContent: "center" }}>
+          <Row style={{ display: "flex", justifyContent: "center" }} id="infott">
             <Col xs={12} sm={6}>
               <span>
                 <GrDeliver style={{ fontSize: "50px" }} />
@@ -266,7 +266,7 @@ export default function Home({ products, getlen, search }) {
             placeholder="Enter your email address"
             autocomplete="off"
           />
-          <button type="button" onClick={hadelsuscribe}>
+          <button id="phonebutt" type="button" onClick={hadelsuscribe}>
             Subscribe
           </button>
         </div>

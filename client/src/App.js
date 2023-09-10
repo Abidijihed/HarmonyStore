@@ -21,6 +21,7 @@ import PrivetOrder from "./components/user/PrivetOrder";
 import UserOrder from "./components/information/UserOrder";
 import MyOrder from "./components/user/MyOrder";
 import axios from "axios";
+import Service from "./components/information/Service";
 function App() {
 const [productItemslen,setproductItemslen]=useState([])
 const [searchResults, setSearchResults] = useState([]);
@@ -54,7 +55,7 @@ const [search,setSearch]=useState("")
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar productItemslen={productItemslen} handelsearch={handelsearch} searchResults={searchResults} />
+        <Navbar productItemslen={productItemslen} handelsearch={handelsearch} searchResults={searchResults} search={search} />
        
         <br />
         <Routes>
@@ -81,6 +82,7 @@ const [search,setSearch]=useState("")
             </PrivetOrder>
           } />
          <Route path="/monorder" element={<MyOrder />} />
+         <Route path="/service" element={<Service />} />
 
         </Routes>
         <Footer />

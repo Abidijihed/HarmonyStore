@@ -26,7 +26,7 @@ import { get_current } from "./redux/action/UserAction";
 import { useDispatch, useSelector } from "react-redux";
 import FilterComponent from "./components/FiltreComponents/FilterComponent";
 import { FaLocationDot } from 'react-icons/fa6'
-const Navbar = ({ productItemslen, handelsearch,searchResults }) => {
+const Navbar = ({ productItemslen, handelsearch,searchResults,search }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [token, setToken] = useState(null);
@@ -155,6 +155,15 @@ const Navbar = ({ productItemslen, handelsearch,searchResults }) => {
         >
           <ListItemText primary="About Us" />
         </ListItem>
+        <ListItem
+          button
+          component={Link}
+          to="/service"
+          onClick={() => setIsDrawerOpen(false)}
+          style={{ marginLeft: "20px" }}
+        >
+          <ListItemText primary="Service Client" />
+        </ListItem>
       </List>
     </div>
   );
@@ -190,7 +199,7 @@ const Navbar = ({ productItemslen, handelsearch,searchResults }) => {
               startAdornment={<SearchIcon style={{ color: "#B76E79" }} />}
               style={{ marginRight: "10px", color: "#000000" }}
             />
-            {renderSearchSuggestions()}
+            {search.length?renderSearchSuggestions():null}
           </div>
           {!isMobile && (
             <div style={{ display: "flex", alignItems: "center" }}>

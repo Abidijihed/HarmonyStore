@@ -102,6 +102,12 @@ body {
   .productpromotion{
     margin-top: 15%;
   }
+  #infott{
+    margin-left: 10%
+  }
+  #phonebutt{
+    margin-left: 20%;
+  }
   #productinfoo{
     justify-content: center !important;
     display: flex !important;
