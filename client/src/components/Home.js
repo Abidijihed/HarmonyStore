@@ -271,7 +271,7 @@ export default function Home({ products, getlen, search }) {
           </button>
         </div>
       </div>
-      <Row>
+      {/* <Row>
         <Col>
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12766.899372957596!2d10.3395141!3d36.8730045!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12e2b59295202219%3A0x666111cb4f0596a6!2sharmony%20Store!5e0!3m2!1sfr!2stn!4v1693234238802!5m2!1sfr!2stn"
@@ -283,7 +283,7 @@ export default function Home({ products, getlen, search }) {
             referrerpolicy="no-referrer-when-downgrade"
           ></iframe>
         </Col>
-      </Row>
+      </Row> */}
     </>
   );
 }

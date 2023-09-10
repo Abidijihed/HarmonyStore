@@ -25,6 +25,7 @@ import { useNavigate } from "react-router-dom";
 import { get_current } from "./redux/action/UserAction";
 import { useDispatch, useSelector } from "react-redux";
 import FilterComponent from "./components/FiltreComponents/FilterComponent";
+import { FaLocationDot } from 'react-icons/fa6'
 const Navbar = ({ productItemslen, handelsearch,searchResults }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -257,7 +258,7 @@ const Navbar = ({ productItemslen, handelsearch,searchResults }) => {
               </Menu>
             </div>
           )}
-
+           <FaLocationDot style={{fontSize:"30px",color:"black"}} onClick={()=>navigate('/contact')}/>
           <Button
             onClick={() =>
               productItemslen?.length > 0
