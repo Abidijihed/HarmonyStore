@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 function Contact() {
   const [validated, setValidated] = useState(false);
@@ -59,7 +60,13 @@ function Contact() {
           attachment: null,
         });
         // Handle success, e.g., show a success message or redirect
-       
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Merci pour nous contacter, nous vous répondrons bientôt.',
+          showConfirmButton: false,
+          timer: 1500
+        })
       } else {
         // Handle failure, e.g., show an error message
         console.error("Error sending email:", response.data.error);

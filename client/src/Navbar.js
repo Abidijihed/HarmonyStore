@@ -173,9 +173,35 @@ const Navbar = ({ productItemslen, handelsearch,searchResults,search,navbarprice
   );
 
   return (
-    <div>
+   
     <div className="navbar">
       <AppBar elevation={4} style={{ background: "#FFFFFF" }}>
+      <Row style={{marginTop:"6px"}}>
+      <div style={{justifyContent:"space-around", display:"flex"}}>
+        <Col md={6}>
+        <InputBase
+              onChange={(e) => handelsearch(e)}
+              placeholder="  Search..."
+              startAdornment={<SearchIcon style={{ color: "#B76E79" }} />}
+              style={{ marginRight: "10px", color: "#000000" }}
+            />
+            {search.length?renderSearchSuggestions():null}
+        </Col>
+        <Col md={3}>
+        {!token ? (
+          <>
+            <Button component={Link} to="/login" style={{ color: "#000000" }}>
+              Connexion
+            </Button><span style={{color:"black"}}>/</span>
+            <Button component={Link} to="/signup" style={{ color: "#000000" }}>
+            Créer un Compte 
+            </Button>
+            </>
+          ) : null}
+          
+        </Col>
+        </div>
+      </Row>
         <Toolbar style={{ display: "flex", justifyContent: "space-around" }}>
         
             <IconButton
@@ -198,13 +224,8 @@ const Navbar = ({ productItemslen, handelsearch,searchResults,search,navbarprice
             </Button>
           )}
           <div>
-            <InputBase
-              onChange={(e) => handelsearch(e)}
-              placeholder="  Search..."
-              startAdornment={<SearchIcon style={{ color: "#B76E79" }} />}
-              style={{ marginRight: "10px", color: "#000000" }}
-            />
-            {search.length?renderSearchSuggestions():null}
+          <h5 style={{color:"black",display:"flex"}}><img style={{width:"40px"}} src="https://static.vecteezy.com/system/resources/previews/022/101/124/original/whatsapp-logo-transparent-free-png.png"/>+216 54 154 220 </h5>
+            
           </div>
           {!isMobile && (
             <div style={{ display: "flex", alignItems: "center" }}>
@@ -286,11 +307,6 @@ const Navbar = ({ productItemslen, handelsearch,searchResults,search,navbarprice
               <h6 style={{marginLeft:"3px"}}>{navbarprice?navbarprice:null}</h6>{' '} TND
             
           </Button>
-          {!token ? (
-            <Button component={Link} to="/login" style={{ color: "#000000" }}>
-              Connexion
-            </Button>
-          ) : null}
           
         </Toolbar>
         <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)}>
@@ -305,12 +321,7 @@ const Navbar = ({ productItemslen, handelsearch,searchResults,search,navbarprice
       )}
       
     </div>
-    <Row className="contact-row">
-        <Col md={12}>
-          <h5><img className='socialimage' src="https://static.vecteezy.com/system/resources/previews/022/101/124/original/whatsapp-logo-transparent-free-png.png"/>+216 54 154 220 </h5>
-        </Col>
-      </Row>
-    </div>
+
   );
 };
 
