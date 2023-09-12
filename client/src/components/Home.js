@@ -15,6 +15,7 @@ import {
 import VideoBanner from "./carousel/Banner";
 import { RiSecurePaymentLine } from "react-icons/ri";
 import { GrDeliver } from "react-icons/gr";
+import {AiFillGift} from 'react-icons/ai'
 import axios from "axios";
 import Swal from "sweetalert2";
 export default function Home({ products, getlen, search }) {
@@ -115,7 +116,7 @@ export default function Home({ products, getlen, search }) {
               <div
                 className="jewerllypro"
                 onClick={() =>
-                  navigate(`/product/${encodeURIComponent("Dormeuses")}`)
+                  navigate(`/product/${encodeURIComponent("Bijoux Femme")}`)
                 }
               >
                 <GiCrystalEarrings />
@@ -128,14 +129,14 @@ export default function Home({ products, getlen, search }) {
                   display: "flex",
                 }}
               >
-                Boucles d'oreilles
+                Bijoux Femme
               </h3>
             </div>
             <div style={{ display: "block" }}>
               <div
                 className="jewerllypro"
                 onClick={() =>
-                  navigate(`/product/${encodeURIComponent("Bagues")}`)
+                  navigate(`/product/${encodeURIComponent("Bijoux Homme")}`)
                 }
               >
                 <GiDiamondRing />
@@ -147,7 +148,7 @@ export default function Home({ products, getlen, search }) {
                   display: "flex",
                 }}
               >
-                Bagues
+                Bijoux Homme
               </h3>
             </div>
             <div style={{ display: "block" }}>
@@ -173,7 +174,7 @@ export default function Home({ products, getlen, search }) {
               <div
                 className="jewerllypro"
                 onClick={() =>
-                  navigate(`/product/${encodeURIComponent("Colliers")}`)
+                  navigate(`/product/${encodeURIComponent("CHICHKHAN")}`)
                 }
               >
                 <GiEmeraldNecklace />
@@ -185,14 +186,14 @@ export default function Home({ products, getlen, search }) {
                   display: "flex",
                 }}
               >
-                Colliers
+                Chichkhan
               </h3>
             </div>
             <div style={{ display: "block" }}>
               <div
                 className="jewerllypro"
                 onClick={() =>
-                  navigate(`/product/${encodeURIComponent("Bracelets")}`)
+                  navigate(`/product/${encodeURIComponent("Bijoux Enfant")}`)
                 }
               >
                 <GiPrimitiveNecklace />
@@ -204,7 +205,26 @@ export default function Home({ products, getlen, search }) {
                   display: "flex",
                 }}
               >
-                Bracelets
+                Bijoux Enfant
+              </h3>{" "}
+            </div>
+            <div style={{ display: "block" }}>
+              <div
+                className="jewerllypro"
+                onClick={() =>
+                  navigate(`/product/${encodeURIComponent("Idées Cadeaux")}`)
+                }
+              >
+                <AiFillGift />
+              </div>
+              <h3
+                style={{
+                  color: "black",
+                  justifyContent: "center",
+                  display: "flex",
+                }}
+              >
+                Idées Cadeaux
               </h3>{" "}
             </div>
           </div>
