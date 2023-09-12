@@ -286,7 +286,7 @@ const Navbar = ({ productItemslen, handelsearch,searchResults,search,navbarprice
         </Toolbar>
         <Row style={{marginTop:"6px"}}>
       <div style={{justifyContent:"space-around", display:"flex"}}>
-        <Col md={!token?12:6}>
+        <Col md={token?12:6}>
         <InputBase
               onChange={(e) => handelsearch(e)}
               placeholder="  Search..."

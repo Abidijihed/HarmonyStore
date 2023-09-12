@@ -93,14 +93,14 @@ export default function Home({ products, getlen, search }) {
           }}
         >
           <Row style={{ display: "flex", justifyContent: "center" }} id="infott">
-            <Col xs={12} sm={6}>
+            <Col md={3}>
               <span>
                 <GrDeliver style={{ fontSize: "50px" }} />
               </span>
               <h6 style={{ fontFamily: "fantasy" }}>Livraison à domicile</h6>
               <div>Achat plus de 200 TND 100% Gratuites</div>
             </Col>
-            <Col xs={12} sm={12} md={6}>
+            <Col md={3}>
               <RiSecurePaymentLine style={{ fontSize: "50px" }} />
               <h6 style={{ display: "flex", fontFamily: "fantasy" }}>
               paiement sécurisé{" "}
