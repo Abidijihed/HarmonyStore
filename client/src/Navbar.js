@@ -85,7 +85,7 @@ const Navbar = ({ productItemslen, handelsearch,searchResults,search,navbarprice
     );
   };
   const renderDrawer = () => (
-    <div style={{ width: "350px" }}>
+    <div style={{ width: "300px" }}>
       <List>
         <Typography
           variant="h6"
@@ -176,32 +176,7 @@ const Navbar = ({ productItemslen, handelsearch,searchResults,search,navbarprice
    
     <div className="navbar">
       <AppBar elevation={4} style={{ background: "#FFFFFF" }}>
-      <Row style={{marginTop:"6px"}}>
-      <div style={{justifyContent:"space-around", display:"flex"}}>
-        <Col md={6}>
-        <InputBase
-              onChange={(e) => handelsearch(e)}
-              placeholder="  Search..."
-              startAdornment={<SearchIcon style={{ color: "#B76E79" }} />}
-              style={{ marginRight: "10px", color: "#000000" }}
-            />
-            {search.length?renderSearchSuggestions():null}
-        </Col>
-        <Col md={3}>
-        {!token ? (
-          <>
-            <Button component={Link} to="/login" style={{ color: "#000000" }}>
-              Connexion
-            </Button><span style={{color:"black"}}>/</span>
-            <Button component={Link} to="/signup" style={{ color: "#000000" }}>
-            Créer un Compte 
-            </Button>
-            </>
-          ) : null}
-          
-        </Col>
-        </div>
-      </Row>
+     
         <Toolbar style={{ display: "flex", justifyContent: "space-around" }}>
         
             <IconButton
@@ -309,6 +284,32 @@ const Navbar = ({ productItemslen, handelsearch,searchResults,search,navbarprice
           </Button>
           
         </Toolbar>
+        <Row style={{marginTop:"6px"}}>
+      <div style={{justifyContent:"space-around", display:"flex"}}>
+        <Col md={!token?12:6}>
+        <InputBase
+              onChange={(e) => handelsearch(e)}
+              placeholder="  Search..."
+              startAdornment={<SearchIcon style={{ color: "#B76E79" }} />}
+              style={{color: "#000000",border:"solid 1px",borderRadius:"3%" }}
+            />
+            {search.length?renderSearchSuggestions():null}
+        </Col>
+      {!token ? (  <Col md={3}>
+        
+          <>
+            <Button component={Link} to="/login" style={{ color: "#000000" }}>
+              Connexion
+            </Button><span style={{color:"black"}}>/</span>
+            <Button component={Link} to="/signup" style={{ color: "#000000" }}>
+            Créer un Compte 
+            </Button>
+            </>
+           
+          
+        </Col>): null}
+        </div>
+      </Row>
         <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)}>
           {renderDrawer()}
         </Drawer>
